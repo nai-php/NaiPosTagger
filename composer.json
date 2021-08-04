@@ -1,0 +1,39 @@
+{
+  "name": "nai-php/naipostagger",
+  "type": "library",
+  "description": "A part of speech tagger written in PHP.",
+   "keywords": [
+        "pos",
+        "tag",
+        "pos tagging",
+        "ai",
+        "chatbot",
+        "keywords",
+        "semantic",
+        "part of speech",
+        "linguistics",
+        "natural language processing"
+    ],
+  "require": {
+	"aura/sql": "^3.0",
+    "php": ">=7.2.0",
+    "psr/log": "^1.0"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Giorgio G. Rey",
+      "homepage": "https://www.n-ai.cloud/"
+    }
+  ],
+    "autoload": {
+        "psr-4": {
+            "NaiPosTagger\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NaiPosTagger\\": "tests/"
+        }
+    }
+}
