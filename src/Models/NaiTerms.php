@@ -65,7 +65,7 @@ class NaiTerms
 	}
 
 	// if true, we join the results from the differents levels
-	// 25/12/2019 added empty($results) && altrimenti mi torna risultati doppi, testare!
+	// 25/12/2019 added empty($results) && to avoid multiple results
 	if(empty($results) && $findall)
 	{
 	    // important
@@ -135,7 +135,7 @@ class NaiTerms
 	 
 	 
 	$stm = self::getSelectQuery($form, $lemma, $feature, $table);
-//	echox('-- '.$stm);
+
 	// In db others there are some differences
 	if ($table == 'others')
 	{
@@ -251,7 +251,7 @@ class NaiTerms
     
     
     /**
-     * Add a record for a given term..
+     * Add a record for a given term
      * @param array $term_set
      * @param string $table optional for apostrophes db etc.
      * @return last id
@@ -289,9 +289,13 @@ class NaiTerms
 	$results = self::$pdo->fetchAll($stm);
 	
 	foreach ($results as $n => $result)
+	{
 	    if($result['rows'] == 1)
+	    {
 		unset($results[$n]);
-	    
+	    }
+	}
+	
 	return $results;
 
     }
@@ -306,20 +310,22 @@ class NaiTerms
      */
     public static function getTermsList($table, $feature, $rel = null, $filter = null)
     {
+	$bind = ['feature' => $feature . '%'];
+	
  	$stm = "SELECT id, form, lemma, rule";
 	
 	if(! is_null($rel))
 	$stm .= ", metadata";
 	
 	if(is_null($filter))
-	$stm .= " FROM `$table` WHERE features LIKE '$feature%'"; // AND metadata LIKE '%nnadj%'";
+	$stm .= " FROM `$table` WHERE features LIKE :feature";
 	
 	if(!is_null($filter))
-	$stm .= " FROM `$table` WHERE features LIKE '$feature%' AND metadata NOT LIKE '%\"ref\"%' AND metadata NOT LIKE '%\"synof\"%'";
+	$stm .= " FROM `$table` WHERE features LIKE :feature AND metadata NOT LIKE '%\"ref\"%' AND metadata NOT LIKE '%\"synof\"%'";
 	
 	self::$pdo = self::setDbPath ($table);
 
-	$results = self::$pdo->fetchAll($stm);
+	$results = self::$pdo->fetchAll($stm, $bind);
 
 	if(! is_null($rel))
 	{
@@ -460,7 +466,7 @@ class NaiTerms
 
 	// if returns 2 results is because is already present in level 2
 	if(count($is_present) > 1)
-	    throw new \Exception('già presente in level 2');
+	    throw new \Exception('already present in level 2');
 	
 	// prepare insert query
 	$stm = self::getInsertQuery($term_set, $table);
@@ -474,8 +480,10 @@ class NaiTerms
 	
 	// and remove from level 1 DB
 	$db_lev1 = self::setDbPath($table, $level = 1);
-	$stm = "DELETE FROM $table WHERE id = $id";
-	$db_lev1->fetchAffected($stm);
+	
+	$bind = ['id' => $id];
+	$stm = "DELETE FROM $table WHERE id = :id";
+	$db_lev1->fetchAffected($stm, $bind);
 	
 	return true;
 	
@@ -512,7 +520,7 @@ class NaiTerms
 		if (count($matches[0]) > 0)
 		    return $initial . '_rz';
 
-		// default @todo is correct?
+		// default
 		return $initial . '_ah';
 	    } else
 	    {
