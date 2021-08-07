@@ -51,6 +51,8 @@ class NaiTerms
      */
     public static function searchInDictionaries($form = null, $lemma = null, $feature = null, $findall = false)
     {
+	$form = trim($form);
+	
 	// always first in level 1
 	$results = self::doSearch($form, $lemma, $feature, 1);
 
@@ -489,6 +491,53 @@ class NaiTerms
 	
     }
     
+
+    /**
+     * Set rule value for a given term
+     * @param type $id
+     * @param type $value
+     * @param type $table
+     * @return boolean
+     */
+    public static function setRuleValue($id, $value, $table)
+    {
+
+	$bind = ['rule' => $value, 'id' => $id];
+	
+	$stm = "UPDATE $table SET rule = :rule WHERE id = :id";
+	
+	$db_lev1 = self::setDbPath($table, $level = 1);
+	
+	// write
+	$db_lev1->fetchAffected($stm, $bind);
+	
+	return true;
+	
+    }
+    
+
+    /**
+     * Remove a given term from the dictionary
+     * @param type $id
+     * @param type $table
+     * @return boolean
+     */
+    public static function deleteTerm($id, $table)
+    {
+
+	$bind = ['id' => $id];
+	
+	$stm = "DELETE FROM $table WHERE id = :id";
+	
+	$db_lev1 = self::setDbPath($table, $level = 1);
+	
+	// write
+	$db_lev1->fetchAffected($stm, $bind);
+	
+	return true;
+	
+    }
+    
     
     /**
     * Given a $form the method returns the name of the relative dictionary table
@@ -497,6 +546,8 @@ class NaiTerms
     */
     public static function set_table_by_initial($form)
     {
+	$form = trim($form);
+	
 	$initial = strtolower(left($form, 1));
 
 	// by looking the first char of the form determine the table name
