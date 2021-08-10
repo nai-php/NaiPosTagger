@@ -1,7 +1,7 @@
 # N-ai php pos tagger
 
 A part of speech tagger written in PHP.
-This is the english version. Documentation and TODO are coming
+This is the english version. Documentation and TODO are coming, more info and demo on [n-ai.cloud]
 
 ## Installation
 
@@ -151,5 +151,6 @@ Array
 )
 ```
 
+[n-ai.cloud]: https://www.n-ai.cloud
 [english dictionary]: https://github.com/nai-php/databases.git
 [composer]: https://packagist.org/packages/nai-php/naipostagger
