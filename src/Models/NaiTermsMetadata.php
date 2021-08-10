@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of N-ai a php chat bot with AI capabilities.
  *
  * (c) Giorgio G. Rey <grey@n-ai.cloud>
@@ -12,7 +12,6 @@
 
 namespace NaiPosTagger\Models;
 
-require_once (realpath(__DIR__ . '/../../../../vendor/autoload.php'));
 
 use NaiPosTagger\Models\NaiTerms;
 
