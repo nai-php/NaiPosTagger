@@ -1908,6 +1908,8 @@ trait BrillsRulesTrait {
     if ($nextword1 == 'meglio')	 self::returnRule($target_index, '01-370', 'VER');
 
     if ($nextword1 == 'stato')	 self::returnRule($target_index, '01-375', 'ADJ');
+    
+    if (preg_match('/^(up|down|in|out)$/i', $nextword1))	 self::returnRule($target_index, '01-376', 'VER');
 
  }
 

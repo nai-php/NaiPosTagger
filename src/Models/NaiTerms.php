@@ -51,7 +51,6 @@ class NaiTerms
      */
     public static function searchInDictionaries($form = null, $lemma = null, $feature = null, $findall = false)
     {
-	$form = trim($form);
 	
 	// always first in level 1
 	$results = self::doSearch($form, $lemma, $feature, 1);
@@ -546,7 +545,6 @@ class NaiTerms
     */
     public static function set_table_by_initial($form)
     {
-	$form = trim($form);
 	
 	$initial = strtolower(left($form, 1));
 
