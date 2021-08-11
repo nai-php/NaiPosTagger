@@ -1208,7 +1208,7 @@ trait BrillsRulesTrait {
 	
 	if ($prev_word1 == 'in' && ($this_tag == 'VER' || $this_tag == 'PPAST'))	 self::returnRule($target_index, '10-125', 'VER', -50);
 	
-	if ($prev_word1 == 'gonna' && $this_tag == 'VER')	 self::returnRule($target_index, '10-127', 'VER');
+	if (preg_match('/^(gonna|could|should)$/i', $prev_word1) && $this_tag == 'VER')	 self::returnRule($target_index, '10-127', 'VER');
 	
 	if ($prev_word1 == 'inside' && ($this_tag == 'VER' || $this_tag == 'PPAST'))	 self::returnRule($target_index, '10-130', 'VER', -50);
 	
