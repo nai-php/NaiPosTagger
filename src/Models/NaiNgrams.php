@@ -60,7 +60,10 @@ class NaiNgrams
 	$NaiTermsMetadata = new NaiTermsMetadata();
 	$NaiTermsMetadata->language = self::$language;
 
-	$NaiKnowledgeManager = new NaiKnowledgeManager();
+	if (class_exists('NaiKnowledgeManager'))
+	{
+	    $NaiKnowledgeManager = new NaiKnowledgeManager();
+	}
 	
 	// important!
 	NaiTerms::$language = self::$language;
