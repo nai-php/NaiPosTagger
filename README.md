@@ -158,6 +158,8 @@ Array
 - [ ] Add more ngrams
 - [ ] Add more tests, expecially for filters
 - [ ] Collect and load frill words
+- [ ] Better Oop for some classes?
+- [ ] Find contributors
 - [ ] In module for logical analysis (yet not published) collect synonyms and temporal expressions
 
 [n-ai.cloud]: https://www.n-ai.cloud
