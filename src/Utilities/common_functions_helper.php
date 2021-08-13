@@ -963,3 +963,36 @@ function getKeyChainValueFromArray($data, $chain)
 }
 }
 
+
+/**
+ * Given a $pos_arr return php code to paste in a unit test file
+ * @param array $pos_arr
+ * @return string test_function
+ */
+if (! function_exists('createTestFunctions'))
+{
+    function createTestFunctions($orig_sentence, $pos_arr)
+    {
+	$pos_arr = \NaiPosTagger\Models\NaiPosArr::flatPosArr($pos_arr);
+	
+	$test_function = "public function testPosTagging".time()."_".rand(1, 10000)."() {\n" .
+	
+	    "\t" . '$PipelinePosTagging = new PipelinePosTagging();' . "\n" .
+	
+	    "\t" . '$PipelinePosTagging->language = "en";' . "\n\n" .
+	
+	    "\t" . '$sentence = "'.$orig_sentence.'";' . "\n" .
+	
+	    "\t" . '$pos_arr = $PipelinePosTagging->transform($sentence);' . "\n" .
+
+	    "\t" . '$PipelinePosTagging = null;' . "\n\n" .
+		
+	    "\t" . '$pos_arr = NaiPOsArr::flatPosArr($pos_arr);' . "\n\n" .
+	
+	    "\t" . '$this->assertEquals(implode(" ", array_column($pos_arr, \'features\')), "'.implode(" ", array_column($pos_arr, 'features')).'");' . "\n" .
+
+	"}" . "\n\n";
+	
+	return $test_function;
+    }
+}
