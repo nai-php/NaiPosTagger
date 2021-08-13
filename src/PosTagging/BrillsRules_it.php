@@ -1196,7 +1196,7 @@ trait BrillsRulesTrait {
 	
 	if (preg_match('/^(the|this|that|those)$/i', $prev_word1) && ($this_tag == 'UNK'))	 self::returnRule($target_index, '10-100', 'NOUN');
 
-	if (preg_match('/^(may|might|can)$/i', $prev_word1) && ($this_tag == 'VER' || $this_tag == 'PPAST'))	 self::returnRule($target_index, '10-105', 'VER', 3);
+	if (preg_match('/^(may|might|can|gonna|wanna)$/i', $prev_word1) && ($this_tag == 'VER' || $this_tag == 'PPAST'))	 self::returnRule($target_index, '10-105', 'VER', 3);
 
 	if ($prev_word1 == 'of' && ($this_tag == 'VER' || $this_tag == 'PPAST'))	 self::returnRule($target_index, '10-110', 'VER', - self::$score_two_terms);
 

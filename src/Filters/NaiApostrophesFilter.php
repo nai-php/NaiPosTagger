@@ -161,7 +161,7 @@ class NaiApostrophesFilter
 	foreach (self::$apostrophes_terms as $find => $replace)
 	{
 	    // loops until there are no more apostrophes
-	    if (instr($sentence, "'") == 0 && instr($sentence, "/") == 0)
+	    if (!preg_match("/('|\/)/", $sentence))
 		break;
 
 	    if(self::$dbgme)
