@@ -151,6 +151,15 @@ Array
 )
 ```
 
+## To do list
+
+- [ ] Clean, check, fix and tag term in dictionaries
+- [ ] Clean, check, fix brill rules
+- [ ] Add more ngrams
+- [ ] Add more tests, expecially for filters
+- [ ] Collect and load frill words
+- [ ] In module for logical analysis (yet not published) collect synonyms and temporal expressions
+
 [n-ai.cloud]: https://www.n-ai.cloud
 [english dictionary]: https://github.com/nai-php/databases.git
 [composer]: https://packagist.org/packages/nai-php/naipostagger
