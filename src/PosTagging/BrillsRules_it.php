@@ -1196,7 +1196,7 @@ trait BrillsRulesTrait {
 	
 	if (preg_match('/^(the|this|that|those)$/i', $prev_word1) && ($this_tag == 'UNK'))	 self::returnRule($target_index, '10-100', 'NOUN');
 
-	if (preg_match('/^(may|might)$/i', $prev_word1) && ($this_tag == 'VER' || $this_tag == 'PPAST'))	 self::returnRule($target_index, '10-105', 'VER', 3);
+	if (preg_match('/^(may|might|can)$/i', $prev_word1) && ($this_tag == 'VER' || $this_tag == 'PPAST'))	 self::returnRule($target_index, '10-105', 'VER', 3);
 
 	if ($prev_word1 == 'of' && ($this_tag == 'VER' || $this_tag == 'PPAST'))	 self::returnRule($target_index, '10-110', 'VER', - self::$score_two_terms);
 
@@ -1683,8 +1683,8 @@ trait BrillsRulesTrait {
 	 if ($this_word == 'loro')	 self::returnRule($target_index, '10-1055', 'PRO');
 	
 	 // added 10/2019
-	 if($prev_pp_1['features'] == 'VER:inf+pres' && $this_tag == 'NOUN')
-		self::returnRule($target_index, '10-1056', 'NOUN', .4);
+	 if($prev_word1 != 'can' && $prev_pp_1['features'] == 'VER:inf+pres' && $this_tag == 'NOUN')
+	    self::returnRule($target_index, '10-1056', 'NOUN', .4);
 	}
 	
 	
