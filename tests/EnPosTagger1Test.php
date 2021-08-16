@@ -24,6 +24,8 @@ define('TRAITS_PATH', __DIR__ . '/../src/');
 
 require_once (realpath(__DIR__ . '/../../../vendor/autoload.php'));
 
+require_once realpath(__DIR__ . '/../../../vendor/nai-php/naipostagger/src/Utilities/common_functions_helper.php');
+
 
 /**
  * Tests for english language pos tagging
