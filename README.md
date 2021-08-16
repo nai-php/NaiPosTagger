@@ -20,8 +20,6 @@ use NaiPosTagger\Models\NaiPosArr;
 
 include('vendor/autoload.php');
 
-include(__DIR__ . '/vendor/nai-php/naipostagger/src/Utilities/common_functions_helper.php');
-
 define('DICTIONARIES_PATH', __DIR__ . '/./dictionaries/dictionaries-');
 
 define('TRAITS_PATH', __DIR__ . '/./vendor/nai-php/naipostagger/src/');
