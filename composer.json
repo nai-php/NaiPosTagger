@@ -29,10 +29,7 @@
     "autoload": {
         "psr-4": {
             "NaiPosTagger\\": "src/"
-        },
-	"files": [
-	    "src/Utilities/common_functions_helper.php"
-        ]
+        }
     },
     "autoload-dev": {
         "psr-4": {
