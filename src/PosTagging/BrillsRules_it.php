@@ -142,7 +142,8 @@ trait BrillsRulesTrait {
     if ($prev_tag1 == 'ART' && $prev_tag2 == 'NOUN' && $this_pp['features'] == 'VER:ind+pres+3+s' && $next_tag1 == 'ADJ') self::returnRule($target_index, '1101-50', 'VER', -.5);
 
     if ($prev_tag1 == 'ADV' && $prev_tag2 == 'ADJ' && $this_pp['sh-feat'] == 'NOUN' && $next_tag1 == 'SENT') self::returnRule($target_index, '1101-55', 'NOUN');
-	
+
+    if ($prev_tag1 == 'ART' && $prev_tag2 == 'NOUN' && $this_pp['features'] == 'VER:inf+pres' && $next_tag1 == 'ADJ') self::returnRule($target_index, '1101-60', 'VER');
  }
   
  

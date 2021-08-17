@@ -4139,7 +4139,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NOUN-m:s PRO-PERS-1-M-S PPAST:part+past+m+s VER:inf+pres ADJ:pos+m+s SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NOUN-m:s PRO-PERS-1-M-S PPAST:part+past+m+s VER:ind+past+3+s ADJ:pos+m+s SENT");
     }
 
     public function testPosTagging1628754972_6706() {
