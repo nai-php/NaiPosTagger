@@ -200,7 +200,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT CON PRO-PERS-1-M-S ADV VER:inf+pres ART-M:s NOUN-m:p PRE NOUN-m:s AUX:ind+pres+1+s VER:ger+pres PON:sep ADJ:pos+m+s ADJ:pos+m+s PRE VER:inf+pres VER:inf+pres PRE SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT CON PRO-PERS-1-M-S ADV VER:inf+pres ART-M:s NOUN-m:p PRE NOUN-m:s AUX:ind+pres+2+s VER:ger+pres PON:sep ADJ:pos+m+s ADJ:pos+m+s PRE VER:inf+pres VER:inf+pres PRE SENT");
     }
 
     public function testPosTagging1628754941_9184() {
@@ -213,7 +213,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADJ:pos+m+f PPAST:part+past+m+s NOUN-m:s NOUN-m:p SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADJ:pos+m+p PPAST:part+past+m+s NOUN-m:s NOUN-m:p SENT");
     }
 
     public function testPosTagging1628754941_8875() {
@@ -304,7 +304,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ART-M:s ADJ:pos+m+s NOUN-m:s CON ADJ:pos+m+s NOUN-m:p AUX:inf+pres VER:part+past+m+s NOUN-m:s VER:ind+past+3+s ADV DET-NUM-CARD:m+s PRE ADJ:pos+m+f ADV:qty ADJ:pos+m+s NOUN-m:p SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ART-M:s ADJ:pos+m+s NOUN-m:s CON ADJ:pos+m+s NOUN-m:p AUX:inf+pres VER:part+past+m+s NOUN-m:s VER:ind+past+1+s ADV DET-NUM-CARD:m+s PRE ADJ:pos+m+p ADV:qty ADJ:pos+m+s NOUN-m:p SENT");
     }
 
     public function testPosTagging1628754941_2345() {
@@ -369,7 +369,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PON:opn NPR NOUN-m:s PON:cls CON:cond PRO-PERS-3-M-S VER:ind+past+3+s DET-NUM-CARD:m+s ADJ:pos+m+s NOUN-m:s PON:sep SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PON:opn NPR NOUN-m:s PON:cls CON:cond PRO-PERS-3-M-S VER:ind+past+1+s DET-NUM-CARD:m+s ADJ:pos+m+s NOUN-m:s PON:sep SENT");
     }
 
     public function testPosTagging1628754941_890() {
@@ -460,7 +460,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NOUN-m:s VER:ind+pres+3+s PRO-PERS-3-M-S PRO-DEMO-M-S PRO-PERS-2-M-S AUX:ind+pres+1+s VER:ger+pres ADV PRO-DEMO-M-S VER:ind+pres+3+s ADV:qty ADJ:pos+m+s CON NOUN-m:s PRO-PERS-1-M-S AUX:inf+pres VER:ger+pres SENT:qst");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NOUN-m:s VER:ind+pres+3+s PRO-PERS-3-M-S PRO-DEMO-M-S PRO-PERS-2-M-S AUX:ind+pres+2+s VER:ger+pres ADV PRO-DEMO-M-S VER:ind+pres+3+s ADV:qty ADJ:pos+m+s CON NOUN-m:s PRO-PERS-1-M-S AUX:inf+pres VER:ger+pres SENT:qst");
     }
 
     public function testPosTagging1628754941_1560() {
@@ -603,7 +603,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-1-M-P VER:ind+pres+1+s DET PRE ADJ:pos+m+s PPAST:part+past+m+s ADV PRO-PERS-2-M-S PON:sep ADV VER:ind+pres+1+s PRO-PERS-2-M-S VER:ger+pres SENT:qst");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-1-M-P VER:ind+pres+2+s DET PRE ADJ:pos+m+s PPAST:part+past+m+s ADV PRO-PERS-2-M-S PON:sep ADV VER:ind+pres+2+s PRO-PERS-2-M-S VER:ger+pres SENT:qst");
     }
 
     public function testPosTagging1628754941_9775() {
@@ -655,7 +655,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT CON PRO-PERS-3-M-P AUX:ind+pres+1+s ADV VER:ger+pres ADV:plc PRE ART-M:s NOUN-m:s SENT:qst");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT CON PRO-PERS-3-M-P AUX:ind+pres+2+s ADV VER:ger+pres ADV:plc PRE ART-M:s NOUN-m:s SENT:qst");
     }
 
     public function testPosTagging1628754941_1736() {
@@ -707,7 +707,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADJ:pos+m+s INT:comp PON:sep CON PRO-PERS-2-M-S VER:inf+pres PON:sep ADV:when PRO-PERS-1-M-S VER:ind+past+3+s PRE ADJ:pos+m+s NOUN-m:s PRE ART-M:s NOUN-m:s SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADJ:pos+m+s INT:comp PON:sep CON PRO-PERS-2-M-S VER:inf+pres PON:sep ADV:when PRO-PERS-1-M-S VER:ind+past+1+s PRE ADJ:pos+m+s NOUN-m:s PRE ART-M:s NOUN-m:s SENT");
     }
 
     public function testPosTagging1628754941_9615() {
@@ -772,7 +772,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-1-M-S PPAST:part+past+m+s PRE VER:inf+pres PRO-DEMO-M-S PRO-PERS-3-M-S VER:ind+past+3+s PRE NOUN-m:s PON:sep VER:ger+pres NOUN-m:p CON VER:ger+pres PRE PRE ADJ:pos+m+s NOUN-m:s SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-1-M-S PPAST:part+past+m+s PRE VER:inf+pres PRO-DEMO-M-S PRO-PERS-3-M-S VER:ind+past+1+s PRE NOUN-m:s PON:sep VER:ger+pres NOUN-m:p CON VER:ger+pres PRE PRE ADJ:pos+m+s NOUN-m:s SENT");
     }
 
     public function testPosTagging1628754941_9836() {
@@ -798,7 +798,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT VER:inf+pres PON:sep PRO-PERS-2-M-S VER:ind+pres+1+s PRE ADJ:pos+m+s ADJ:pos+m+s ADV:tim PON:sep SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT VER:inf+pres PON:sep PRO-PERS-2-M-S VER:ind+pres+2+s PRE ADJ:pos+m+s ADJ:pos+m+s ADV:tim PON:sep SENT");
     }
 
     public function testPosTagging1628754941_1664() {
@@ -863,7 +863,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:conf PON:sep CON:cond DET-NUM-CARD:m+s PRE PRO-PERS-3-M-P VER:ind+pres+3+s VER:ger+pres PRE NOUN-m:s PON:sep PRO-PERS-2-M-S VER:ind+pres+1+s PRO-PERS-1-M-S SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:conf PON:sep CON:cond DET-NUM-CARD:m+s PRE PRO-PERS-3-M-P VER:ind+pres+3+s VER:ger+pres PRE NOUN-m:s PON:sep PRO-PERS-2-M-S VER:ind+pres+2+s PRO-PERS-1-M-S SENT");
     }
 
     public function testPosTagging1628754941_5577() {
@@ -1045,7 +1045,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NOUN-m:s PON:sep VER:inf+pres PRO-PERS-3-M-P VER:inf+pres PRO-PERS-2-M-S PRO-DEMO-M-S CON PRO-PERS-2-M-S VER:ind+pres+1+s DET-NUM-CARD:m+s ADJ:pos+m+s NOUN-m:s PON:sep CON:or CON PRO-PERS-2-M-S VER:inf+pres NOUN-m:s NOUN-m:p ADV:when PRO-PERS-2-M-S VER:inf+pres ART-M:s NOUN-m:s SENT:qst");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NOUN-m:s PON:sep VER:inf+pres PRO-PERS-3-M-P VER:inf+pres PRO-PERS-2-M-S PRO-DEMO-M-S CON PRO-PERS-2-M-S VER:ind+pres+2+s DET-NUM-CARD:m+s ADJ:pos+m+s NOUN-m:s PON:sep CON:or CON PRO-PERS-2-M-S VER:inf+pres NOUN-m:s NOUN-m:p ADV:when PRO-PERS-2-M-S VER:inf+pres ART-M:s NOUN-m:s SENT:qst");
     }
 
     public function testPosTagging1628754941_6602() {
@@ -1084,7 +1084,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-2-M-S VER:ind+pres+1+s ADV:neg NOUN-m:p PON:sep VER:ind+pres+1+s PRO-PERS-2-M-S SENT:qst");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-2-M-S VER:ind+pres+2+s ADV:neg NOUN-m:p PON:sep VER:ind+pres+2+s PRO-PERS-2-M-S SENT:qst");
     }
 
     public function testPosTagging1628754941_4911() {
@@ -1149,7 +1149,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-1-M-S AUX:inf+pres ADV:neg VER:inf+pres PRE VER:inf+pres ADJ:pos+m+s PON:sep CON PON:sep ADJ:pos+m+s PON:sep PRO-PERS-1-M-P AUX:inf+pres ADV:neg VER:inf+pres PRE VER:inf+pres ADJ:pos+m+f NOUN-m:p ADV SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-1-M-S AUX:inf+pres ADV:neg VER:inf+pres PRE VER:inf+pres ADJ:pos+m+s PON:sep CON PON:sep ADJ:pos+m+s PON:sep PRO-PERS-1-M-P AUX:inf+pres ADV:neg VER:inf+pres PRE VER:inf+pres ADJ:pos+m+p NOUN-m:p ADV SENT");
     }
 
     public function testPosTagging1628754941_5786() {
@@ -1175,7 +1175,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NOUN-m:s PON:sep INT:other PON:sep CON ADV VER:ind+pres+1+s ADJ:pos+m+s NOUN-m:p SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NOUN-m:s PON:sep INT:other PON:sep CON ADV VER:ind+pres+2+s ADJ:pos+m+s NOUN-m:p SENT");
     }
 
     public function testPosTagging1628754941_8504() {
@@ -1539,7 +1539,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-1-M-S AUX:inf+pres ADV:neg VER:inf+pres PON:sep ADV PON:sep ADV PRE ADV ADJ:pos+m+s NOUN-m:s PRE NOUN-m:p PRO-DEMO-M-S VER:ind+pres+1+s NOUN-m:s ADV ADJ:pos+m+s PRE ADJ:pos+m+s NOUN-m:s SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-1-M-S AUX:inf+pres ADV:neg VER:inf+pres PON:sep ADV PON:sep ADV PRE ADV ADJ:pos+m+s NOUN-m:s PRE NOUN-m:p PRO-DEMO-M-S VER:ind+pres+2+s NOUN-m:s ADV ADJ:pos+m+s PRE ADJ:pos+m+s NOUN-m:s SENT");
     }
 
     public function testPosTagging1628754966_2520() {
@@ -1565,7 +1565,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NOUN-m:s VER:ind+pres+1+s PRO-PERS-2-M-S VER:ger+pres SENT:qst");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NOUN-m:s VER:ind+pres+2+s PRO-PERS-2-M-S VER:ger+pres SENT:qst");
     }
 
     public function testPosTagging1628754966_5093() {
@@ -1591,7 +1591,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-3-M-P AUX:ind+pres+1+s VER:ger+pres PRO-PERS-1-M-S PRE NOUN-m:s SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-3-M-P AUX:ind+pres+2+s VER:ger+pres PRO-PERS-1-M-S PRE NOUN-m:s SENT");
     }
 
     public function testPosTagging1628754966_291() {
@@ -1708,7 +1708,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NPR PON:sep PRO-DEMO-M-S VER:ind+pres+3+s PRO-PERS-3-M-P VER:ind+pres+1+s ADV:neg ADJ:pos+m+s NOUN-m:p SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NPR PON:sep PRO-DEMO-M-S VER:ind+pres+3+s PRO-PERS-3-M-P VER:ind+pres+2+s ADV:neg ADJ:pos+m+s NOUN-m:p SENT");
     }
 
     public function testPosTagging1628754966_1011() {
@@ -1721,7 +1721,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT VER:ind+pres+1+s PRO-PERS-2-M-S INT:conf SENT:qst");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT VER:ind+pres+2+s PRO-PERS-2-M-S INT:conf SENT:qst");
     }
 
     public function testPosTagging1628754966_6641() {
@@ -1734,7 +1734,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-3-M-P VER:inf+pres PRE VER:inf+pres ADJ:pos+m+s NOUN-m:p PON:sep PRO-PERS-1-M-S VER:inf+pres PON:sep PRO-PERS-3-M-P VER:ind+pres+1+s PRO-INDEF-M-S PRO-PERS-1-M-S ADV PPAST:part+past+m+s PRO-PERS-3-M-P PPAST:part+past+m+s VER:inf+pres PON:sep PRO-PERS-3-M-P VER:ind+pres+1+s ADJ:pos+m+s CON ADJ:pos+m+s CON PPAST:part+past+m+s SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-3-M-P VER:inf+pres PRE VER:inf+pres ADJ:pos+m+s NOUN-m:p PON:sep PRO-PERS-1-M-S VER:inf+pres PON:sep PRO-PERS-3-M-P VER:ind+pres+2+s PRO-INDEF-M-S PRO-PERS-1-M-S ADV PPAST:part+past+m+s PRO-PERS-3-M-P PPAST:part+past+m+s VER:inf+pres PON:sep PRO-PERS-3-M-P VER:ind+pres+2+s ADJ:pos+m+s CON ADJ:pos+m+s CON PPAST:part+past+m+s SENT");
     }
 
     public function testPosTagging1628754966_1137() {
@@ -1760,7 +1760,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:surp PON:sep ADV:plc PRO-PERS-2-M-S VER:ind+pres+1+s SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:surp PON:sep ADV:plc PRO-PERS-2-M-S VER:ind+pres+2+s SENT");
     }
 
     public function testPosTagging1628754966_9775() {
@@ -1773,7 +1773,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NPR PON:sep PRO-PERS-3-M-P VER:ind+pres+1+s PRE ART-M:s NOUN-m:s PRE NOUN-m:s SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NPR PON:sep PRO-PERS-3-M-P VER:ind+pres+2+s PRE ART-M:s NOUN-m:s PRE NOUN-m:s SENT");
     }
 
     public function testPosTagging1628754966_1382() {
@@ -1864,7 +1864,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-3-M-S VER:ind+pres+3+s NOUN-m:s PRO-DEMO-M-S PRO-PERS-1-M-P PPAST:part+past+m+s PRE ADJ:pos+m+s NOUN-m:s ADV:tim ADV:when PRO-PERS-1-M-P ADJ:pos+m+s PPAST:part+past+m+s VER:ger+pres PRE ADJ:pos+m+f NOUN-m:s SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-3-M-S VER:ind+pres+3+s NOUN-m:s PRO-DEMO-M-S PRO-PERS-1-M-P PPAST:part+past+m+s PRE ADJ:pos+m+s NOUN-m:s ADV:tim ADV:when PRO-PERS-1-M-P ADJ:pos+m+s PPAST:part+past+m+s VER:ger+pres PRE ADJ:pos+m+p NOUN-m:s SENT");
     }
 
     public function testPosTagging1628754966_1620() {
@@ -2020,7 +2020,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV VER:inf+pres PON:sep PRO-PERS-1-M-S AUX:ind+past+3+s VER:ger+pres ADV NOUN-m:s ADV SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV VER:inf+pres PON:sep PRO-PERS-1-M-S AUX:ind+past+1+s VER:ger+pres ADV NOUN-m:s ADV SENT");
     }
 
     public function testPosTagging1628754966_221() {
@@ -2137,7 +2137,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:other VER:ind+past+3+s PRO-DEMO-M-S ADV SENT:qst");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:other VER:ind+past+1+s PRO-DEMO-M-S ADV SENT:qst");
     }
 
     public function testPosTagging1628754966_4411() {
@@ -2163,7 +2163,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:conf PON:sep NOUN-m:s VER:ind+pres+1+s PRO-PERS-2-M-S VER:ger+pres ADV SENT:qst");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:conf PON:sep NOUN-m:s VER:ind+pres+2+s PRO-PERS-2-M-S VER:ger+pres ADV SENT:qst");
     }
 
     public function testPosTagging1628754966_4759() {
@@ -2176,7 +2176,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV PRO-PERS-2-M-S VER:inf+pres ADJ:pos+m+s PON:sep PRO-PERS-2-M-S AUX:ind+pres+1+s VER:part+past+m+s SENT:qst");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV PRO-PERS-2-M-S VER:ind+pres+2+s ADJ:pos+m+s PON:sep PRO-PERS-2-M-S AUX:ind+pres+2+s VER:part+past+m+s SENT:qst");
     }
 
     public function testPosTagging1628754966_8269() {
@@ -2215,7 +2215,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV PON:sep PRO-PERS-2-M-S AUX:ind+pres+1+s ADV VER:part+past+m+s PRE PRO-INDEF-M-S SENT:qst");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV PON:sep PRO-PERS-2-M-S AUX:ind+pres+2+s ADV VER:part+past+m+s PRE PRO-INDEF-M-S SENT:qst");
     }
 
     public function testPosTagging1628754966_8783() {
@@ -2319,7 +2319,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NOUN-m:s VER:ind+pres+1+s PRO-PERS-2-M-S VER:ger+pres ADV SENT:qst");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NOUN-m:s VER:ind+pres+2+s PRO-PERS-2-M-S VER:ger+pres ADV SENT:qst");
     }
 
     public function testPosTagging1628754966_2579() {
@@ -2345,7 +2345,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NPR PON:sep PRO-PERS-1-M-S VER:inf+pres PRO-PERS-2-M-S AUX:ind+pres+1+s VER:ger+pres DET NOUN-m:s ADV VER:ger+pres ADJ:pos+m+s ADJ:pos+m+s NOUN-m:p PON:sep CON NOUN-m:s PRE PRO-PERS-3-M-P VER:ind+pres+3+s ADJ:pos+m+s SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NPR PON:sep PRO-PERS-1-M-S VER:inf+pres PRO-PERS-2-M-S AUX:ind+pres+2+s VER:ger+pres DET NOUN-m:s ADV VER:ger+pres ADJ:pos+m+s ADJ:pos+m+s NOUN-m:p PON:sep CON NOUN-m:s PRE PRO-PERS-3-M-P VER:ind+pres+3+s ADJ:pos+m+s SENT");
     }
 
     public function testPosTagging1628754966_9294() {
@@ -2436,7 +2436,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:surp PON:sep PRO-PERS-2-M-S VER:ind+pres+1+s DET-NUM-CARD:m+s PRE VER:inf+pres SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:surp PON:sep PRO-PERS-2-M-S VER:ind+pres+2+s DET-NUM-CARD:m+s PRE VER:inf+pres SENT");
     }
 
     public function testPosTagging1628754966_1362() {
@@ -2449,7 +2449,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-2-M-S AUX:ind+pres+1+s VER:ger+pres VER:inf+pres NOUN-m:p PRE ADJ:pos+m+s NOUN-m:s SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-2-M-S AUX:ind+pres+2+s VER:ger+pres VER:inf+pres NOUN-m:p PRE ADJ:pos+m+s NOUN-m:s SENT");
     }
 
     public function testPosTagging1628754966_1185() {
@@ -2514,7 +2514,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-1-M-P AUX:ind+pres+1+s ADV:neg VER:ger+pres VER:inf+pres ADV PRO-DEMO-M-S ADV SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-1-M-P AUX:ind+pres+2+s ADV:neg VER:ger+pres VER:inf+pres ADV PRO-DEMO-M-S ADV SENT");
     }
 
     public function testPosTagging1628754966_3063() {
@@ -2709,7 +2709,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-2-M-S NOUN-m:p AUX:ind+pres+1+s VER:ger+pres PRO-PERS-1-M-S ADV SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-2-M-S NOUN-m:p AUX:ind+pres+2+s VER:ger+pres PRO-PERS-1-M-S ADV SENT");
     }
 
     public function testPosTagging1628754970_9475() {
@@ -2722,7 +2722,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT VER:inf+pres PRO-PERS-2-M-S ADV ADV:neg VER:inf+pres NOUN-m:s PRO-PERS-1-M-P AUX:ind+pres+1+s VER:ger+pres ADV SENT:qst");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT VER:inf+pres PRO-PERS-2-M-S ADV ADV:neg VER:inf+pres NOUN-m:s PRO-PERS-1-M-P AUX:ind+pres+2+s VER:ger+pres ADV SENT:qst");
     }
 
     public function testPosTagging1628754970_3777() {
@@ -2800,7 +2800,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-1-M-S AUX:ind+past+3+s VER:part+past+m+s CON SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-1-M-S AUX:ind+past+1+s VER:part+past+m+s CON SENT");
     }
 
     public function testPosTagging1628754970_9953() {
@@ -2865,7 +2865,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-1-M-S ADV PPAST:part+past+m+s PRO-PERS-1-M-S VER:ind+past+3+s PRE ADJ:pos+m+s ADJ:pos+m+s CON ADJ:pos+m+s SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-1-M-S ADV PPAST:part+past+m+s PRO-PERS-1-M-S VER:ind+past+1+s PRE ADJ:pos+m+s ADJ:pos+m+s CON ADJ:pos+m+s SENT");
     }
 
     public function testPosTagging1628754970_3168() {
@@ -2904,7 +2904,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:conf PON:sep CON VER:ind+pres+3+s ADV:neg PRO-DEMO-M-S NOUN-m:s NOUN-m:p AUX:ind+pres+1+s VER:part+past+m+s PRE VER:inf+pres SENT:qst");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:conf PON:sep CON VER:ind+pres+3+s ADV:neg PRO-DEMO-M-S NOUN-m:s NOUN-m:p AUX:ind+pres+2+s VER:part+past+m+s PRE VER:inf+pres SENT:qst");
     }
 
     public function testPosTagging1628754970_8583() {
@@ -3047,7 +3047,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:enter PON:sep PRO-PERS-2-M-S VER:ind+pres+1+s ART-M:s NOUN-m:p PRE NPR PON:sep INT:dubt SENT:qst");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:enter PON:sep PRO-PERS-2-M-S VER:ind+pres+2+s ART-M:s NOUN-m:p PRE NPR PON:sep INT:dubt SENT:qst");
     }
 
     public function testPosTagging1628754970_2848() {
@@ -3099,7 +3099,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-1-M-S ADV VER:inf+pres PPAST:part+past+m+s PRE ADV ADJ:pos+m+s DET NOUN-m:p VER:ind+pres+1+s SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-1-M-S ADV VER:inf+pres PPAST:part+past+m+s PRE ADV ADJ:pos+m+s DET NOUN-m:p VER:ind+pres+2+s SENT");
     }
 
     public function testPosTagging1628754970_4801() {
@@ -3216,7 +3216,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:surp PON:sep NOUN-m:s PON:sep VER:ind+pres+1+s PRO-PERS-2-M-S ADJ:pos+m+s SENT:qst");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:surp PON:sep NOUN-m:s PON:sep VER:ind+pres+2+s PRO-PERS-2-M-S ADJ:pos+m+s SENT:qst");
     }
 
     public function testPosTagging1628754970_7152() {
@@ -3346,7 +3346,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-3-F-S VER:ind+pres+3+s PPAST:part+past+m+s PRE NOUN-m:s PRE ART-M:s NOUN-m:s PON:sep PRO-PERS-3-F-S PPAST:part+past+m+s VER:inf+pres PRE DET NOUN-m:s PON:sep ADV PRO-PERS-1-M-P VER:inf+pres PRE NOUN-m:s ADV PRO-PERS-1-M-P PPAST:part+past+m+s DET VER:inf+pres ADJ:pos+m+s SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-3-F-S VER:ind+pres+3+s PPAST:part+past+m+s PRE NOUN-m:s PRE ART-M:s ADJ:pos+m+s PON:sep PRO-PERS-3-F-S PPAST:part+past+m+s VER:inf+pres PRE DET NOUN-m:s PON:sep ADV PRO-PERS-1-M-P VER:inf+pres PRE NOUN-m:s ADV PRO-PERS-1-M-P PPAST:part+past+m+s DET VER:inf+pres ADJ:pos+m+s SENT");
     }
 
     public function testPosTagging1628754970_1193() {
@@ -3515,7 +3515,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADJ:pos+m+s NOUN-m:s PON:sep ADJ:pos+m+s NOUN-m:s PRO-PERS-3-F-S PPAST:part+past+m+s PRO-PERS-1-M-S VER:ind+past+3+s ADV PRO-PERS-3-F-S PPAST:part+past+m+s PRE VER:inf+pres PRO-PERS-2-M-S SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADJ:pos+m+s NOUN-m:s PON:sep ADJ:pos+m+s NOUN-m:s PRO-PERS-3-F-S PPAST:part+past+m+s PRO-PERS-1-M-S VER:ind+past+1+s ADV PRO-PERS-3-F-S PPAST:part+past+m+s PRE VER:inf+pres PRO-PERS-2-M-S SENT");
     }
 
     public function testPosTagging1628754970_5107() {
@@ -3684,7 +3684,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT VER:inf+pres PON:sep PRO-PERS-2-M-S AUX:ind+pres+1+s VER:ger+pres ADJ:pos+m+s NOUN-m:s CON PRO-DEMO-M-S VER:ind+pres+3+s DET ADV VER:ind+pres+3+s PRE PRO-PERS-3-M-S SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT VER:inf+pres PON:sep PRO-PERS-2-M-S AUX:ind+pres+2+s VER:ger+pres ADJ:pos+m+s NOUN-m:s CON PRO-DEMO-M-S VER:ind+pres+3+s DET ADV VER:ind+pres+3+s PRE PRO-PERS-3-M-S SENT");
     }
 
     public function testPosTagging1628754970_8361() {
@@ -3905,7 +3905,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-2-M-S VER:ind+pres+1+s ADV ADJ:pos+m+s PON:sep CON ADJ:pos+m+s PON:sep CON SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-2-M-S VER:ind+pres+2+s ADV ADJ:pos+m+s PON:sep CON ADJ:pos+m+s PON:sep CON SENT");
     }
 
     public function testPosTagging1628754970_2111() {
@@ -4022,7 +4022,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADJ:pos+m+s PRO-PERS-2-M-S VER:ind+pres+1+s PON:sep PRO-PERS-2-M-S VER:inf+pres PRE PRO-PERS-1-M-P SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADJ:pos+m+s PRO-PERS-2-M-S VER:ind+pres+2+s PON:sep PRO-PERS-2-M-S VER:inf+pres PRE PRO-PERS-1-M-P SENT");
     }
 
     public function testPosTagging1628754972_6116() {
@@ -4100,7 +4100,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-2-M-S VER:ind+pres+1+s ADV ADJ:pos+m+s SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-2-M-S VER:ind+pres+2+s ADV ADJ:pos+m+s SENT");
     }
 
     public function testPosTagging1628754972_4168() {
@@ -4139,7 +4139,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NOUN-m:s PRO-PERS-1-M-S PPAST:part+past+m+s VER:ind+past+3+s ADJ:pos+m+s SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NOUN-m:s PRO-PERS-1-M-S PPAST:part+past+m+s VER:ind+past+1+s ADJ:pos+m+s SENT");
     }
 
     public function testPosTagging1628754972_6706() {
@@ -4165,7 +4165,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:conf PON:sep PRO-PERS-2-M-S VER:ind+pres+1+s ADJ:pos+m+s NOUN-m:s PON:sep ADV PRO-PERS-1-M-S VER:inf+pres VER:inf+pres PRO-PERS-2-M-S ART-M:s NOUN-m:s SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:conf PON:sep PRO-PERS-2-M-S VER:ind+pres+2+s ADJ:pos+m+s NOUN-m:s PON:sep ADV PRO-PERS-1-M-S VER:inf+pres VER:inf+pres PRO-PERS-2-M-S ART-M:s NOUN-m:s SENT");
     }
 
     public function testPosTagging1628754972_582() {
@@ -4204,7 +4204,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NPR PON:sep PRO-PERS-2-M-S VER:ind+pres+1+s ART-M:s NOUN-m:s NOUN-m:s SENT:qst");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NPR PON:sep PRO-PERS-2-M-S VER:ind+pres+2+s ART-M:s NOUN-m:s NOUN-m:s SENT:qst");
     }
 
     public function testPosTagging1628754972_3365() {
@@ -4230,7 +4230,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NPR CON NPR VER:ind+pres+1+s ADJ:pos+m+p SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NPR CON NPR VER:ind+pres+2+s ADJ:pos+m+p SENT");
     }
 
     public function testPosTagging1628754972_62() {
@@ -4256,7 +4256,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-3-M-P AUX:ind+pres+1+s VER:ger+pres PRO-PERS-2-M-S SENT PRO-PERS-1-M-S AUX:inf+pres VER:ger+pres VER:inf+pres NOUN-m:s NOUN-m:s PRE PRO-DEMO-M-S SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-3-M-P AUX:ind+pres+2+s VER:ger+pres PRO-PERS-2-M-S SENT PRO-PERS-1-M-S AUX:inf+pres VER:ger+pres VER:inf+pres NOUN-m:s NOUN-m:s PRE PRO-DEMO-M-S SENT");
     }
 
     public function testPosTagging1628754972_1440() {
@@ -4373,7 +4373,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NOUN-m:s VER:ind+pres+1+s PRO-PERS-2-M-S VER:ger+pres ADV SENT:qst");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NOUN-m:s VER:ind+pres+2+s PRO-PERS-2-M-S VER:ger+pres ADV SENT:qst");
     }
 
     public function testPosTagging1628754972_4985() {
@@ -4399,7 +4399,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT VER:ind+pres+1+s PRO-PERS-2-M-S VER:ger+pres DET NOUN-m:s PRE PRE NOUN-m:s SENT:qst");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT VER:ind+pres+2+s PRO-PERS-2-M-S VER:ger+pres DET NOUN-m:s PRE PRE NOUN-m:s SENT:qst");
     }
 
     public function testPosTagging1628754972_7880() {
