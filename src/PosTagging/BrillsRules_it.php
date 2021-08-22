@@ -1496,7 +1496,7 @@ trait BrillsRulesTrait {
 	{
 	 if ($this_word == 'stato')	 self::returnRule($target_index, '10-725', 'NOUN');
 	 
-	 if ($this_pp['features']  == 'VER:ind+pres+3+s')	 self::returnRule($target_index, '10-726', 'NOUN');
+	 if ($this_pp['features']  == 'VER:ind+pres+3+s')	 self::returnRule($target_index, '10-726', 'NOUN', 2);
 	}
 	
 	if ($prev_tag1 == 'ADV')

@@ -28,10 +28,10 @@ require_once realpath(__DIR__ . '/../../../vendor/nai-php/naipostagger/src/Utili
 
 
 /**
- * Tests for english language pos tagging
- * on Just Shoot Me movie subtitles
+ * Tests for english language pos tagging on "Just Shoot Me" movie subtitles.
+ * These are all perfectly tagged sentences.
  */
-class EnPosTagger1Test extends TestCase
+class EnPosTagger1TestSuccessful extends TestCase
 {
     
     public function testPosTagging1628754941_4301() {
@@ -190,19 +190,6 @@ class EnPosTagger1Test extends TestCase
 	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:doubt SENT");
     }
 
-    public function testPosTagging1628754941_60() {
-	    $PipelinePosTagging = new PipelinePosTagging();
-	    $PipelinePosTagging->language = "en";
-
-	    $sentence = "And I honestly believe the readers of Blush are willing, even eager to help fight for";
-	    $pos_arr = $PipelinePosTagging->transform($sentence);
-	    $PipelinePosTagging = null;
-
-	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
-
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT CON PRO-PERS-1-M-S ADV VER:inf+pres ART-M:s NOUN-m:p PRE NOUN-m:s AUX:ind+pres+2+s VER:ger+pres PON:sep ADJ:pos+m+s ADJ:pos+m+s PRE VER:inf+pres VER:inf+pres PRE SENT");
-    }
-
     public function testPosTagging1628754941_9184() {
 	    $PipelinePosTagging = new PipelinePosTagging();
 	    $PipelinePosTagging->language = "en";
@@ -242,18 +229,6 @@ class EnPosTagger1Test extends TestCase
 	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PON:opn NOUN-m:s PON:cls NOUN-m:s NPR PRE ART-M:s NOUN-m:s NOUN-m:s NUM SENT");
     }
 
-    public function testPosTagging1628754941_9326() {
-	    $PipelinePosTagging = new PipelinePosTagging();
-	    $PipelinePosTagging->language = "en";
-
-	    $sentence = "Micah throws, Gallo swings.";
-	    $pos_arr = $PipelinePosTagging->transform($sentence);
-	    $PipelinePosTagging = null;
-
-	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
-
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NPR VER:ind+pres+3+s PON:sep NPR VER:ind+pres+3+s SENT");
-    }
 
     public function testPosTagging1628754941_7377() {
 	    $PipelinePosTagging = new PipelinePosTagging();
@@ -463,19 +438,6 @@ class EnPosTagger1Test extends TestCase
 	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NOUN-m:s VER:ind+pres+3+s PRO-PERS-3-M-S PRO-DEMO-M-S PRO-PERS-2-M-S AUX:ind+pres+2+s VER:ger+pres ADV PRO-DEMO-M-S VER:ind+pres+3+s ADV:qty ADJ:pos+m+s CON NOUN-m:s PRO-PERS-1-M-S AUX:inf+pres VER:ger+pres SENT:qst");
     }
 
-    public function testPosTagging1628754941_1560() {
-	    $PipelinePosTagging = new PipelinePosTagging();
-	    $PipelinePosTagging->language = "en";
-
-	    $sentence = "My biological parents have found me and will be here in half an hour.";
-	    $pos_arr = $PipelinePosTagging->transform($sentence);
-	    $PipelinePosTagging = null;
-
-	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
-
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADJ:pos+m+s ADJ:pos+m+s NOUN-m:p AUX:inf+pres VER:inf+pres PRO-PERS-1-M-S CON AUX:inf+pres VER:inf+pres ADV:plc PRE NOUN-m:s NUM NOUN-m:s SENT");
-    }
-
     public function testPosTagging1628754941_5278() {
 	    $PipelinePosTagging = new PipelinePosTagging();
 	    $PipelinePosTagging->language = "en";
@@ -499,7 +461,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT AUX:inf+pres ADV:neg VER:inf+pres ADV SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:other AUX:inf+pres ADV:neg VER:inf+pres ADV SENT");
     }
 
     public function testPosTagging1628754941_3180() {
@@ -512,7 +474,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT PON:sep INT PON:sep INT AUX:inf+pres ADV:neg VER:inf+pres ADV SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:other PON:sep INT:other PON:sep INT:other AUX:inf+pres ADV:neg VER:inf+pres ADV SENT");
     }
 
     public function testPosTagging1628754941_7171() {
@@ -710,19 +672,6 @@ class EnPosTagger1Test extends TestCase
 	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADJ:pos+m+s INT:comp PON:sep CON PRO-PERS-2-M-S VER:inf+pres PON:sep ADV:when PRO-PERS-1-M-S VER:ind+past+1+s PRE ADJ:pos+m+s NOUN-m:s PRE ART-M:s NOUN-m:s SENT");
     }
 
-    public function testPosTagging1628754941_9615() {
-	    $PipelinePosTagging = new PipelinePosTagging();
-	    $PipelinePosTagging->language = "en";
-
-	    $sentence = "I always fantasized that my birth parents were, you know, movie stars or wealthy jet-setters.";
-	    $pos_arr = $PipelinePosTagging->transform($sentence);
-	    $PipelinePosTagging = null;
-
-	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
-
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-1-M-S ADV PPAST:part+past+m+s PRO-DEMO-M-S ADJ:pos+m+s NOUN-m:s NOUN-m:p VER:ind+past+3+p PON:sep PRO-PERS-2-M-S VER:inf+pres PON:sep NOUN-m:s NOUN-m:p CON:or ADJ:pos+m+s NOUN-m:s PON:sep NOUN-m:p SENT");
-    }
-
     public function testPosTagging1628754941_6712() {
 	    $PipelinePosTagging = new PipelinePosTagging();
 	    $PipelinePosTagging->language = "en";
@@ -916,19 +865,6 @@ class EnPosTagger1Test extends TestCase
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
 	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:surp PON:sep ADV ADJ:pos+m+s PRE PRO-PERS-1-M-S SENT");
-    }
-
-    public function testPosTagging1628754941_917() {
-	    $PipelinePosTagging = new PipelinePosTagging();
-	    $PipelinePosTagging->language = "en";
-
-	    $sentence = "This is, uh, I'm drawing a blank.";
-	    $pos_arr = $PipelinePosTagging->transform($sentence);
-	    $PipelinePosTagging = null;
-
-	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
-
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-DEMO-M-S VER:ind+pres+3+s PON:sep INT:surp PON:sep PRO-PERS-1-M-S AUX:inf+pres VER:ger+pres PRE NOUN-m:s SENT");
     }
 
     public function testPosTagging1628754941_6593() {
@@ -1126,19 +1062,6 @@ class EnPosTagger1Test extends TestCase
 	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRE VER:inf+pres DET DET NOUN-m:p PRO-PERS-1-M-S AUX:inf+pres VER:part+past+m+s NOUN-m:s NOUN-m:s PRE NPR NOUN-m:s NOUN-m:s PON:sep CON ADV PRO-PERS-3-M-S VER:ind+pres+3+s ADV PRO-PERS-3-F-S VER:ind+pres+3+s ADJ:pos+m+s ADJ:pos+m+s NOUN-m:s SENT");
     }
 
-    public function testPosTagging1628754941_9841() {
-	    $PipelinePosTagging = new PipelinePosTagging();
-	    $PipelinePosTagging->language = "en";
-
-	    $sentence = "Well, now, Libby, now, we're not 100% sure, we still need her to take a blood test.";
-	    $pos_arr = $PipelinePosTagging->transform($sentence);
-	    $PipelinePosTagging = null;
-
-	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
-
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "INT:other ADV PON:sep NPR PON:sep ADV PON:sep PRO-PERS-1-M-P VER:ind+pres+1+s ADV:neg NUM ADJ:pos+m+s PON:sep PRO-PERS-1-M-P ADV:tim VER:inf+pres PRO-PERS-3-F-S PRE VER:inf+pres PRE NOUN-m:s SENT");
-    }
-
     public function testPosTagging1628754941_6962() {
 	    $PipelinePosTagging = new PipelinePosTagging();
 	    $PipelinePosTagging->language = "en";
@@ -1269,19 +1192,6 @@ class EnPosTagger1Test extends TestCase
 	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT VER:inf+pres PRO-PERS-1-M-S VER:inf+pres PRE NOUN-m:s SENT:qst");
     }
 
-    public function testPosTagging1628754941_2517() {
-	    $PipelinePosTagging = new PipelinePosTagging();
-	    $PipelinePosTagging->language = "en";
-
-	    $sentence = "Man, pumping iron is hard.";
-	    $pos_arr = $PipelinePosTagging->transform($sentence);
-	    $PipelinePosTagging = null;
-
-	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
-
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NOUN-m:s PON:sep 	VER:ger+pres NOUN-m:s VER:ind+pres+3+s ADJ:pos+m+s SENT");
-    }
-
     public function testPosTagging1628754941_3837() {
 	    $PipelinePosTagging = new PipelinePosTagging();
 	    $PipelinePosTagging->language = "en";
@@ -1306,19 +1216,6 @@ class EnPosTagger1Test extends TestCase
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
 	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV ADJ:pos+m+s VER:inf+pres PRO-PERS-2-M-S VER:inf+pres PRO-PERS-3-M-S VER:inf+pres VER:inf+pres ADV PRO-PERS-1-M-S VER:inf+pres NOUN-m:p PRE ART-M:s NOUN-m:s SENT:qst");
-    }
-
-    public function testPosTagging1628754941_4275() {
-	    $PipelinePosTagging = new PipelinePosTagging();
-	    $PipelinePosTagging->language = "en";
-
-	    $sentence = "When you can lift your gym bag with one arm.";
-	    $pos_arr = $PipelinePosTagging->transform($sentence);
-	    $PipelinePosTagging = null;
-
-	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
-
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV:when PRO-PERS-2-M-S VER:inf+pres VER:inf+pres ADJ:pos+m+s NOUN-m:s NOUN-m:s PRE NUM NOUN-m:s SENT");
     }
 
     public function testPosTagging1628754941_4497() {
@@ -1464,19 +1361,6 @@ class EnPosTagger1Test extends TestCase
 	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADJ:pos+m+s PON:sep PRO-DEMO-M-S VER:ind+pres+3+s ADJ:pos+m+s SENT");
     }
 
-    public function testPosTagging1628754966_7894() {
-	    $PipelinePosTagging = new PipelinePosTagging();
-	    $PipelinePosTagging->language = "en";
-
-	    $sentence = "So, on one of those hikes, did you ever see something in nature that just didn't quite fit?";
-	    $pos_arr = $PipelinePosTagging->transform($sentence);
-	    $PipelinePosTagging = null;
-
-	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
-
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV PON:sep PRE NUM PRE DET NOUN-m:p PON:sep PPAST:part+past+m+s PRO-PERS-2-M-S ADV VER:inf+pres NOUN-m:s PRE NOUN-m:s PRO-DEMO-M-S ADV PPAST:part+past+m+s ADV:neg ADV VER:inf+pres SENT:qst");
-    }
-
     public function testPosTagging1628754966_2108() {
 	    $PipelinePosTagging = new PipelinePosTagging();
 	    $PipelinePosTagging->language = "en";
@@ -1527,19 +1411,6 @@ class EnPosTagger1Test extends TestCase
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
 	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT CON PRO-PERS-1-M-S AUX:inf+pres VER:ger+pres ADV SENT");
-    }
-
-    public function testPosTagging1628754966_3416() {
-	    $PipelinePosTagging = new PipelinePosTagging();
-	    $PipelinePosTagging->language = "en";
-
-	    $sentence = "I don't know, like, like a really skinny tree with branches that are way too big for its trunk.";
-	    $pos_arr = $PipelinePosTagging->transform($sentence);
-	    $PipelinePosTagging = null;
-
-	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
-
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-1-M-S AUX:inf+pres ADV:neg VER:inf+pres PON:sep ADV PON:sep ADV PRE ADV ADJ:pos+m+s NOUN-m:s PRE NOUN-m:p PRO-DEMO-M-S VER:ind+pres+2+s NOUN-m:s ADV ADJ:pos+m+s PRE ADJ:pos+m+s NOUN-m:s SENT");
     }
 
     public function testPosTagging1628754966_2520() {
@@ -1812,7 +1683,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT VER:inf+pres PRO-PERS-1-M-P SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:other VER:inf+pres PRO-PERS-1-M-P SENT");
     }
 
     public function testPosTagging1628754966_3504() {
@@ -1891,19 +1762,6 @@ class EnPosTagger1Test extends TestCase
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
 	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV VER:ind+pres+3+s NUM NOUN-m:s SENT");
-    }
-
-    public function testPosTagging1628754966_3625() {
-	    $PipelinePosTagging = new PipelinePosTagging();
-	    $PipelinePosTagging->language = "en";
-
-	    $sentence = "\"Rattle when you need us.\"";
-	    $pos_arr = $PipelinePosTagging->transform($sentence);
-	    $PipelinePosTagging = null;
-
-	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
-
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PON:quote VER:inf+pres ADV:when PRO-PERS-2-M-S VER:inf+pres PRO-PERS-1-M-P SENT PON:quote SENT");
     }
 
     public function testPosTagging1628754966_4692() {
@@ -2008,19 +1866,6 @@ class EnPosTagger1Test extends TestCase
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
 	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:doubt NOUN-m:s SENT:qst");
-    }
-
-    public function testPosTagging1628754966_4968() {
-	    $PipelinePosTagging = new PipelinePosTagging();
-	    $PipelinePosTagging->language = "en";
-
-	    $sentence = "So listen, I was thinking maybe sushi tonight.";
-	    $pos_arr = $PipelinePosTagging->transform($sentence);
-	    $PipelinePosTagging = null;
-
-	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
-
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV VER:inf+pres PON:sep PRO-PERS-1-M-S AUX:ind+past+1+s VER:ger+pres ADV NOUN-m:s ADV SENT");
     }
 
     public function testPosTagging1628754966_221() {
@@ -2166,19 +2011,6 @@ class EnPosTagger1Test extends TestCase
 	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:conf PON:sep NOUN-m:s VER:ind+pres+2+s PRO-PERS-2-M-S VER:ger+pres ADV SENT:qst");
     }
 
-    public function testPosTagging1628754966_4759() {
-	    $PipelinePosTagging = new PipelinePosTagging();
-	    $PipelinePosTagging->language = "en";
-
-	    $sentence = "So you're fine, you're fulfilled?";
-	    $pos_arr = $PipelinePosTagging->transform($sentence);
-	    $PipelinePosTagging = null;
-
-	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
-
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV PRO-PERS-2-M-S VER:ind+pres+2+s ADJ:pos+m+s PON:sep PRO-PERS-2-M-S AUX:ind+pres+2+s VER:part+past+m+s SENT:qst");
-    }
-
     public function testPosTagging1628754966_8269() {
 	    $PipelinePosTagging = new PipelinePosTagging();
 	    $PipelinePosTagging->language = "en";
@@ -2296,19 +2128,6 @@ class EnPosTagger1Test extends TestCase
 	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PPAST:part+past+m+s SENT:qst");
     }
 
-    public function testPosTagging1628754966_3820() {
-	    $PipelinePosTagging = new PipelinePosTagging();
-	    $PipelinePosTagging->language = "en";
-
-	    $sentence = "\"Crushed\" isn't the right word, nor is \"told them.\"";
-	    $pos_arr = $PipelinePosTagging->transform($sentence);
-	    $PipelinePosTagging = null;
-
-	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
-
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PON:quote PPAST:part+past+m+s PON:quote VER:ind+pres+3+s ADV:neg ART-M:s ADJ:pos+m+s NOUN-m:s PON:sep CON:neg VER:ind+pres+3+s PON:quote PPAST:part+past+m+s PRO-PERS-3-M-P SENT PON:quote SENT");
-    }
-
     public function testPosTagging1628754966_5176() {
 	    $PipelinePosTagging = new PipelinePosTagging();
 	    $PipelinePosTagging->language = "en";
@@ -2333,19 +2152,6 @@ class EnPosTagger1Test extends TestCase
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
 	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "INT:other PRO-PERS-1-M-S VER:cond+pres+3+s AUX:inf+pres VER:part+past+m+s ART-M:s NOUN-m:s PRE ADJ:pos+m+s PRE ART-M:s NOUN-m:s SENT");
-    }
-
-    public function testPosTagging1628754966_3491() {
-	    $PipelinePosTagging = new PipelinePosTagging();
-	    $PipelinePosTagging->language = "en";
-
-	    $sentence = "Nina, I know you're fulfilling some fantasy about having rich successful parents, but lying to them is wrong.";
-	    $pos_arr = $PipelinePosTagging->transform($sentence);
-	    $PipelinePosTagging = null;
-
-	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
-
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NPR PON:sep PRO-PERS-1-M-S VER:inf+pres PRO-PERS-2-M-S AUX:ind+pres+2+s VER:ger+pres DET NOUN-m:s ADV VER:ger+pres ADJ:pos+m+s ADJ:pos+m+s NOUN-m:p PON:sep CON NOUN-m:s PRE PRO-PERS-3-M-P VER:ind+pres+3+s ADJ:pos+m+s SENT");
     }
 
     public function testPosTagging1628754966_9294() {
@@ -2527,7 +2333,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV:plc PRO-PERS-2-M-S VER:inf+pres NOUN-m:p PON:sep DET-NUM-CARD:m+p ADJ:pos+m+s NOUN-m:s SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV:plc PRO-PERS-2-M-S VER:inf+pres NOUN-m:p PON:sep NUM ADJ:pos+m+s NOUN-m:p SENT");
     }
 
     public function testPosTagging1628754966_2649() {
@@ -2946,19 +2752,6 @@ class EnPosTagger1Test extends TestCase
 	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "INT:other ADJ:pos+m+s SENT");
     }
 
-    public function testPosTagging1628754970_9897() {
-	    $PipelinePosTagging = new PipelinePosTagging();
-	    $PipelinePosTagging->language = "en";
-
-	    $sentence = "Stop gloating, alright, it doesn't mean anything.";
-	    $pos_arr = $PipelinePosTagging->transform($sentence);
-	    $PipelinePosTagging = null;
-
-	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
-
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT VER:inf+pres NOUN-m:s PON:sep ADJ:pos+m+s PON:sep PRO-PERS-3-M-S AUX:ind+pres+3+s ADV:neg VER:inf+pres NOUN-m:s SENT");
-    }
-
     public function testPosTagging1628754970_237() {
 	    $PipelinePosTagging = new PipelinePosTagging();
 	    $PipelinePosTagging->language = "en";
@@ -3035,19 +2828,6 @@ class EnPosTagger1Test extends TestCase
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
 	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:comp SENT");
-    }
-
-    public function testPosTagging1628754970_803() {
-	    $PipelinePosTagging = new PipelinePosTagging();
-	    $PipelinePosTagging->language = "en";
-
-	    $sentence = "Hey, you're Nina's folks, huh?";
-	    $pos_arr = $PipelinePosTagging->transform($sentence);
-	    $PipelinePosTagging = null;
-
-	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
-
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:enter PON:sep PRO-PERS-2-M-S VER:ind+pres+2+s ART-M:s NOUN-m:p PRE NPR PON:sep INT:dubt SENT:qst");
     }
 
     public function testPosTagging1628754970_2848() {
@@ -3778,19 +3558,6 @@ class EnPosTagger1Test extends TestCase
 	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV PRO-PERS-3-M-P ADV ADV:neg SENT");
     }
 
-    public function testPosTagging1628754970_5024() {
-	    $PipelinePosTagging = new PipelinePosTagging();
-	    $PipelinePosTagging->language = "en";
-
-	    $sentence = "Of course, of course they were, look at him.";
-	    $pos_arr = $PipelinePosTagging->transform($sentence);
-	    $PipelinePosTagging = null;
-
-	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
-
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:conf PON:sep PRO-PERS-3-M-P VER:ind+past+3+p PON:sep VER:inf+pres PRE PRO-PERS-3-M-S SENT");
-    }
-
     public function testPosTagging1628754970_537() {
 	    $PipelinePosTagging = new PipelinePosTagging();
 	    $PipelinePosTagging->language = "en";
@@ -3801,7 +3568,7 @@ class EnPosTagger1Test extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV PON:sep PRO-PERS-1-M-S ADV VER:inf+pres PRO-PERS-3-M-P DET-NUM-CARD:m+p NOUN-m:p ADV:tim PON:sep NOUN-m:s PPAST:part+past+m+s PRE PRO-PERS-3-M-P PPAST:part+past+m+s PRE ART-M:s NOUN-m:s CON ADV:plc SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV PON:sep PRO-PERS-1-M-S ADV VER:inf+pres PRO-PERS-3-M-P NUM NOUN-m:p ADV:tim PON:sep NOUN-m:s PPAST:part+past+m+s PRE PRO-PERS-3-M-P PPAST:part+past+m+s PRE ART-M:s NOUN-m:s CON ADV:plc SENT");
     }
 
     public function testPosTagging1628754970_4270() {
@@ -3843,19 +3610,6 @@ class EnPosTagger1Test extends TestCase
 	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV PRE PPAST:part+past+m+s PON:sep PPAST:part+past+m+s ADV:neg PRO-PERS-3-M-S VER:inf+pres ADJ:pos+m+s PRE VER:inf+pres PRE ADJ:pos+m+s NOUN-m:s SENT:qst");
     }
 
-    public function testPosTagging1628754970_7562() {
-	    $PipelinePosTagging = new PipelinePosTagging();
-	    $PipelinePosTagging->language = "en";
-
-	    $sentence = "Well, the problem is we'd have to fly to Tulsa and rent a car, and it's a six-hour drive.";
-	    $pos_arr = $PipelinePosTagging->transform($sentence);
-	    $PipelinePosTagging = null;
-
-	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
-
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "INT:other ART-M:s NOUN-m:s VER:ind+pres+3+s PRO-PERS-1-M-P PPAST:part+past+m+s VER:inf+pres PRE VER:inf+pres PRE NOUN-m:s CON VER:inf+pres PRE NOUN-m:s PON:sep CON PRO-PERS-3-M-S VER:ind+pres+3+s PRE NUM PON:sep NOUN-m:s NOUN-m:s SENT");
-    }
-
     public function testPosTagging1628754970_6432() {
 	    $PipelinePosTagging = new PipelinePosTagging();
 	    $PipelinePosTagging->language = "en";
@@ -3893,19 +3647,6 @@ class EnPosTagger1Test extends TestCase
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
 	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NPR PON:sep INT:jubi SENT");
-    }
-
-    public function testPosTagging1628754970_3816() {
-	    $PipelinePosTagging = new PipelinePosTagging();
-	    $PipelinePosTagging->language = "en";
-
-	    $sentence = "You are so kind, and good, and...";
-	    $pos_arr = $PipelinePosTagging->transform($sentence);
-	    $PipelinePosTagging = null;
-
-	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
-
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-2-M-S VER:ind+pres+2+s ADV ADJ:pos+m+s PON:sep CON ADJ:pos+m+s PON:sep CON SENT");
     }
 
     public function testPosTagging1628754970_2111() {
@@ -4259,19 +4000,6 @@ class EnPosTagger1Test extends TestCase
 	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-3-M-P AUX:ind+pres+2+s VER:ger+pres PRO-PERS-2-M-S SENT PRO-PERS-1-M-S AUX:inf+pres VER:ger+pres VER:inf+pres NOUN-m:s NOUN-m:s PRE PRO-DEMO-M-S SENT");
     }
 
-    public function testPosTagging1628754972_1440() {
-	    $PipelinePosTagging = new PipelinePosTagging();
-	    $PipelinePosTagging->language = "en";
-
-	    $sentence = "Roll, roll!";
-	    $pos_arr = $PipelinePosTagging->transform($sentence);
-	    $PipelinePosTagging = null;
-
-	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
-
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT VER:inf+pres PON:sep VER:inf+pres SENT:exclam");
-    }
-
     public function testPosTagging1628754972_8902() {
 	    $PipelinePosTagging = new PipelinePosTagging();
 	    $PipelinePosTagging->language = "en";
@@ -4309,19 +4037,6 @@ class EnPosTagger1Test extends TestCase
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
 	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV PON:sep AUX:inf+pres VER:inf+pres VER:inf+pres ART-M:s NOUN-m:s ADV SENT:qst");
-    }
-
-    public function testPosTagging1628754972_5002() {
-	    $PipelinePosTagging = new PipelinePosTagging();
-	    $PipelinePosTagging->language = "en";
-
-	    $sentence = "I've got plans.";
-	    $pos_arr = $PipelinePosTagging->transform($sentence);
-	    $PipelinePosTagging = null;
-
-	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
-
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-1-M-S AUX:inf+pres VER:part+past+m+s NOUN-m:p SENT");
     }
 
     public function testPosTagging1628754972_9193() {
