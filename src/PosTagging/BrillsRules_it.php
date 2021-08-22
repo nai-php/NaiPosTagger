@@ -62,7 +62,8 @@ trait BrillsRulesTrait {
     if ($prev_tag1 == 'PRO' && $prev_tag2 == 'VER' && $prev_tag3 == 'CON' && $this_tag == 'PPAST')	 self::returnRule($target_index, '1110-40', 'PPAST');
 
     if ($prev_tag1 == 'VER' && $prev_tag2 == 'ART' && $prev_tag3 == 'NOUN' && $this_tag == 'ADJ')	 self::returnRule($target_index, '1110-45', 'ADJ', .9);
-	
+
+    if ($prev_word1 == 'by' && $prev_tag2 == 'ART' && $prev_tag3 == 'ADJ' && $this_tag == 'NOUN')	 self::returnRule($target_index, '1110-50', 'NOUN', 1);
  }
  
  
@@ -1210,6 +1211,7 @@ trait BrillsRulesTrait {
 	if ($prev_word1 == 'in' && ($this_tag == 'VER' || $this_tag == 'PPAST'))	 self::returnRule($target_index, '10-125', 'VER', -50);
 	
 	if (preg_match('/^(gonna|could|should)$/i', $prev_word1) && $this_tag == 'VER')	 self::returnRule($target_index, '10-127', 'VER');
+	if (preg_match('/^(was)$/i', $prev_word1) && $this_pp['features'] == 'VER:ger+pres')	 self::returnRule($target_index, '10-128', 'VER');
 	
 	if ($prev_word1 == 'inside' && ($this_tag == 'VER' || $this_tag == 'PPAST'))	 self::returnRule($target_index, '10-130', 'VER', -50);
 	
@@ -1236,6 +1238,7 @@ trait BrillsRulesTrait {
 	if ($prev_word1 == 'enough')    self::returnRule($target_index, '10-185', 'VER', - 3);
 	
 	if ($prev_word1 == 'who')    self::returnRule($target_index, '10-190', 'VER', self::$score_three_terms);
+	if ($prev_word1 == 'who')    self::returnRule($target_index, '10-191', 'PPAST', self::$score_three_terms);
 	
 	if ($prev_word1 == 'to')    self::returnRule($target_index, '10-195', 'VER',5);
 	
