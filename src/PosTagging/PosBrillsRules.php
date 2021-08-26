@@ -105,7 +105,7 @@ class PosBrillsRules
 
 
 		if (self::$dbgme)
-		    echox("<br>-- 1110 found pattern " . $match[0] . " to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> posizionato dopo sicuri <b>".$prev_word1['form']."</b> e <b>".$prev_word2['form']."</b> and <b>".$prev_word3['form']."</b>");
+		    echox("<br>-- 1110 found pattern " . $match[0] . " to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> posizionato dopo sicuri <b>".$prev_word1['form']."</b> and <b>".$prev_word2['form']."</b> and <b>".$prev_word3['form']."</b>");
 
 		// e loop tra tutte le feats della pos_part combinata con i vicini
 		for ($n2 = 0; $n2 < count($pos_arr[$target_index]); $n2++)
@@ -136,7 +136,7 @@ class PosBrillsRules
 
 
 		if (self::$dbgme)
-		    echox("<br>-- 1011 found pattern " . $match[0] . " per termine incerto <b>" . $pos_arr[$target_index][0]['form'] . "</b> posizionato tra sicuri <b>".$prev_word1['form']."</b> e <b>".$nextword1['form']."</b>  e <b>".$nextword2['form']."</b>");
+		    echox("<br>-- 1011 found pattern " . $match[0] . " to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> between <b>".$prev_word1['form']."</b> and <b>".$nextword1['form']."</b>  e <b>".$nextword2['form']."</b>");
 
 		// e loop tra tutte le feats della pos_part combinata con i vicini
 		for ($n2 = 0; $n2 < count($pos_arr[$target_index]); $n2++)
@@ -167,7 +167,7 @@ class PosBrillsRules
 
 
 		if (self::$dbgme)
-		    echox("<br>-- 1101 found pattern " . $match[0] . " per termine incerto <b>" . $pos_arr[$target_index][0]['form'] . "</b> posizionato tra sicuri <b>".$prev_word1['form']."</b> e <b>".$prev_word2['form']."</b>  e <b>".$nextword1['form']."</b>");
+		    echox("<br>-- 1101 found pattern " . $match[0] . " to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> between <b>".$prev_word1['form']."</b> and <b>".$prev_word2['form']."</b>  e <b>".$nextword1['form']."</b>");
 
 		// e loop tra tutte le feats della pos_part combinata con i vicini
 		for ($n2 = 0; $n2 < count($pos_arr[$target_index]); $n2++)
@@ -198,7 +198,7 @@ class PosBrillsRules
 
 
 		if (self::$dbgme)
-		    echox("<br>-- 101 found pattern " . $match[0] . " per termine incerto <b>" . $pos_arr[$target_index][0]['form'] . "</b> posizionato tra sicuri <b>".$prev_word1['form']."</b> e <b>".$nextword1['form']."</b>");
+		    echox("<br>-- 101 found pattern " . $match[0] . " to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> between <b>".$prev_word1['form']."</b> and <b>".$nextword1['form']."</b>");
 
 		// e loop tra tutte le feats della pos_part combinata con i vicini
 		for ($n2 = 0; $n2 < count($pos_arr[$target_index]); $n2++)
@@ -226,7 +226,7 @@ class PosBrillsRules
 		$prev_word1 = $pos_arr[$sure_key + 1][0]; // unica 2
 
 		if (self::$dbgme)
-		    echox("<br>- 110 found pattern " . $match[0] . " per termine incerto <b>" . $pos_arr[$target_index][0]['form'] . "</b> preceduto da due sicuri ".$prev_word2['form']." e ".$prev_word1['form']);
+		    echox("<br>- 110 found pattern " . $match[0] . " to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> preceduto da due sicuri ".$prev_word2['form']." e ".$prev_word1['form']);
 
 		// e loop tra tutte le feats della pos_part combinata con i vicini
 		for ($n2 = 0; $n2 < count($pos_arr[$target_index]); $n2++)
@@ -252,7 +252,7 @@ class PosBrillsRules
 		$nextword2 = $pos_arr[$sure_key + 2][0];
 
 		if (self::$dbgme)
-		    echox("<br>-- 011 found pattern " . $match[0] . " a indice " . $match[1] . " per termine incerto <b>" . $pos_arr[$target_index][0]['form'] . "</b> seguito da due sicuri ".$nextword1['form']." e ".$nextword2['form']);
+		    echox("<br>-- 011 found pattern " . $match[0] . " a indice " . $match[1] . " to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> seguito da due sicuri ".$nextword1['form']." e ".$nextword2['form']);
 
 		// e loop tra tutte le feats della pos_part combinata con i vicini
 		for ($n2 = 0; $n2 < count($pos_arr[$target_index]); $n2++)
@@ -280,7 +280,7 @@ class PosBrillsRules
 		$prev_word1 = $pos_arr[$sure_key][0]; // unica 1
 
 		if (self::$dbgme)
-		    echox("<br>-- 10 found pattern " . $match[0] . " per termine incerto <b>" . $pos_arr[$target_index][0]['form'] . "</b> preceduto da sicuro <b>".$prev_word1['form']."</b>");
+		    echox("<br>-- 10 found pattern " . $match[0] . " to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> preceduto da sicuro <b>".$prev_word1['form']."</b>");
 
 		// e loop tra tutte le feats della pos_part combinata con i vicini
 		for ($n2 = 0; $n2 < count($pos_arr[$target_index]); $n2++)
@@ -305,7 +305,7 @@ class PosBrillsRules
 		$nextword1 = $pos_arr[$sure_key][0]; // unica 1
 
 		if (self::$dbgme)
-		    echox("<br>-- 01 found pattern " . $match[0] . " per termine incerto <b>" . $pos_arr[$target_index][0]['form'] . "</b> seguito da sicuro <b>".$nextword1['form']."</b>");
+		    echox("<br>-- 01 found pattern " . $match[0] . " to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> seguito da sicuro <b>".$nextword1['form']."</b>");
 
 		// e loop tra tutte le feats della pos_part combinata con i vicini
 		for ($n2 = 0; $n2 < count($pos_arr[$target_index]); $n2++)
