@@ -247,8 +247,11 @@ class PipelinePosTagging
 	
 	
 	// TO SOME MOST COMMON TERMS, ASSIGN TEMPORARILY MORE COMMON FEATURE
-	$NaiCommonSimplifier = new NaiCommonSimplifier();
-	NaiDictionary::$pos_dictionary = $NaiCommonSimplifier->simplify(NaiDictionary::$pos_dictionary);
+	if($this->language != 'en')
+	{
+	    $NaiCommonSimplifier = new NaiCommonSimplifier();
+	    NaiDictionary::$pos_dictionary = $NaiCommonSimplifier->simplify(NaiDictionary::$pos_dictionary);
+	}
 //	diex(NaiDictionary::$pos_dictionary);
 
 	
