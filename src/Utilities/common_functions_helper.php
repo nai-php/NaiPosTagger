@@ -981,7 +981,7 @@ if (! function_exists('createTestFunctions'))
 	
 	    "\t" . '$PipelinePosTagging->language = "en";' . "\n\n" .
 	
-	    "\t" . '$sentence = "'.$orig_sentence.'";' . "\n" .
+	    "\t" . '$sentence = "'.preg_replace('/"/', '\"', trim($orig_sentence)).'";' . "\n" .
 	
 	    "\t" . '$pos_arr = $PipelinePosTagging->transform($sentence);' . "\n" .
 

@@ -34,6 +34,19 @@ require_once realpath(__DIR__ . '/../../../vendor/nai-php/naipostagger/src/Utili
 class EnPosTagger1TestFailed extends TestCase
 {
 
+    public function testPosTagging1628754941_531() {
+	    $PipelinePosTagging = new PipelinePosTagging();
+	    $PipelinePosTagging->language = "en";
+
+	    $sentence = "Doctor, do they call you that because you're an actual doctor, or because you wear rubber gloves when you do the milking?";
+	    $pos_arr = $PipelinePosTagging->transform($sentence);
+	    $PipelinePosTagging = null;
+
+	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
+
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NOUN-m:s PON:sep VER:inf+pres PRO-PERS-3-M-P VER:inf+pres PRO-PERS-2-M-S PRO-DEMO-M-S CON PRO-PERS-2-M-S VER:ind+pres+2+s NUM ADJ:pos+m+s NOUN-m:s PON:sep CON:or CON PRO-PERS-2-M-S VER:inf+pres NOUN-m:s NOUN-m:p ADV:when PRO-PERS-2-M-S VER:inf+pres ART-M:s NOUN-m:s SENT:qst");
+    }
+    
     public function testPosTagging1628754941_60() {
 	    $PipelinePosTagging = new PipelinePosTagging();
 	    $PipelinePosTagging->language = "en";
@@ -177,19 +190,6 @@ class EnPosTagger1TestFailed extends TestCase
 	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PON:quote VER:inf+pres ADV:when PRO-PERS-2-M-S VER:inf+pres PRO-PERS-1-M-P SENT PON:quote SENT");
     }
 
-    public function testPosTagging1628754966_4968() {
-	    $PipelinePosTagging = new PipelinePosTagging();
-	    $PipelinePosTagging->language = "en";
-
-	    $sentence = "So listen, I was thinking maybe sushi tonight.";
-	    $pos_arr = $PipelinePosTagging->transform($sentence);
-	    $PipelinePosTagging = null;
-
-	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
-
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV VER:inf+pres PON:sep PRO-PERS-1-M-S AUX:ind+past+1+s VER:ger+pres ADV NOUN-m:s ADV SENT");
-    }
-
     public function testPosTagging1628754966_4759() {
 	    $PipelinePosTagging = new PipelinePosTagging();
 	    $PipelinePosTagging->language = "en";
@@ -201,19 +201,6 @@ class EnPosTagger1TestFailed extends TestCase
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
 	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV PRO-PERS-2-M-S VER:ind+pres+2+s ADJ:pos+m+s PON:sep PRO-PERS-2-M-S AUX:ind+pres+2+s VER:part+past+m+s SENT:qst");
-    }
-
-    public function testPosTagging1628754966_3820() {
-	    $PipelinePosTagging = new PipelinePosTagging();
-	    $PipelinePosTagging->language = "en";
-
-	    $sentence = "\"Crushed\" isn't the right word, nor is \"told them.\"";
-	    $pos_arr = $PipelinePosTagging->transform($sentence);
-	    $PipelinePosTagging = null;
-
-	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
-
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PON:quote PPAST:part+past+m+s PON:quote VER:ind+pres+3+s ADV:neg ART-M:s ADJ:pos+m+s NOUN-m:s PON:sep CON:neg VER:ind+pres+3+s PON:quote PPAST:part+past+m+s PRO-PERS-3-M-P SENT PON:quote SENT");
     }
 
     public function testPosTagging1628754966_3491() {
