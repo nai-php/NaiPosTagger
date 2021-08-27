@@ -688,7 +688,13 @@ trait BrillsRulesTrait {
     
     if ($prev_tag2 == 'PRO' && $prev_word1 == 'will' && ($this_tag == 'VER' || $this_tag == 'UNK')) self::returnRule($target_index, '110-45', 'VER',10);
     
-
+    if ($prev_word2 == 'I' && $prev_word1 == 'am' && $this_tag == 'ADJ') self::returnRule($target_index, '110-46', 'ADJ');
+    if ($prev_word2 == 'you' && $prev_word1 == 'are' && $this_tag == 'ADJ') self::returnRule($target_index, '110-46', 'VER');
+    if ($prev_word2 == 'he' && $prev_word1 == 'is' && $this_tag == 'ADJ') self::returnRule($target_index, '110-46', 'VER');
+    if ($prev_word2 == 'she' && $prev_word1 == 'is' && $this_tag == 'ADJ') self::returnRule($target_index, '110-46', 'VER');
+    if ($prev_word2 == 'we' && $prev_word1 == 'are' && $this_tag == 'ADJ') self::returnRule($target_index, '110-46', 'VER');
+    if ($prev_word2 == 'they' && $prev_word1 == 'are' && $this_tag == 'ADJ') self::returnRule($target_index, '110-46', 'VER');
+    
     if ($prev_word2 == 'I' && $prev_word1 == 'am' && ($this_pp['features'] == 'VER:ger+pres' || $this_tag == 'UNK')) self::returnRule($target_index, '110-46', 'VER');
     if ($prev_word2 == 'you' && $prev_word1 == 'are' && ($this_pp['features'] == 'VER:ger+pres' || $this_tag == 'UNK')) self::returnRule($target_index, '110-46', 'VER');
     if ($prev_word2 == 'he' && $prev_word1 == 'is' && ($this_pp['features'] == 'VER:ger+pres' || $this_tag == 'UNK')) self::returnRule($target_index, '110-46', 'VER');
