@@ -165,6 +165,9 @@ trait BrillsRulesTrait {
     {
 	if ($prev_tag1 == 'PRE' && $prev_tag2 == 'ADJ' && $this_tag == 'ADJ' && $next_tag1 == 'NOUN') self::returnRule($target_index, '1101-85', 'ADJ');
     }
+    
+    
+     if ($prev_tag1 == 'PRO' && $prev_word2 == 'did' && ($this_pp['features']== 'VER:inf+pres' || $this_tag == 'UNK') && $next_tag1 == 'PRE')   self::returnRule($target_index, '1101-90', 'VER');  
  }
   
  
@@ -548,13 +551,14 @@ trait BrillsRulesTrait {
      if(self::$language == 'en')
      {
 	  if ($this_pp['features'] == 'VER:ind+pres+3+s' && $next_tag1 == 'PRO') self::returnRule($target_index, '101-674', 'VER');
+	  if ($this_word == 'still' && $next_tag1 == 'VER') self::returnRule($target_index, '101-675', 'ADV');
      }
      
     }
 
     if ($prev_tag1 == 'SENT')
     {
-     if ($this_word == 'questa' && $next_tag1 == 'VER') self::returnRule($target_index, '101-675', 'PRO');
+     if ($this_word == 'questa' && $next_tag1 == 'VER') self::returnRule($target_index, '101-677', 'PRO');
 
      if ($this_word == 'quanto' && $next_tag1 == 'NOUN') self::returnRule($target_index, '101-680', 'ADV');
 
@@ -563,6 +567,8 @@ trait BrillsRulesTrait {
      if ($this_word == 'era' && $next_tag1 == 'VER') self::returnRule($target_index, '101-690', 'VER');
 
      if ($this_word == 'ora' && $next_tag1 == 'VER') self::returnRule($target_index, '101-695', 'ADV');
+     
+     if ($this_word == 'till' && $next_tag1 == 'PRO') self::returnRule($target_index, '101-696', 'ADV');
 
      // added 09/2019 for "carica questi dati"
      if($this_tag == 'VER' && ($next_tag1 == 'ART' || $next_tag1 == 'PRO')) self::returnRule($target_index, '101-700', 'VER');
@@ -686,7 +692,7 @@ trait BrillsRulesTrait {
     
     if ($prev_word2 == 'can' && $prev_word1 == 'I' && ($this_tag == 'VER' || $this_tag == 'UNK')) self::returnRule($target_index, '110-44', 'VER',10);
     
-    if ($prev_tag2 == 'PRO' && $prev_word1 == 'will' && ($this_tag == 'VER' || $this_tag == 'UNK')) self::returnRule($target_index, '110-45', 'VER',10);
+    if ($prev_tag2 == 'PRO' && $prev_word1 == 'will' && ($this_tag == 'VER' || $this_tag == 'UNK')) self::returnRule($target_index, '110-45', 'VER');
     
     if ($prev_word2 == 'I' && $prev_word1 == 'am' && $this_tag == 'ADJ') self::returnRule($target_index, '110-46', 'ADJ');
     if ($prev_word2 == 'you' && $prev_word1 == 'are' && $this_tag == 'ADJ') self::returnRule($target_index, '110-46', 'VER');
@@ -913,7 +919,8 @@ trait BrillsRulesTrait {
      
      if(self::$language == 'en')
      {
-	if ($prev_word2 == 'to' && ($this_tag == 'VER' || $this_tag == 'UNK'))   self::returnRule($target_index, '110-456', 'VER');
+	if ($prev_word2 == 'to' && ($this_tag == 'VER' || $this_tag == 'UNK'))   self::returnRule($target_index, '110-455', 'VER');
+	if ($prev_word2 == 'to' && $this_pp['features']== 'VER:ind+pres+3+s')   self::returnRule($target_index, '110-456', 'VER', - self::$score_three_terms);
      } else
      {
 	if ($prev_tag1 == 'VER' && ($this_tag == 'NOUN' || $this_tag == 'UNK'))   self::returnRule($target_index, '110-455', 'NOUN');
@@ -921,6 +928,11 @@ trait BrillsRulesTrait {
 
     }
 
+    if ($prev_tag2 == 'PPAST')
+    {
+     if($prev_pp_1['features'] == 'PRO-INDEF-M-S' && ($this_tag == 'VER' || $this_tag == 'UNK')) self::returnRule($target_index, '110-605', 'VER');
+    }
+    
     if ($prev_tag2 == 'PRO')
     {
      if ($prev_tag1 == 'DET' && $this_word == 'stati')	 self::returnRule($target_index, '110-460', 'NOUN');
@@ -935,6 +947,7 @@ trait BrillsRulesTrait {
      if ($prev_tag1 == 'VER' && ($this_tag == 'ADJ' || $this_tag == 'UNK'))   self::returnRule($target_index, '110-480', 'VER');
 
      if ($prev_tag1 == 'DET')	 self::returnRule($target_index, '110-485', 'VER');
+
     }
 
     if ($prev_tag2 == 'NOUN')
@@ -967,8 +980,6 @@ trait BrillsRulesTrait {
 
      if ($prev_tag1 == 'ADJ' && ($this_tag == 'VER' || $this_tag == 'UNK'))   self::returnRule($target_index, '110-530', 'NOUN');
 
-     // ma in certi casi la regola sopra crea imprecisioni. 
-     // salvo almeno le situazioni con poco di "è poco distante" 
      if ($prev_word1 == 'poco' && $this_tag == 'ADJ')   self::returnRule($target_index, '110-535', 'ADJ', 3);
      
      if ($prev_word1 == 'pochi' && $this_tag == 'NOUN')   self::returnRule($target_index, '110-536', 'NOUN');
@@ -1001,7 +1012,7 @@ trait BrillsRulesTrait {
      if ($prev_tag1 == 'VER' && ($this_tag == 'ART' || $this_tag == 'UNK')) self::returnRule($target_index, '110-595', 'ART');
 
      if ($prev_tag1 == 'NPR') self::returnRule($target_index, '110-600', 'NPR');
-
+     
     }
 
  }
@@ -1318,8 +1329,6 @@ trait BrillsRulesTrait {
 	 if ($prev_word1 == 'non')	 self::returnRule($target_index, '10-250', 'VER');
 	 
 	 if ($prev_word1 == 'already')	 self::returnRule($target_index, '10-255', 'VER');
-
-	 if ($prev_word1 == 'have')	 self::returnRule($target_index, '10-260', 'VER');
 
 	 if ($prev_word1 == 'had')	 self::returnRule($target_index, '10-265', 'VER');
 
@@ -1726,7 +1735,6 @@ trait BrillsRulesTrait {
 
 	 if ($this_word == 'loro')	 self::returnRule($target_index, '10-1055', 'PRO');
 	
-	 // added 10/2019
 	 if($prev_word1 != 'can' && $prev_pp_1['features'] == 'VER:inf+pres' && $this_tag == 'NOUN')
 	    self::returnRule($target_index, '10-1056', 'NOUN', .4);
 	}
@@ -1951,7 +1959,8 @@ trait BrillsRulesTrait {
     if ($nextword1 == 'meglio')	 self::returnRule($target_index, '01-370', 'VER');
 
     if ($nextword1 == 'stato')	 self::returnRule($target_index, '01-375', 'ADJ');
-    
+        
+     if ($nextword1 == 'it')	 self::returnRule($target_index, '01-380', 'VER');
  }
 
  
