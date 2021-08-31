@@ -323,8 +323,10 @@ class PipelinePosTagging
 	
 //diex($pos_arr);
         // TAG PRENOUNS
-	// @todo set language and add english
-	$pos_arr = PosPrenouns::transform($pos_arr);
+	if($this->language != 'en')
+	{
+	    $pos_arr = PosPrenouns::transform($pos_arr);
+	}
 	
         
 	// SOLVE COMBOS OF AUX E VER, FIXING WHERE POSSIBLE PPAST TAGS
