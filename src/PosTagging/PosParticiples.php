@@ -22,8 +22,9 @@ use NaiPosTagger\PosTagging\PosTools;
  */
 class PosParticiples
 {
-
-    public static $dbgme = false;   // true false
+    
+    /** Class debugger flag true false */
+    public static $dbgme = false;
 
 
     /**
