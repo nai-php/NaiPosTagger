@@ -15,37 +15,36 @@ namespace NaiPosTagger\PosTagging;
 use NaiPosTagger\PosTagging\PosTools;
 
 /**
- * Elimina varianti non corrette confrontando sesso e tempi di verbi e noun dei termini
- * prima e dopo di un dato termine.
- * Per es. con "domani sono previsti sei seminari" il sei dovrebbe essere numero.
- * E' evidente che il verbo "sei" si riferisce al singolare (tu) mentre il 
- * numero si riferisce a qualcosa di plurale.
- *
- * E' importante l'ordine! Prima quello prev, poi quello next!
- *
- * @todo sinceramente, penso che con le regole Brill da 312 a 319 faccio la stessa
- * cosa, ma sicuramente meglio.
- * Dovrei provare a sospendere questo e ripassare le 'finali' e vedere che
- * succede...
+ * Exclude features comparing person and time of verbs and nouns of terms
+ * previous and next of a given dubious term.
  *
  */
 class PosPersonAndSex
 {
-
-    public static $dbgme = false;   // true false
-    public static $score_prev = - .6;   // il termine prima forse è più sicuro
-    public static $safe_score_prev = - 15;   // le regole CERTISSIME
+    
+    /** Class debugger flag true false */
+    public static $dbgme = false;
+    
+    /** Negative score to assign a improbable previous token */
+    public static $score_prev = - .6;
+    
+    /** Negative score to assign a really improbable previous token */
+    public static $safe_score_prev = - 15;
+    
+    /** Negative score to assign a improbable next token */
     public static $score_next = - .7;   // quello dopo assegno un goccio di meno
-    // segna le coppie this-prev e this-next per evitare di farle mille volte
+    
+    /** Save combinations this-prev and this-next to reduce loops */
     private static $done_index = [];
     
-    // in italian language after the ART "lo" cannot have nouns that begins with those initial
-    // @todo vedere se si sono altri casi...
+    /** in italian language after the ART "lo" cannot have nouns that begins with those initial
+     * @todo other cases?
+     */
     private static $impossible_nouns_before_lo = '(b|c|d|f|g|l|m|n|p|q|r|t|v)';
 
 
     /**
-     * Da chiamare sempre prima dei passaggi!
+     * Reset the index of considered terms
      */
     public static function resetDoneIndex()
     {
@@ -59,10 +58,8 @@ class PosPersonAndSex
      */
     public static function exclude($pos_arr)
     {
-	// GUARDANDO 1 TERMINE PRIMA
 	$pos_arr = self::checkPrevToken($pos_arr, 1);
 
-	// GUARDANDO 1 TERMINE DOPO
 	$pos_arr = self::checkNextToken($pos_arr, 1);
 
 	return $pos_arr;
@@ -70,8 +67,7 @@ class PosPersonAndSex
 
 
     /**
-     * Chiamata dal metodo sopra, esegue i controlli tra il termine incerto 
-     * e il precedente, e imposta lo score
+     * Apply rules between dubious terms and the previous one or two terms
      * @param array $pos_arr
      * @param int $until
      * @return array $pos_arr;
@@ -80,102 +76,90 @@ class PosPersonAndSex
     {
 	foreach ($pos_arr as $n => $pos_part)
 	{
-
 	    if (count($pos_part) > 1 && isset($pos_arr[$n - $until]))
 	    {
-		// per forza ci vuole un loop che incroci ogni pos_part con quelle della precedente
+		// loop between each pos part with the next pos part
 		foreach ($pos_part as $feats)
 		{
 		    $_form = $feats['form'];
 		    $_feat = strtolower($feats['features']);
 
-		    // leggo le feats del termine precedente
-		    // @todo dovrei poter essere in grado di saltare eventuali CON
+		    // get feature of previous term
 		    $_prev_feats = self::checkNearbyFeats($pos_arr[$n - $until][0], 'prev');
 
-		    // se combo già verificato, lo salto
+		    // if already verified, skip
 		    if (in_array($_form . $_feat . $_prev_feats, self::$done_index))
 			break;
 
-		    if (self::$dbgme)
-			echox('- PREV confronto "' . $_form . '"/' . $_feat . ' col precedente ' . $_prev_feats);
-
-
-		    // aggiungo all'indice delle verifiche già fatte
+		    // add to the index of already verified
 		    array_push(self::$done_index, $_form . $_feat . $_prev_feats);
 
 
-		    // PREV 1.1 confronto sing. e plur.
+		    // PREV 1.1 compare singular and plural
 		    if (instr($_feat, 'art') == 0 && instr($_feat, 'num') == 0 && self::isSingular($_feat) && self::isPlural($_prev_feats))
 		    {
 			if (self::$dbgme)
-			    echox('- PREV 1.1 penalizzo "' . $_form . '" come ' . $_feat . ' a fronte del precedente termine con 1 feat ' . right($_prev_feats, 2));
+			    echox('- PREV step 1 penalyze "' . $_form . '" as ' . $_feat . ' against previous term with 1 feat ' . right($_prev_feats, 2));
 
-			// setto lo score di questo passaggio
+			// set score
 			$pos_arr[$n] = PosTools::setSubScorePos('times-exclusion-prev-1', $pos_arr[$n], $feats['features'], self::$score_prev);
 
 			$pos_arr = self::exclude($pos_arr);
 		    }
 
 
-		    // PREV 1.2 confronto plur e sing.
-		    // @note 19/09/2019 mi veniva voglia di sospenderlo perchè mi sembra abbastanza 
-		    // una stupidaggine... troppo generico, per es. con 
-		    // "produce interessi" mi esclude "interessi", che è in realtà quello corretto...
-		    // provo ad escluderlo se prima c'è un verbo qualsiasi... vediamo
+		    // PREV 1.2 compare plural and singular
 		    if (instr($_prev_feats, 'ver') == 0 && instr($_feat, 'art') == 0 && instr($_feat, 'num') == 0 && self::isPlural($_feat) && self::isSingular($_prev_feats))
 		    {
 			if (self::$dbgme)
-			    echox('- PREV 1.2 penalizzo "' . $_form . '" come ' . $_feat . ' a fronte del precedente termine con 1 feat ' . right($_prev_feats, 2));
+			    echox('- PREV step 2 penalyze "' . $_form . '" as ' . $_feat . ' against previous term with 1 feat ' . right($_prev_feats, 2));
 
 
-			// setto lo score negativo di questa feat
+			// assign a negative score
 			$pos_arr[$n] = PosTools::setSubScorePos('times-exclusion-prev-2', $pos_arr[$n], $feats['features'], self::$score_next);
 			$pos_arr = self::exclude($pos_arr);
 		    }
 
 
-		    // PREV 1.3 confronto persone tra due verbi 
-		    // es. "vorrei 1+s conferma 3+s ", non sono possibili
+		    // PREV 1.3 compare persons of two verbs
+		    // eg. "vorrei 1+s conferma 3+s ", can't be possible
 		    if (instr($_prev_feats, '1') > 0 && (instr($_feat, '2') > 0 || instr($_feat, '3') > 0))
 		    {
 			if (self::$dbgme)
-			    echox('- PREV 1.3 penalizzo "' . $_form . '" come ' . $_feat . ' a fronte del precedente termine con 1 feat ' . right($_prev_feats, 2));
+			    echox('- PREV step 3 penalyze "' . $_form . '" as ' . $_feat . ' against previous term with 1 feat ' . right($_prev_feats, 2));
 
-			// setto lo score negativo di questa feat
+			// assign a negative score
 			$pos_arr[$n] = PosTools::setSubScorePos('times-exclusion-prev-3', $pos_arr[$n], $feats['features'], self::$score_prev);
 			$pos_arr = self::exclude($pos_arr);
 		    }
 
 
-		    // PREV 1.4 confronto persone tra due verbi  13/06/2019
-		    // es. "ha ind+pres+3+s ancora ind+pres+3+s ", non sono possibili
-		    // però è possibile "ha vista", che differenza c'è????
+		    // PREV 1.4 compare persons of two verbs
+		    // eg. "ha ind+pres+3+s ancora ind+pres+3+s ", can't be possible
 		    if (instr($_prev_feats, 'ind+pres+3+s') > 0 && instr($_feat, 'ind+pres+3+s') > 0)
 		    {
 			if (self::$dbgme)
-			    echox('- PREV 1.4 penalizzo "' . $_form . '" come ' . $_feat . ' a fronte del precedente termine con 1 feat ' . $_prev_feats);
+			    echox('- PREV step 4 penalyze "' . $_form . '" as ' . $_feat . ' against previous term with 1 feat ' . $_prev_feats);
 
-			// setto lo score negativo di questa feat
+			// assign a negative score
 			$pos_arr[$n] = PosTools::setSubScorePos('times-exclusion-prev-4', $pos_arr[$n], $feats['features'], self::$safe_score_prev);
 			$pos_arr = self::exclude($pos_arr);
 		    }
 		    
 		    		    		    
-		    // più specifico quando ho due verbi con tempo diversi es. "andava ancora" dove "ancora" non può essere VER
+		    // more specific when we have two verbs with time differents eg. "andava ancora" where "ancora" cannot be VER
 		    if (instr($_prev_feats, 'ind+impf+3+s') > 0 && instr($_feat, 'ind+pres+3+s') > 0)
 		    {
 			if (self::$dbgme)
-			    echox('- NEXT 5 penalizzo "' . $_form . '" come ' . $_feat . ' a fronte del precedente termine con 1 feat ' . $_prev_feats);
+			    echox('- PREV step 5 penalyze "' . $_form . '" as ' . $_feat . ' against previous term with 1 feat ' . $_prev_feats);
 
-			// setto lo score negativo di questa feat
+			// assign a negative score
 			$pos_arr[$n] = PosTools::setSubScorePos('times-exclusion-prev-5', $pos_arr[$n], $feats['features'], self::$safe_score_prev);
 			$pos_arr = self::exclude($pos_arr);
 		    }
 
 		    /**
-		     * "la blocco" o "le ritrovo" è ovvio che non sono NOUN ma sicuramente VER.
-		     * E anche "lo controllo" non può essere noun!
+		     * "la blocco" or "le ritrovo" cannot be NOUN but definitely VER.
 		     */
 		    if (
 			(($pos_arr[$n - 1][0]['form'] == 'la' || $pos_arr[$n - 1][0]['form'] == 'le') && $_feat == 'noun-m:s')
@@ -183,8 +167,9 @@ class PosPersonAndSex
 		    )
 		    {
 			if (self::$dbgme)
-			    echox('- PREV 1.5 penalizzo "' . $_form . '" come NOUN a favore del VER');
-			// setto lo score negativo del noun
+			    echox('- PREV step 6 penalyze "' . $_form . '" as NOUN in favor of VER');
+			
+			// assign a negative score to noun
 			$pos_arr[$n] = PosTools::setSubScorePos('times-exclusion-prev-6', $pos_arr[$n], $feats['features'], self::$safe_score_prev);
 
 			$pos_arr = self::exclude($pos_arr);
@@ -202,10 +187,9 @@ class PosPersonAndSex
 
 
     /**
-     * Chiamata dal metodo sopra, esegue i controlli tra il termine incerto 
-     * e il successivo, e imposta lo score
+     * Apply rules between dubious terms and the next one or two terms
      * @param array $pos_arr
-     * @param int $until  1 o 2
+     * @param int $until  1 or 2
      * @return array $pos_arr;
      */
     private static function checkNextToken($pos_arr, $until = 1)
@@ -214,69 +198,66 @@ class PosPersonAndSex
 	{
 	    if (count($pos_part) > 1 && isset($pos_arr[$n + $until]))
 	    {
-		// per forza ci vuole un loop che incroci ogni pos_part con quelle della successiva
+		// loop between each pos part with the next pos part
 		foreach ($pos_part as $feats)
 		{
 		    $_form = $feats['form'];
 		    $_feat = strtolower($feats['features']);
 
-		    // leggo le feats del termine successivo
-		    // TODO: dovrei poter essere in grado di saltare eventuali CON
+		    // get feature of next term
 		    $_next_feats = self::checkNearbyFeats($pos_arr[$n + $until][0]);
 
-		    // se combo già verificato, lo salto
+		    // if already verified, skip
 		    if (in_array($_form . $_feat . $_next_feats, self::$done_index))
 			break;
 
-		    // aggiungo all'indice delle verifiche già fatte
+		    // add to the index of already verified
 		    array_push(self::$done_index, $_form . $_feat . $_next_feats);
 
 
-		    // if (self::$dbgme)
-		    // echox('- NEXT confronto "' . $_form . '" come ' . $_feat.' ('.self::isSingular($_feat).') con il successivo '.self::isPlural($_next_feats));
-		    // 03/18 sperimentale: se una feat è un numero e dopo c'è un singolare, non può essere plurale
+		    // if a feat is a number and next word is singular, this cannot be plural
 		    if (instr($_feat, 'num') > 0 && self::isSingular($_next_feats))
 		    {
 			if (self::$dbgme)
-			    echox('- NEXT 1 penalizzo "' . $_form . '" come ' . $_feat . ' a fronte del successivo termine con 1 feat ' . right($_next_feats, 2));
+			    echox('- NEXT step 1 penalyze "' . $_form . '" as ' . $_feat . ' against of successive term with 1 feat ' . right($_next_feats, 2));
 
-			// setto lo score negativo di questa feat
+			// assign a negative score
 			$pos_arr[$n] = PosTools::setSubScorePos('times-exclusion-next-1', $pos_arr[$n], $feats['features'], self::$score_next);
 			$pos_arr = self::exclude($pos_arr);
 		    }
 
-		    // e viceversa, se ho "uno una un" la parola dopo deve essere singolare
+		    // and vice-versa, if "uno una un" the next word must be singular
 		    if (($_form == 'uno' || $_form == 'una' || $_form == 'un') && self::isPlural($_next_feats))
 		    {
 			if (self::$dbgme)
-			    echox('- NEXT 2 penalizzo "' . $_form . '" come ' . $_feat . ' a fronte del successivo termine con 1 feat ' . right($_next_feats, 2));
+			    echox('- NEXT step 2 penalyze "' . $_form . '" as ' . $_feat . ' against of successive term with 1 feat ' . right($_next_feats, 2));
 
-			// setto lo score negativo di questa feat
+			// assign a negative score
 			$pos_arr[$n] = PosTools::setSubScorePos('times-exclusion-next-2', $pos_arr[$n], $feats['features'], self::$score_next);
 			$pos_arr = self::exclude($pos_arr);
 		    }
 
 
-		    // confronto sing e plur @todo se ci sono altri tag next da non considerare...
+		    // compare singular and $_next_feats @todo other tags to ignore?
 
 		    if (instr($_next_feats, 'art') == 0 && instr($_next_feats, 'pro') == 0 && instr($_feat, 'num') == 0 && self::isSingular($_feat) && self::isPlural($_next_feats))
 		    {
 			if (self::$dbgme)
-			    echox('- NEXT 3 penalizzo "' . $_form . '" come ' . $_feat . ' a fronte del successivo termine con 1 feat ' . right($_next_feats, 2));
+			    echox('- NEXT step 3 penalyze "' . $_form . '" as ' . $_feat . ' against of successive term with 1 feat ' . right($_next_feats, 2));
 
-			// setto lo score negativo di questa feat
+			// assign a negative score
 			$pos_arr[$n] = PosTools::setSubScorePos('times-exclusion-next-3', $pos_arr[$n], $feats['features'], self::$score_next);
 			$pos_arr = self::exclude($pos_arr);
 		    }
 
 
-		    // confronto plur e sing. con qualche filtro per evitare casini...
+		    // compare plural and singular
 		    if (instr($_next_feats, 'art') == 0 && instr($_next_feats, 'adj') == 0 && instr($_next_feats, 'num') == 0 && instr($_feat, 'num') == 0 && self::isPlural($_feat) && self::isSingular($_next_feats))
 		    {
 			if (self::$dbgme)
-			    echox('- NEXT 4 penalizzo "' . $_form . '" come ' . $_feat . ' a fronte del successivo termine con 1 feat ' . right($_next_feats, 2));
+			    echox('- NEXT step 4 penalyze "' . $_form . '" as ' . $_feat . ' against of successive term with 1 feat ' . right($_next_feats, 2));
 
-			// setto lo score negativo di questa feat
+			// assign a negative score
 			$pos_arr[$n] = PosTools::setSubScorePos('times-exclusion-next-4', $pos_arr[$n], $feats['features'], self::$score_next);
 			$pos_arr = self::exclude($pos_arr);
 		    }
@@ -285,16 +266,13 @@ class PosPersonAndSex
 	    }
 	}
 
-
 	return $pos_arr;
 
     }
 
 
     /**
-     * Ritorna la feat di un dato pos_part successivo o precedente
-     * @todo vedo che next e prev sono uguali... verificare
-     * @todo dovrebbe forse ignorare determinati tag? uhm forse non serve...
+     * Return the feature of the previous or next pos part
      * @param array $pos_part
      * @param string $direction prev o next
      * @return string $the_feat;
@@ -317,7 +295,9 @@ class PosPersonAndSex
 
 
     /**
-     * boolean se un tag ha indicazioni di singolare
+     * Return boolean if a tag is singular
+     * @param string $_feat
+     * @return boolean
      */
     public static function isSingular($_feat)
     {
@@ -328,8 +308,11 @@ class PosPersonAndSex
 
     }
 
+    
     /**
-     * boolean se un tag ha indicazioni di plurale
+     * Return boolean if a tag is plural
+     * @param string $_feat
+     * @return boolean
      */
     public static function isPlural($_feat)
     {
