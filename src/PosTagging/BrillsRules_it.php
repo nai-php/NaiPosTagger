@@ -67,7 +67,7 @@ trait BrillsRulesTrait {
  }
  
  
- // 1011 first, third and forth well defined, second to define
+ // 1011 first, third and fourth well defined, second to define
  public static function rulesPattern1011($target_index, $prev_pp_1, $this_pp, $next_pp_1, $next_pp_2, $dbgme = false)
  {
 
@@ -104,10 +104,12 @@ trait BrillsRulesTrait {
 
 	if ($prev_tag1 == 'PRE' && $this_tag == 'ADJ' && $next_tag1 == 'NOUN' && $next_tag2 == 'VER')	 self::returnRule($target_index, '1011-40', 'ADJ');	
     }
+    
+    if ($prev_tag1 == 'VER' && $this_tag == 'ADJ' && $next_tag1 == 'NOUN' && $next_tag2 == 'SENT')	 self::returnRule($target_index, '1011-45', 'ADJ', .2);	
  }
  
  
- // 1101 first, second and forth well defined, third to define
+ // 1101 first, second and fourth well defined, third to define
  public static function rulesPattern1101($target_index, $prev_pp_1, $prev_pp_2, $this_pp, $next_pp_1, $dbgme = false)
  {
     $prev_word1 = $prev_pp_1['form'];
@@ -166,8 +168,9 @@ trait BrillsRulesTrait {
 	if ($prev_tag1 == 'PRE' && $prev_tag2 == 'ADJ' && $this_tag == 'ADJ' && $next_tag1 == 'NOUN') self::returnRule($target_index, '1101-85', 'ADJ');
     }
     
-    
-     if ($prev_tag1 == 'PRO' && $prev_word2 == 'did' && ($this_pp['features']== 'VER:inf+pres' || $this_tag == 'UNK') && $next_tag1 == 'PRE')   self::returnRule($target_index, '1101-90', 'VER');  
+     if ($prev_tag1 == 'PRO' && $prev_word2 == 'did' && ($this_pp['features']== 'VER:inf+pres' || $this_tag == 'UNK') && $next_tag1 == 'PRE')   self::returnRule($target_index, '1101-90', 'VER');
+     
+     if ($prev_tag1 == 'VER' && $prev_tag2 == 'ADJ' && $this_tag == 'NOUN' && $next_tag1 == 'SENT') self::returnRule($target_index, '1101-95', 'NOUN');
  }
   
  
@@ -519,6 +522,8 @@ trait BrillsRulesTrait {
      if (($this_tag == 'VER' || $this_tag == 'UNK') && $next_tag1 == 'NPR')  self::returnRule($target_index, '101-630', 'ADJ');
 
      if (($this_tag == 'VER' || $this_tag == 'UNK') && $nextword1 == 'it')  self::returnRule($target_index, '101-635', 'VER', 3);
+     
+     if (($this_pp['features'] == 'VER:ger+pres' || $this_tag == 'UNK') && $nextword1 == 'me')  self::returnRule($target_index, '101-636', 'VER');
 
     }
 
@@ -1735,7 +1740,7 @@ trait BrillsRulesTrait {
 
 	 if ($this_word == 'loro')	 self::returnRule($target_index, '10-1055', 'PRO');
 	
-	 if($prev_word1 != 'can' && $prev_pp_1['features'] == 'VER:inf+pres' && $this_tag == 'NOUN')
+	 if(!preg_match('/(can|be)/ui', $prev_word1) && $prev_pp_1['features'] == 'VER:inf+pres' && $this_tag == 'NOUN')
 	    self::returnRule($target_index, '10-1056', 'NOUN', .4);
 	}
 	

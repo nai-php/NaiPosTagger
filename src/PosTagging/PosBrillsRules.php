@@ -71,7 +71,7 @@ class PosBrillsRules
 	$matches = [];
 	
 	// solo se nel pos ci sono le combinazioni indicate sotto di 'sicuri' e 'incerti' vado avanti
-	$re = '/(1110|1011|1101|101|110|011|01|10)/';
+	$re = '/(1110|1011|1101|1001|101|110|011|01|10)/';
 	preg_match_all($re, $string_matrix, $matches, PREG_OFFSET_CAPTURE);
 	
 	if (count($matches[0]) == 0)
@@ -91,7 +91,7 @@ class PosBrillsRules
 	
 	if (count($matches[0]) > 0)
 	{
-	    // loop per ogni pattern trovato
+	    // loop for each pattern found
 	    foreach ($matches[0] as $match)
 	    {
 		$sure_key1 = $match[1];
@@ -122,7 +122,7 @@ class PosBrillsRules
 	
 	if (count($matches[0]) > 0)
 	{
-	    // loop per ogni pattern trovato
+	    // loop for each pattern found
 	    foreach ($matches[0] as $match)
 	    {
 		$sure_key1 = $match[1];
@@ -153,7 +153,7 @@ class PosBrillsRules
 	
 	if (count($matches[0]) > 0)
 	{
-	    // loop per ogni pattern trovato
+	    // loop for each pattern found
 	    foreach ($matches[0] as $match)
 	    {
 		$sure_key1 = $match[1];
@@ -175,8 +175,54 @@ class PosBrillsRules
 
 	    } //end loop match
 
-	} //end pattern 101
+	} //end pattern
 
+	
+	// pattern 1 0 0 1
+	$re = '/(?=1001)/';
+	preg_match_all($re, $string_matrix, $matches, PREG_OFFSET_CAPTURE);
+	
+	if (count($matches[0]) > 0)
+	{
+	    // loop for each pattern found
+	    foreach ($matches[0] as $match)
+	    {
+		// first, we try to consider not doubtful the third term (pattern 1011)
+		$sure_key1 = $match[1];
+		$target_index = $sure_key1 + 1;
+		$sure_key2 = $sure_key1 + 2;
+		$sure_key3 = $sure_key1 + 3;
+
+		$prev_word1 = $pos_arr[$sure_key1][0];  // unica 1	(da sx a dx)
+		$nextword1 = $pos_arr[$sure_key2][0]; // unica 4
+		$nextword2 = $pos_arr[$sure_key3][0];  // unica 2	(da sx a dx)
+
+
+		if (self::$dbgme)
+		    echox("<br>-- 1001 found pattern " . $match[0] . " to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> between <b>".$prev_word1['form']."</b> and <b>".$nextword1['form']."</b>  e <b>".$nextword2['form']."</b>");
+
+		// e loop tra tutte le feats della pos_part combinata con i vicini
+		for ($n2 = 0; $n2 < count($pos_arr[$target_index]); $n2++)
+		    $PosBrillsClass::rulesPattern1011($target_index, $prev_word1, $pos_arr[$target_index][$n2], $nextword1, $nextword2, self::$dbgme);
+		
+		// then the second (pattern 1101)
+		$sure_key1 = $match[1];
+		$sure_key2 = $sure_key1 + 1;
+		$target_index = $sure_key1 + 2;
+		$sure_key3 = $sure_key1 + 3;
+
+		$prev_word1 = $pos_arr[$sure_key1][0];  // unica 1	(da sx a dx)
+		$prev_word2 = $pos_arr[$sure_key2][0];  // unica 2	(da sx a dx)
+		$nextword1 = $pos_arr[$sure_key3][0]; // unica 4
+
+		// e loop tra tutte le feats della pos_part combinata con i vicini
+		for ($n2 = 0; $n2 < count($pos_arr[$target_index]); $n2++)
+		    $PosBrillsClass::rulesPattern1101($target_index, $prev_word1, $prev_word2, $pos_arr[$target_index][$n2], $nextword1, self::$dbgme);
+
+	    } //end loop match
+
+	} //end pattern 
+	
 	
 	// 3 TERMS CHUNKS
 	
@@ -186,7 +232,7 @@ class PosBrillsRules
 	
 	if (count($matches[0]) > 0)
 	{
-	    // loop per ogni pattern trovato
+	    // loop for each pattern found
 	    foreach ($matches[0] as $match)
 	    {
 		$sure_key1 = $match[1];
