@@ -166,7 +166,7 @@ public function testPosTagging1629798974_6011() {
 
 	$pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	$this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-DEMO-M-S PPAST:part+past+m+s PRE ADJ:pos+m+s NOUN-m:s ADV PRO-DEMO-M-S NOUN-m:s PON:sep CON ADV NUM PRO-PERS-3-M-S PPAST:part+past+m+s VER:inf+pres PRE ADJ:pos+m+s NUM NOUN-m:s SENT NPR VER:ind+past+1+s ADV ADJ:pos+m+s PON:sep PRE NPR ART-M:s ADJ:pos+m+s NOUN-m:s PRE NUM PON:sep CON ADV NUM ADJ:pos+m+s NOUN-m:p PPAST:part+past+m+s SENT");
+	$this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-DEMO-M-S PPAST:part+past+m+s PRE ADJ:pos+m+s NOUN-m:s ADV PRO-DEMO-M-S NOUN-m:s PON:sep CON ADV NUM PRO-PERS-3-M-S PPAST:part+past+m+s PPAST:part+past+m+s PRE ADJ:pos+m+s NUM NOUN-m:s SENT NPR VER:ind+past+1+s ADV ADJ:pos+m+s PON:sep PRE NPR ART-M:s ADJ:pos+m+s NOUN-m:s PRE NUM PON:sep CON ADV NUM ADJ:pos+m+s NOUN-m:p PPAST:part+past+m+s SENT");
 }
 
 public function testPosTagging1629810160_128() {
@@ -322,7 +322,7 @@ public function testPosTagging1629799302_3734() {
 
 	$pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	$this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV:qty NOUN-m:p PRO-WH-M-S PPAST:part+past+m+s PRE NPR CON NPR AUX:ind+past+3+p VER:part+past+m+s PRE ADJ:pos+m+s NOUN-m:p PON:sep CON PPAST:part+past+m+s PRE NOUN-m:p CON ADJ:pos+m+s NOUN-m:s NOUN-m:p PPAST:part+past+m+s ADV ART-M:s NOUN-m:s PON PRE ADJ:pos+m+s NOUN-m:s PRE NPR PRO-PERS-3-M-P PPAST:part+past+m+s VER:inf+pres ART-M:s NOUN-m:p PRE DET NOUN-m:p SENT");
+	$this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV:qty NOUN-m:p PRO-WH-M-S PPAST:part+past+m+s PRE NPR CON NPR AUX:ind+past+3+p VER:part+past+m+s PRE ADJ:pos+m+s NOUN-m:p PON:sep CON PPAST:part+past+m+s PRE NOUN-m:p CON ADJ:pos+m+s NOUN-m:s NOUN-m:p PPAST:part+past+m+s ADV ART-M:s NOUN-m:s PON PRE ADJ:pos+m+s NOUN-m:s PRE NPR PRO-PERS-3-M-P PPAST:part+past+m+s VER:inf+pres ART-M:s NOUN-m:p PRE PRO-DEMO-M-P NOUN-m:p SENT");
 }
 
 public function testPosTagging1629799325_6403() {
@@ -442,19 +442,6 @@ public function testPosTagging1629799960_9072() {
 	$this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ART-M:s VER:ger+pres NOUN-m:s NUM PRE ART-M:s NUM ADJ:pos+m+s NOUN-m:p PON:opn ADJ:pos+m+s PRE ADJ:pos+m+s NOUN-m:p PON:cls AUX:ind+past+3+p VER:ger+pres PRE NOUN-m:p PRE NOUN-m:p SENT");
 }
 
-public function testPosTagging1629799979_391() {
-	$PipelinePosTagging = new PipelinePosTagging();
-	$PipelinePosTagging->language = "en";
-
-	$sentence = "The boycott was extended in January 1904 to include government institutions and the church, with further calls to seize these lands.";
-	$pos_arr = $PipelinePosTagging->transform($sentence);
-	$PipelinePosTagging = null;
-
-	$pos_arr = NaiPOsArr::flatPosArr($pos_arr);
-
-	$this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ART-M:s NOUN-m:s AUX:ind+past+1+s VER:part+past+m+s PRE NOUN-m:s NUM PRE VER:inf+pres NOUN-m:s NOUN-m:p CON ART-M:s NOUN-m:s PON:sep PRE ADJ:pos+m+s NOUN-m:p PRE VER:inf+pres DET NOUN-m:p SENT");
-}
-
 public function testPosTagging1629799998_9095() {
 	$PipelinePosTagging = new PipelinePosTagging();
 	$PipelinePosTagging->language = "en";
@@ -491,7 +478,7 @@ public function testPosTagging1629800126_1173() {
 
 	$pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	$this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NOUN-m:s NOUN-m:p AUX:ind+past+3+p VER:part+past+m+s PRE ADJ:pos+m+s NOUN-m:s PON:sep CON ADV:qty PPAST:part+past+m+s ADV PRE NOUN-m:s SENT DET NOUN-m:p ADV PPAST:part+past+m+s ADV PON:sep CON ADV NUM AUX:ind+past+3+p VER:ger+pres ADJ:pos+m+s SENT");
+	$this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NOUN-m:s NOUN-m:p AUX:ind+past+3+p VER:part+past+m+s PRE ADJ:pos+m+s NOUN-m:s PON:sep CON ADV:qty PPAST:part+past+m+s ADV PRE NOUN-m:s SENT PRO-DEMO-M-P NOUN-m:p ADV PPAST:part+past+m+s ADV PON:sep CON ADV NUM AUX:ind+past+3+p VER:ger+pres ADJ:pos+m+s SENT");
 }
 
 public function testPosTagging1629800199_549() {

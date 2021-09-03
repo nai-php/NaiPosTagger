@@ -303,7 +303,7 @@ class PipelinePosTagging
         // SCORING: BY BRILL RULES
 	$PosBrillsClass = "\\NaiPosTagger\\PosTagging\\NaiBrillsRulesTrait";
 	$PosBrillsClass::$language = $this->language;
-//	$PosBrillsClass::$dbgme = true;
+	$PosBrillsClass::$dbgme = true;
 	$PosBrillsClass::$update_brill_hits = FALSE;
 	$brill_subscores = $PosBrillsClass::applyRules($pos_arr);
 	$pos_arr = $PosBrillsClass::applyScore($pos_arr, $brill_subscores);

@@ -250,6 +250,8 @@ trait BrillsRulesTrait {
     if ($prev_word1 == 'gonna' && ($this_tag == 'VER' || $this_tag == 'UNK') && $next_tag1 == 'PRO') self::returnRule($target_index, '101-120', 'VER');
 
     if ($prev_word1 == 'ho' && instr($this_pp['features'], 'PPAST:pos') > 0 && $next_tag1 == 'DET')   self::returnRule($target_index, '101-125', 'PPAST');
+    
+    if ($prev_word1 == 'is' && $this_pp['features'] == 'VER:ger+pres' && $next_tag1 == 'ADV')   self::returnRule($target_index, '101-126', 'VER');
 
     if (instr($prev_pp_1['features'], 'VER:ind+pres') > 0 && $this_word == 'ancora' && $next_tag1 == 'DET')   self::returnRule($target_index, '101-130', 'ADV');
 
@@ -713,12 +715,12 @@ trait BrillsRulesTrait {
     if ($prev_word2 == 'we' && $prev_word1 == 'are' && ($this_pp['features'] == 'VER:ger+pres' || $this_tag == 'UNK')) self::returnRule($target_index, '110-46', 'VER');
     if ($prev_word2 == 'they' && $prev_word1 == 'are' && ($this_pp['features'] == 'VER:ger+pres' || $this_tag == 'UNK')) self::returnRule($target_index, '110-46', 'VER');
     
-    
     if ($prev_word2 == 'may' && $prev_word1 == 'be' && ($this_tag == 'VER' || $this_tag == 'UNK')) self::returnRule($target_index, '110-47', 'VER');
 
     if ($prev_tag2 == 'PRO' && $prev_word1 == 'wanna' && ($this_tag == 'VER' || $this_tag == 'UNK')) self::returnRule($target_index, '110-48', 'VER');
     
     if ($prev_word2 == 'keep' && $prev_word1 == 'on' && $this_tag == 'NOUN') self::returnRule($target_index, '110-49', 'VER', 5);
+    if ($prev_word2 == 'no' && $prev_word1 == 'one' && $this_tag == 'VER') self::returnRule($target_index, '110-49', 'VER', 2);
 
 
     // added 21/06/2019
@@ -1159,6 +1161,8 @@ trait BrillsRulesTrait {
      if ($this_word == 'vorrei' && $next_tag1 == 'ADV')	 self::returnRule($target_index, '011-190', 'VER');
 
      if ($next_tag1 == 'ADV')	 self::returnRule($target_index, '011-195', 'PRO');
+     
+     if ($nextword1 == 'at')	 self::returnRule($target_index, '011-196', 'VER');
     }
 
     if($next_tag2 == 'VER')
@@ -1250,7 +1254,7 @@ trait BrillsRulesTrait {
 
       if (preg_match('/(negli|nelle|nella|nello|nel)/i', $prev_word1) && ($this_tag == 'VER' || $this_tag == 'PPAST'))	 self::returnRule($target_index, '10-90', 'VER', -50);
 
-      if (preg_match('/^(the|this|those)$/i', $prev_word1) && ($this_tag == 'VER' || $this_tag == 'PPAST'))	 self::returnRule($target_index, '10-95', 'VER', -2);
+      if (preg_match('/^(the|this|those|her)$/i', $prev_word1) && ($this_tag == 'VER' || $this_tag == 'PPAST'))	 self::returnRule($target_index, '10-95', 'VER', -2);
 	
 	if (preg_match('/^(the|this|that|those)$/i', $prev_word1) && ($this_tag == 'UNK'))	 self::returnRule($target_index, '10-100', 'NOUN');
 
