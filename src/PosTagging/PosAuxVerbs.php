@@ -27,7 +27,7 @@ class PosAuxVerbs
     private $dbgme = false;
     
     /** Verbs that can be auxiliary (en) */
-    public $common_inf_en = 'have|be|do|came|want|stay|can|must|dare';
+    public $common_inf_en = 'have|be|do|came|want|stay|can|must|dare|go';
 
     /** Verbs that can be auxiliary (it) */
     public $common_inf_it = 'avere|essere|fare|venire|volere|stare|potere|dovere|osare|bisognare';

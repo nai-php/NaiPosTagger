@@ -296,7 +296,7 @@ public function testPosTagging1629799245_1390() {
 
 	$pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	$this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-3-M-S AUX:ind+past+1+s VER:part+past+m+s ADV NPR NPR PON:sep PRE NOUN-m:s ADJ:pos+m+s ADV ART-M:s NOUN-m:s PRE NOUN-m:s PON:sep ADV PON:quote PRE NOUN-m:s PRE NOUN-m:s SENT PON:quote SENT");
+	$this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-PERS-3-M-S AUX:ind+past+1+s VER:part+past+m+s ADV NPR NPR PON:sep PRE NOUN-m:s ADJ:pos+m+s ADV ART-M:s NOUN-m:s PRE NOUN-m:s PON:sep ADV PRE PON:quote NOUN-m:s PRE NOUN-m:s SENT SENT PON:quote");
 }
 
 public function testPosTagging1629799269_5963() {

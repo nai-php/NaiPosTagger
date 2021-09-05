@@ -410,4 +410,16 @@ class NaiTermsMetadata
 	return $collection;
     }
 
+    
+    public function contains($metadata, $key, $value)
+    {
+	if(isset($metadata[$key]) && in_array($value, $metadata[$key]))
+	{
+	    return true;
+	}
+	
+	return false;
+	
+    }
+    
 }

@@ -18,7 +18,6 @@ use NaiPosTagger\Models\NaiDictionary;
 use NaiPosTagger\Models\NaiSentence;
 use NaiPosTagger\Filters\NaiApostrophesFilter;
 use NaiPosTagger\Filters\NaiPretaggedFilter;
-use NaiPosTagger\Filters\NaiGenitiveFilter;
 use NaiPosTagger\Filters\NaiUrlFilter;
 use NaiPosTagger\Filters\NaiEmailFilter;
 use NaiPosTagger\Filters\NaiVATFilter;
@@ -45,6 +44,7 @@ use NaiPosTagger\Filters\NaiSentFilter;
 use NaiPosTagger\Models\NaiPosArr;
 use NaiPosTagger\Filters\NaiCommonSimplifier;
 use NaiPosTagger\PosTagging\PosAuxVerbs;
+use NaiPosTagger\PosTagging\PosApostropheAndS;
 use NaiPosTagger\PosTagging\PosByFrequency;
 use NaiPosTagger\PosTagging\PosPersonAndSex;
 use NaiPosTagger\PosTagging\PosNounAdj;
@@ -125,7 +125,7 @@ class PipelinePosTagging
 	$sentence = NaiPretaggedFilter::transform($sentence);
 	
 	// GENITIVE
-	$sentence = NaiGenitiveFilter::transform($sentence);
+//	$sentence = NaiGenitiveFilter::transform($sentence);
 	
 	
 	// URL
@@ -298,6 +298,13 @@ class PipelinePosTagging
 	// TRY SOLVE UNKNOWN OR MISPELLED WORDS
 	UnknownWords::$language = $this->language;
 	$pos_arr = UnknownWords::solveUnknownWorks($pos_arr);
+	
+	
+	// ENGLISH GENITIVES
+	if($this->language == 'en')
+	{
+	    $pos_arr = PosApostropheAndS::detect($pos_arr);
+	}
 	
 	
         // SCORING: BY BRILL RULES

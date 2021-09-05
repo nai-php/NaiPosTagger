@@ -204,12 +204,12 @@ class NaiPosArr
 	    $pos_part['features'] = $result['features'];
 
 	$pos_part['sh-feat'] = self::featToShortFeat($pos_part['features']);
-//echox($pos_part);
-	// setup metadata. Di default vuoti, ma se li trovo nel loro DB li appplico
+
+	// metadata setup. By default empty
 	$pos_part['metadata'] = [];
 
 
-	// unico punto in cui i metadata da json nel DB diventano un array
+	// json values became arrays
 	if (isset($result['metadata']) && $result['metadata'] != '')
 	{
 	    if(is_string($result['metadata']))
@@ -219,7 +219,7 @@ class NaiPosArr
 	}
 
 
-	// altri setup
+	// other things to set up
 	$pos_part['label'] = '';
 
 
@@ -254,6 +254,28 @@ class NaiPosArr
     }
 
 
+    /**
+     * Search a value inside form, lemma or other parts of a pos array
+     * @param array $pos_arr
+     * @param string $value
+     * @param string $where with values 'form', lemma', 'features', 'sh-feat'
+     * @return boolean
+     */
+    public static function searchInPosArr($pos_arr, $value, $where = 'form')
+    {
+	foreach ($pos_arr as $pos_part)
+	{
+	    foreach ($pos_part as $feature)
+	    {
+		if ($feature[$where] == $value)
+		    return true;
+	    }
+	}
+	
+	return false;
+    }
+    
+    
     /**
      * Sort the features of each pos part by pos_score values.
      * @param array $pos_arr
@@ -310,9 +332,9 @@ class NaiPosArr
 
 
     /**
-     * Dove form != lemma legge dai dizionari e ne prende i metadata.
+     * Where form != lemma get from dictionaries metadata values.
      * 
-     * @todo segnare quelli già letti dal db, per evitare doppie letture
+     * @todo avoid multiple queries for the same token
      * @param array $pos_arr
      * @return array $pos_arr
      */
@@ -333,13 +355,12 @@ class NaiPosArr
 	    if(self::$dbgme)
 		echox('-- searching lemma for '.$pos_part['form']);
 
-		// consider aux as ver
+	    // consider aux as ver
 	    if ($pos_part['sh-feat'] == 'AUX')
 	    {
 		$pos_part['sh-feat'] = 'VER';
 	    }
 
-	    // get from dictionaries where lemma = lemma
 	    $result = NaiTerms::searchInDictionaries($pos_part['lemma'], $pos_part['lemma'], $pos_part['sh-feat']);
 
 	    if (!isset($result[0]['metadata']))
@@ -371,10 +392,10 @@ class NaiPosArr
 	{
 	    $table_result .= '<tr>';
 
-	    // form unico
+	    // form is unique
 	    $table_result .= '<td style="border:1px solid #999; min-width:80px">' . $pos_part[0]['form'] . '</td>';
 
-	    // lemma multiplo
+	    // lemma can be multiple
 	    $table_result .= '<td style="border:1px solid #999; min-width:80px">';
 
 	    foreach ($pos_part as $feature)
@@ -384,7 +405,7 @@ class NaiPosArr
 	    }
 	    $table_result .= '</td>';
 
-	    // feats multiple
+	    // feats can be multiple
 	    $table_result .= '<td style="border:1px solid #999; min-width:80px">';
 
 	    foreach ($pos_part as $feature)
@@ -409,7 +430,7 @@ class NaiPosArr
 	    $table_result .= '<br>';
 	    $table_result .= '</td>';
 
-	    // rule multiple
+	    // rules can be multiple
 	    $table_result .= '<td style="border:1px solid #999; min-width:80px">';
 
 	    foreach ($pos_part as $feature)
@@ -419,7 +440,7 @@ class NaiPosArr
 	    }
 	    $table_result .= '</td>';
 
-	    // score multiple
+	    // score can be multiple
 	    $table_result .= '<td style="border:1px solid #999; min-width:80px">';
 
 	    foreach ($pos_part as $feature)
@@ -428,8 +449,6 @@ class NaiPosArr
 		$table_result .= '<br>';
 	    }
 	    $table_result .= '</td>';
-
-	    //echox($pos_part);
 
 	    $table_result .= '</tr>';
 	}
@@ -447,8 +466,7 @@ class NaiPosArr
      * 
      * @param array $pos_arr
      * @param array $tags
-     * @return array $pos_arr (modified) , populate array self::removed_parts with
-     * removed pos parts
+     * @return array $pos_arr (updated)
      */
     public static function hideUnwantedTags($pos_arr, $tags = [], $tokens = [])
     {
@@ -504,7 +522,7 @@ class NaiPosArr
      * Restore in pos_arr tags or chars from removed_parts array.
      * 
      * @param array $pos_arr
-     * @return array [$pos_arr (modified)
+     * @return array $pos_arr (updated)
      */
     public static function unhideUnwantedTags($pos_arr)
     {
@@ -517,8 +535,40 @@ class NaiPosArr
 
 
     /**
-     * Al termine di tutti i passaggi dove bisogna considerare tutte le feats dei token,
-     * 'porta su' di un livello le pos_part restanti
+     * Simplify the pos array e.g. from
+     * [0] => Array
+        (
+            [0] => Array
+                (
+                    [form] => John
+                    [lemma] => John
+                    [features] => NPR
+                    [sh-feat] => NPR
+                    [metadata] => Array
+                        (
+                        )
+                    [label] => 
+                    [rule] => 
+                    [pos_score] => 0
+                )
+
+        )
+     * 
+     * to:
+     * 
+     * [0] => Array
+        (
+	    [form] => John
+	    [lemma] => John
+	    [features] => NPR
+	    [sh-feat] => NPR
+	    [metadata] => Array
+		(
+		)
+	    [label] => 
+	    [rule] => 
+	    [pos_score] => 0
+        )
      * @param array $pos_arr
      * @return array $pos_arr
      */
@@ -549,7 +599,7 @@ class NaiPosArr
 
 	foreach ($pos_arr as $pos_part)
 	{
-	    // di default aspetto una sola feature
+	    // consider only one feature because here the pos array should contains only final features
 	    $tag = $pos_part[0]['sh-feat'];
 
 	    $n_feats = count($pos_part);
@@ -576,15 +626,15 @@ class NaiPosArr
 
 
     /**
-    * usata nel inputParser per ricavare il valore del sh-feats riducendo e semplificando la feat.
-    * @param string $feature
-    * @return string $short_feature
-    */
+     * Return the tag value of a feature excluding time and number details e.g. given
+     * "NOUN-m:s" return "NOUN".
+     * @param string $feature
+     * @return string $short_feature
+     */
     public static function featToShortFeat($feature)
     {
 	if (instr($feature, ':') > 0)
 	{
-	    //per la maggior parte
 	    $_tmp = explode(':', $feature);
 	    if (instr($feature, '-') > 0)
 	    {
@@ -596,9 +646,8 @@ class NaiPosArr
 	    }
 	} else if (instr($feature, '-') > 0)
 	{
-	    //per i pro pers
 	    $_tmp = explode('-', $feature);
-	    $short_feature = $_tmp[0]; //."-".$_tmp[1]."-".$_tmp[2];    17:36 30/09/2016 perchè proprio rompevano i PRO
+	    $short_feature = $_tmp[0];
 	} else
 	{
 	    $short_feature = $feature;
@@ -610,25 +659,25 @@ class NaiPosArr
 
 
     /**
-    * Remove contents of metadata values, when not necessary.
-    * @param array $pos_arr
-    * @return array $pos_arr updated
-    */
-	public static function clearMetadata($pos_arr)
+     * Remove contents of metadata values, when not necessary.
+     * @param array $pos_arr
+     * @return array $pos_arr updated
+     */
+    public static function clearMetadata($pos_arr)
     {
-		foreach($pos_arr as $n1 => $pos_part)
+	foreach ($pos_arr as $n1 => $pos_part)
+	{
+	    foreach ($pos_part as $n2 => $sub_part)
+	    {
+		if (isset($sub_part['metadata']))
 		{
-			foreach($pos_part as $n2 => $sub_part)
-			{
-			if(isset($sub_part['metadata']))
-			{
-				unset($pos_arr[$n1][$n2]['metadata']);
-			}
-			}
+		    unset($pos_arr[$n1][$n2]['metadata']);
 		}
-		
-		return $pos_arr;
+	    }
+	}
+
+	return $pos_arr;
+
     }
 
-    
 }
