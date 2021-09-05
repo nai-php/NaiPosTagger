@@ -214,8 +214,7 @@ class PipelinePosTagging
     public function postOperations($sentence)
     {
 	// localized traits
-//	require_once(TRAITS_PATH.'PosTagging/BrillsRules_'.$this->language.'.php');
-	require_once(TRAITS_PATH.'PosTagging/BrillsRules_it.php');
+	require_once(TRAITS_PATH.'PosTagging/BrillsRules_'.$this->language.'.php');
 	
 	
 	$PosByFrequency = new PosByFrequency();

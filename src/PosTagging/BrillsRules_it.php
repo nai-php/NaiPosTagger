@@ -47,11 +47,6 @@ trait BrillsRulesTrait {
     if ($prev_tag1 == 'VER' && $prev_tag2 == 'PPAST' && ($prev_tag3 == 'ART') && $this_tag == 'NOUN')
      self::returnRule($target_index, '1110-10', 'NOUN');
 
-    if ($prev_tag1 == 'PRO' && $prev_pp_2['features'] == 'VER:inf+pres' && $prev_word3 == 'been' && $this_tag == 'VER')
-     self::returnRule($target_index, '1110-15', 'VER');
-
-    if ($prev_word1 == 'by' && $prev_pp_2['features'] == 'VER:ger+pres' && $prev_tag3 == 'NOUN' && $this_tag == 'NOUN')	 self::returnRule($target_index, '1110-20', 'NOUN', 1);	
-
     if ($prev_tag1 == 'PRE' && $prev_tag2 == 'NUM' && $prev_tag3 == 'ADJ' && $this_tag == 'NOUN')	 self::returnRule($target_index, '1110-25', 'NOUN', 1);	
 
     // added 25/09/2019
@@ -63,7 +58,6 @@ trait BrillsRulesTrait {
 
     if ($prev_tag1 == 'VER' && $prev_tag2 == 'ART' && $prev_tag3 == 'NOUN' && $this_tag == 'ADJ')	 self::returnRule($target_index, '1110-45', 'ADJ', .9);
 
-    if ($prev_word1 == 'by' && $prev_tag2 == 'ART' && $prev_tag3 == 'ADJ' && $this_tag == 'NOUN')	 self::returnRule($target_index, '1110-50', 'NOUN', 1);
  }
  
  
@@ -97,13 +91,6 @@ trait BrillsRulesTrait {
     if ($prev_tag1 == 'PRO' && $this_tag == 'VER' && $next_tag1 == 'ADV' && $next_tag2 == 'PRE')	 self::returnRule($target_index, '1011-25', 'VER');	
     
     if ($prev_tag1 == 'ART' && $this_tag == 'NOUN' && $next_tag1 == 'ARTPRE' && $next_tag2 == 'NOUN')	 self::returnRule($target_index, '1011-30', 'NOUN');	
-    
-    if(self::$language == 'en')
-    {
-	if (preg_match('/(ART|PRE)/', $prev_tag1) && $this_tag == 'ADJ' && $next_tag1 == 'ADJ' && $next_tag2 == 'NOUN')	 self::returnRule($target_index, '1011-35', 'ADJ');	
-
-	if ($prev_tag1 == 'PRE' && $this_tag == 'ADJ' && $next_tag1 == 'NOUN' && $next_tag2 == 'VER')	 self::returnRule($target_index, '1011-40', 'ADJ');	
-    }
     
     if ($prev_tag1 == 'VER' && $this_tag == 'ADJ' && $next_tag1 == 'NOUN' && $next_tag2 == 'SENT')	 self::returnRule($target_index, '1011-45', 'ADJ', .2);	
  }
@@ -162,13 +149,6 @@ trait BrillsRulesTrait {
     if ($prev_tag1 == 'ADJ' && $prev_tag2 == 'ADJ' && $this_tag == 'NOUN' && $next_tag1 == 'PRE') self::returnRule($target_index, '1101-75', 'NOUN');
     
     if ($prev_tag1 == 'NUM' && $prev_tag2 == 'ADJ' && $this_tag == 'NOUN' && $next_tag1 == 'PRE') self::returnRule($target_index, '1101-80', 'NOUN');
-    
-    if(self::$language == 'en')
-    {
-	if ($prev_tag1 == 'PRE' && $prev_tag2 == 'ADJ' && $this_tag == 'ADJ' && $next_tag1 == 'NOUN') self::returnRule($target_index, '1101-85', 'ADJ');
-    }
-    
-     if ($prev_tag1 == 'PRO' && $prev_word2 == 'did' && ($this_pp['features']== 'VER:inf+pres' || $this_tag == 'UNK') && $next_tag1 == 'PRE')   self::returnRule($target_index, '1101-90', 'VER');
      
      if ($prev_tag1 == 'VER' && $prev_tag2 == 'ADJ' && $this_tag == 'NOUN' && $next_tag1 == 'SENT') self::returnRule($target_index, '1101-95', 'NOUN');
  }
@@ -189,9 +169,6 @@ trait BrillsRulesTrait {
     if ($dbgme)
      echox("----- ".__LINE__." rulesPattern101 101 con $prev_word1 ($prev_tag1), $this_word ($this_tag dubious), $nextword1 ($next_tag1)");
 
-    if ($prev_word1 == 'is' && ($this_tag == 'VER' || $this_tag == 'UNK') && $nextword1 == 'a') self::returnRule($target_index, '101-2', 'VER');
-
-    // added 21/06/2019
     if ($prev_word1 == 'a' && ($this_pp['features'] == 'VER:inf+pres' || $this_tag == 'UNK') && $next_tag1 == 'ART') self::returnRule($target_index, '101-5', 'VER');
 
     if ($prev_word1 == 'anche' && ($this_tag == 'ADV' || $this_tag == 'UNK') && $next_tag1 == 'PRE') self::returnRule($target_index, '101-10', 'ADV');
@@ -247,11 +224,7 @@ trait BrillsRulesTrait {
 
     if ($prev_word1 == 'non' && $this_word == 'ancora' && $next_tag1 == 'PPAST') self::returnRule($target_index, '101-115', 'ADV');
 
-    if ($prev_word1 == 'gonna' && ($this_tag == 'VER' || $this_tag == 'UNK') && $next_tag1 == 'PRO') self::returnRule($target_index, '101-120', 'VER');
-
     if ($prev_word1 == 'ho' && instr($this_pp['features'], 'PPAST:pos') > 0 && $next_tag1 == 'DET')   self::returnRule($target_index, '101-125', 'PPAST');
-    
-    if ($prev_word1 == 'is' && $this_pp['features'] == 'VER:ger+pres' && $next_tag1 == 'ADV')   self::returnRule($target_index, '101-126', 'VER');
 
     if (instr($prev_pp_1['features'], 'VER:ind+pres') > 0 && $this_word == 'ancora' && $next_tag1 == 'DET')   self::returnRule($target_index, '101-130', 'ADV');
 
@@ -299,7 +272,6 @@ trait BrillsRulesTrait {
 
      if (($this_tag == 'VER' || $this_tag == 'UNK') && $next_tag1 == 'DET') self::returnRule($target_index, '101-215', 'VER');
 
-
      if ($next_tag1 == 'VER')	 self::returnRule($target_index, '101-220', 'NOUN');
 
     }
@@ -325,9 +297,6 @@ trait BrillsRulesTrait {
 
      if (($this_tag == 'NOUN' || $this_tag == 'UNK') && $next_tag1 == 'ADJ') self::returnRule($target_index, '101-265', 'NOUN');
 
-     // sospesa il 29/12 perchè secondo me è un doppione della 634
-    //	 if ($this_tag == 'NOUN' && $next_tag1 == 'PRE')  self::returnRule($target_index, '101-270', 'NOUN');
-
      if (($this_tag == 'NOUN' || $this_tag == 'UNK') && $next_tag1 == 'ART')  self::returnRule($target_index, '101-275', 'NOUN');
 
      if (($this_tag == 'PRO' || $this_tag == 'UNK') && $next_tag1 == 'NOUN')   self::returnRule($target_index, '101-280', 'DET');
@@ -339,10 +308,6 @@ trait BrillsRulesTrait {
      if (($this_tag == 'VER' || $this_tag == 'UNK') && $next_tag1 == 'ART')   self::returnRule($target_index, '101-295', 'NOUN');
 
      if (($this_tag == 'VER' || $this_tag == 'UNK') && $next_tag1 == 'CON')   self::returnRule($target_index, '101-300', 'NOUN');
-
-     // ma no, regola ambigua! Almeno 
-    //	 if($prev_word1 != 'il')
-    //	 if (($this_tag == 'VER' || $this_tag == 'UNK') && $next_tag1 == 'ADV')   self::returnRule($target_index, '101-305', 'VER');  
 
     }
 
@@ -474,7 +439,6 @@ trait BrillsRulesTrait {
 
      if ($this_pp['features'] == 'VER:ind+pres+3+s' && $next_tag1 == 'NUM')	 self::returnRule($target_index, '101-556', 'VER');
 
-
     }
 
     if ($prev_tag1 == 'NUM' || $prev_tag1 == 'DET' || $prev_tag1 == 'AMOUNT')
@@ -510,8 +474,6 @@ trait BrillsRulesTrait {
      if ($this_word == 'loro' && $next_tag1 == 'VER') self::returnRule($target_index, '101-595', 'PRO');
 
      if (($this_tag == 'ADJ' || $this_tag == 'UNK') && $next_tag1 == 'NPR')  self::returnRule($target_index, '101-600', 'ADJ');
-
-    //	 if (($this_tag == 'NPR' || $this_tag == 'UNK') && $next_tag1 == 'SENT')  self::returnRule($target_index, '101-605', 'NPR');
 
      if (($this_tag == 'ADJ' || $this_tag == 'UNK') && $next_tag1 == 'PRE')  self::returnRule($target_index, '101-610', 'NOUN');
 
@@ -555,12 +517,6 @@ trait BrillsRulesTrait {
      
      if ($this_tag == 'PPAST' && $nextword1 == 'me') self::returnRule($target_index, '101-673', 'PPAST');
      
-     if(self::$language == 'en')
-     {
-	  if ($this_pp['features'] == 'VER:ind+pres+3+s' && $next_tag1 == 'PRO') self::returnRule($target_index, '101-674', 'VER');
-	  if ($this_word == 'still' && $next_tag1 == 'VER') self::returnRule($target_index, '101-675', 'ADV');
-     }
-     
     }
 
     if ($prev_tag1 == 'SENT')
@@ -575,8 +531,6 @@ trait BrillsRulesTrait {
 
      if ($this_word == 'ora' && $next_tag1 == 'VER') self::returnRule($target_index, '101-695', 'ADV');
      
-     if ($this_word == 'till' && $next_tag1 == 'PRO') self::returnRule($target_index, '101-696', 'ADV');
-
      // added 09/2019 for "carica questi dati"
      if($this_tag == 'VER' && ($next_tag1 == 'ART' || $next_tag1 == 'PRO')) self::returnRule($target_index, '101-700', 'VER');
      
@@ -663,67 +617,6 @@ trait BrillsRulesTrait {
     if ($dbgme)
      echox("----- ".__LINE__." rulesPattern 110 con $prev_word2 ($prev_tag2), $prev_word1 ($prev_tag1), $this_word ($this_tag dubious)");
 
-
-    // regole basate su tag e parole
-
-
-    // ENGLISH
-    if (instr($prev_pp_2['features'], 'VER:cond') > 0 && $prev_word1 == 'already' && instr($this_pp['features'], 'PPAST:pos+s+m') > 0) self::returnRule($target_index, '110-0', 'PPAST');
-
-    if ($prev_pp_2['lemma'] == 'have' && $prev_word1 == 'to' && ($this_tag == 'VER' || $this_tag == 'UNK')) self::returnRule($target_index, '110-5', 'VER',5);
-    
-    if ($prev_word2 == 'I' && $prev_word1 == 'do' && ($this_tag == 'VER' || $this_tag == 'UNK')) self::returnRule($target_index, '110-6', 'VER',5);
-    
-    if ($prev_word2 == 'and' && $prev_tag1 == 'ADV' && ($this_tag == 'VER' || $this_tag == 'UNK')) self::returnRule($target_index, '110-10', 'VER');
-
-    if ($prev_word2 == 'how' && $prev_word1 == 'to' && ($this_tag == 'VER' || $this_tag == 'UNK')) self::returnRule($target_index, '110-15', 'VER', 3);
-
-    if ($prev_word2 == 'and' && $prev_word1 == 'the' && ($this_tag == 'VER' || $this_tag == 'UNK')) self::returnRule($target_index, '110-20', 'NOUN');
-
-    if ($prev_word2 == 'for' && $prev_word1 == 'your' && ($this_tag == 'VER' || $this_tag == 'UNK')) self::returnRule($target_index, '110-25', 'NOUN');
-
-    if ($prev_word2 == 'do' && $prev_word1 == 'not' && ($this_tag == 'VER' || $this_tag == 'UNK')) self::returnRule($target_index, '110-30', 'VER');
-
-    if ($prev_word2 == 'to' && $prev_word1 == 'be' && ($this_tag == 'ADJ' || $this_tag == 'UNK')) self::returnRule($target_index, '110-35', 'ADJ');
-    
-    if ($prev_word2 == 'is' && $prev_word1 == 'it' && ($this_tag == 'ADJ' || $this_tag == 'UNK')) self::returnRule($target_index, '110-36', 'ADJ', 3);
-
-    if ($prev_word2 == 'get' && $prev_tag1 == 'PRO' && ($this_tag == 'ADJ' || $this_tag == 'UNK')) self::returnRule($target_index, '110-37', 'ADJ', 1);
-    
-    if ($prev_word2 == 'and' && $prev_word1 == 'if' && ($this_tag == 'VER' || $this_tag == 'UNK')) self::returnRule($target_index, '110-40', 'VER');
-    
-    
-    if ($prev_tag2 == 'PRO' && $prev_word1 == 'could' && ($this_tag == 'VER' || $this_tag == 'UNK')) self::returnRule($target_index, '110-41', 'VER');
-    if ($prev_tag2 == 'PRO' && $prev_word1 == 'would' && ($this_tag == 'VER' || $this_tag == 'UNK')) self::returnRule($target_index, '110-41', 'VER');
-    if ($prev_tag2 == 'PRO' && $prev_word1 == 'should' && ($this_tag == 'VER' || $this_tag == 'UNK')) self::returnRule($target_index, '110-41', 'VER');
-    
-    if ($prev_word2 == 'can' && $prev_word1 == 'I' && ($this_tag == 'VER' || $this_tag == 'UNK')) self::returnRule($target_index, '110-44', 'VER',10);
-    
-    if ($prev_tag2 == 'PRO' && $prev_word1 == 'will' && ($this_tag == 'VER' || $this_tag == 'UNK')) self::returnRule($target_index, '110-45', 'VER');
-    
-    if ($prev_word2 == 'I' && $prev_word1 == 'am' && $this_tag == 'ADJ') self::returnRule($target_index, '110-46', 'ADJ');
-    if ($prev_word2 == 'you' && $prev_word1 == 'are' && $this_tag == 'ADJ') self::returnRule($target_index, '110-46', 'VER');
-    if ($prev_word2 == 'he' && $prev_word1 == 'is' && $this_tag == 'ADJ') self::returnRule($target_index, '110-46', 'VER');
-    if ($prev_word2 == 'she' && $prev_word1 == 'is' && $this_tag == 'ADJ') self::returnRule($target_index, '110-46', 'VER');
-    if ($prev_word2 == 'we' && $prev_word1 == 'are' && $this_tag == 'ADJ') self::returnRule($target_index, '110-46', 'VER');
-    if ($prev_word2 == 'they' && $prev_word1 == 'are' && $this_tag == 'ADJ') self::returnRule($target_index, '110-46', 'VER');
-    
-    if ($prev_word2 == 'I' && $prev_word1 == 'am' && ($this_pp['features'] == 'VER:ger+pres' || $this_tag == 'UNK')) self::returnRule($target_index, '110-46', 'VER');
-    if ($prev_word2 == 'you' && $prev_word1 == 'are' && ($this_pp['features'] == 'VER:ger+pres' || $this_tag == 'UNK')) self::returnRule($target_index, '110-46', 'VER');
-    if ($prev_word2 == 'he' && $prev_word1 == 'is' && ($this_pp['features'] == 'VER:ger+pres' || $this_tag == 'UNK')) self::returnRule($target_index, '110-46', 'VER');
-    if ($prev_word2 == 'she' && $prev_word1 == 'is' && ($this_pp['features'] == 'VER:ger+pres' || $this_tag == 'UNK')) self::returnRule($target_index, '110-46', 'VER');
-    if ($prev_word2 == 'we' && $prev_word1 == 'are' && ($this_pp['features'] == 'VER:ger+pres' || $this_tag == 'UNK')) self::returnRule($target_index, '110-46', 'VER');
-    if ($prev_word2 == 'they' && $prev_word1 == 'are' && ($this_pp['features'] == 'VER:ger+pres' || $this_tag == 'UNK')) self::returnRule($target_index, '110-46', 'VER');
-    
-    if ($prev_word2 == 'may' && $prev_word1 == 'be' && ($this_tag == 'VER' || $this_tag == 'UNK')) self::returnRule($target_index, '110-47', 'VER');
-
-    if ($prev_tag2 == 'PRO' && $prev_word1 == 'wanna' && ($this_tag == 'VER' || $this_tag == 'UNK')) self::returnRule($target_index, '110-48', 'VER');
-    
-    if ($prev_word2 == 'keep' && $prev_word1 == 'on' && $this_tag == 'NOUN') self::returnRule($target_index, '110-49', 'VER', 5);
-    if ($prev_word2 == 'no' && $prev_word1 == 'one' && $this_tag == 'VER') self::returnRule($target_index, '110-49', 'VER', 2);
-
-
-    // added 21/06/2019
     if ($prev_tag2 == 'VER' && $prev_word1 == 'qua' && $this_tag == 'VER') self::returnRule($target_index, '110-50', 'VER', - 2);
 
     if (instr($prev_pp_2['features'], 'PRO-PERS-CLI') > 0 && instr($prev_pp_1['features'], 'VER:ind+pres') > 0 && $this_tag == 'NPR') self::returnRule($target_index, '110-55', 'NPR');
@@ -810,10 +703,6 @@ trait BrillsRulesTrait {
 
      if ($prev_tag1 == 'PON' && $this_word == 'cosa') self::returnRule($target_index, '110-250', 'PRO');
 
-     if ($prev_tag1 == 'PON' && $this_word == 'what') self::returnRule($target_index, '110-255', 'PRO');
-
-//     if ($prev_tag1 == 'PRO') self::returnRule($target_index, '110-260', 'VER');
-
      if ($prev_tag1 == 'VER')	 self::returnRule($target_index, '110-265', 'VER');
      
      if ($prev_pp_1['form'] == '/' && $this_tag == 'ADJ')	self::returnRule($target_index, '110-266', 'ADJ');
@@ -822,8 +711,6 @@ trait BrillsRulesTrait {
     if ($prev_tag2 == 'ADV')
     {
      if ($prev_tag1 == 'PRO' && $this_word == 'cosa') self::returnRule($target_index, '110-270', 'PRO');
-
-     if ($prev_tag1 == 'PRO' && $this_word == 'what') self::returnRule($target_index, '110-275', 'PRO');
 
      if ($prev_tag1 == 'ADV' && $this_word == 'rispetto') self::returnRule($target_index, '110-280', 'ADV');
 
@@ -912,7 +799,6 @@ trait BrillsRulesTrait {
 
     }	
 
-
     if ($prev_tag2 == 'PRE')
     {
      if ($prev_tag1 == 'ART' && ($this_tag == 'VER' || $this_tag == 'UNK'))   self::returnRule($target_index, '110-435', 'NOUN');
@@ -922,16 +808,8 @@ trait BrillsRulesTrait {
      if ($prev_tag1 == 'NOUN' && ($this_tag == 'ARTPRE' || $this_tag == 'UNK'))   self::returnRule($target_index, '110-445', 'ARTPRE');
 
      if ($prev_tag1 == 'PRO' && ($this_tag == 'ADV' || $this_tag == 'UNK'))   self::returnRule($target_index, '110-450', 'NOUN');
-
      
-     if(self::$language == 'en')
-     {
-	if ($prev_word2 == 'to' && ($this_tag == 'VER' || $this_tag == 'UNK'))   self::returnRule($target_index, '110-455', 'VER');
-	if ($prev_word2 == 'to' && $this_pp['features']== 'VER:ind+pres+3+s')   self::returnRule($target_index, '110-456', 'VER', - self::$score_three_terms);
-     } else
-     {
 	if ($prev_tag1 == 'VER' && ($this_tag == 'NOUN' || $this_tag == 'UNK'))   self::returnRule($target_index, '110-455', 'NOUN');
-     }
 
     }
 
@@ -975,15 +853,13 @@ trait BrillsRulesTrait {
 	    if ($prev_pp_1['features'] == 'PON:sep' && $this_tag == 'NPR')	self::returnRule($target_index, '110-509', 'NPR');
     }
 
-    if ($prev_tag2 == 'VER')
-    {
+		if ($prev_tag2 == 'VER')
+		{
      if ($prev_tag1 == 'ADV' && $this_word == 'cosa') self::returnRule($target_index, '110-510', 'PRO');
 
      if ($prev_word1 == 'più' && ($this_tag == 'ADJ' || $this_tag == 'UNK')) self::returnRule($target_index, '110-515', 'ADJ');
 
      if ($prev_word1 == 'già' && ($this_tag == 'VER' || $this_tag == 'UNK')) self::returnRule($target_index, '110-520', 'VER');
-
-     if ($prev_word1 == 'already' && ($this_tag == 'VER' || $this_tag == 'UNK')) self::returnRule($target_index, '110-525', 'VER');
 
      if ($prev_tag1 == 'ADJ' && ($this_tag == 'VER' || $this_tag == 'UNK'))   self::returnRule($target_index, '110-530', 'NOUN');
 
@@ -1112,11 +988,6 @@ trait BrillsRulesTrait {
 
      if ($this_word == 'questa' && $next_tag1 == 'DET')  self::returnRule($target_index, '011-115', 'PRO');
 
-     if ($this_word == 'that' && $next_tag1 == 'DET') self::returnRule($target_index, '011-120', 'PRO');
-     if (($this_tag == 'VER' || $this_tag == 'UNK') && $nextword1 == 'on')	 self::returnRule($target_index, '011-125', 'VER');
-
-     if (instr($this_pp['features'], 'part+past') > 0 && $nextword1 == 'for')   self::returnRule($target_index, '011-130', 'VER');
-
      if ($this_word == 'lungo' && $next_tag1 == 'DET')	 self::returnRule($target_index, '011-135', 'ADV');
 
      if ($this_word == 'primo' && $next_tag1 == 'PON')	 self::returnRule($target_index, '011-140', 'ADJ');
@@ -1162,7 +1033,6 @@ trait BrillsRulesTrait {
 
      if ($next_tag1 == 'ADV')	 self::returnRule($target_index, '011-195', 'PRO');
      
-     if ($nextword1 == 'at')	 self::returnRule($target_index, '011-196', 'VER');
     }
 
     if($next_tag2 == 'VER')
@@ -1188,8 +1058,6 @@ trait BrillsRulesTrait {
      if ($this_word == 'primo' && $next_tag1 == 'ADV')	 self::returnRule($target_index, '011-250', 'PRO');
 
      if ($this_pp['features'] == 'VER:ind+pres+3+s' && ($nextword1 == 'a' || $nextword1 == 'ad'))	 self::returnRule($target_index, '011-255', 'VER');
-
-     if ($this_pp['features'] == 'VER:ind+pres+3+s' && ($nextword1 == 'to'))	 self::returnRule($target_index, '011-260', 'VER');
 
     }
 
@@ -1248,122 +1116,14 @@ trait BrillsRulesTrait {
 
       if ($prev_word1 == 'da' && instr($this_pp['features'], 'ver:ind+pres') == 0)	 self::returnRule($target_index, '10-80', 'VER', - 3);
 
-      if ($prev_word1 == 'going' && $this_tag == 'NOUN')	 self::returnRule($target_index, '10-85', 'NOUN', - 1);
-      
-      if ($prev_word1 == 'into' && $this_tag == 'NOUN')	 self::returnRule($target_index, '10-86', 'NOUN', 1);
-
       if (preg_match('/(negli|nelle|nella|nello|nel)/i', $prev_word1) && ($this_tag == 'VER' || $this_tag == 'PPAST'))	 self::returnRule($target_index, '10-90', 'VER', -50);
-
-      if (preg_match('/^(the|this|those|her)$/i', $prev_word1) && ($this_tag == 'VER' || $this_tag == 'PPAST'))	 self::returnRule($target_index, '10-95', 'VER', -2);
-	
-	if (preg_match('/^(the|this|that|those)$/i', $prev_word1) && ($this_tag == 'UNK'))	 self::returnRule($target_index, '10-100', 'NOUN');
-
-	if (preg_match('/^(may|might|can|gonna|wanna)$/i', $prev_word1) && ($this_tag == 'VER' || $this_tag == 'PPAST'))	 self::returnRule($target_index, '10-105', 'VER', 3);
-
-	if ($prev_word1 == 'of' && ($this_tag == 'VER' || $this_tag == 'PPAST'))	 self::returnRule($target_index, '10-110', 'VER', - self::$score_two_terms);
-
-	if(self::$language == 'en')
-	{
-	if ($prev_word1 == 'a' && ($this_tag == 'VER' || $this_tag == 'PPAST'))	 self::returnRule($target_index, '10-115', 'VER', - self::$score_two_terms);
-	
-	if (preg_match('/^(the|my|your|him|them)$/i', $prev_word1) && ($this_tag == 'VER' || $this_tag == 'PPAST'))	 self::returnRule($target_index, '10-120', 'VER', - self::$score_two_terms);
-	
-	if ($prev_word1 == 'in' && ($this_tag == 'VER' || $this_tag == 'PPAST'))	 self::returnRule($target_index, '10-125', 'VER', - self::$score_two_terms);
-	
-	if (preg_match('/^(gonna|could|should|would)$/i', $prev_word1) && $this_tag == 'VER')	 self::returnRule($target_index, '10-127', 'VER');
-	if (preg_match('/^(was)$/i', $prev_word1) && $this_pp['features'] == 'VER:ger+pres')	 self::returnRule($target_index, '10-128', 'VER');
-	
-	if ($prev_word1 == 'inside' && ($this_tag == 'VER' || $this_tag == 'PPAST'))	 self::returnRule($target_index, '10-130', 'VER', -50);
-	
-	if (preg_match('/^(good|nice)$/i', $prev_word1))	 self::returnRule($target_index, '10-135', 'VER', -3);
-	
-	if ($prev_word1 == 'i')    self::returnRule($target_index, '10-140', 'VER', 3);
-
-	if ($prev_word1 == 'you')    self::returnRule($target_index, '10-145', 'VER');
-
-	if ($prev_word1 == 'he')	 self::returnRule($target_index, '10-150', 'VER');
-	
-	if ($prev_word1 == 'she')	 self::returnRule($target_index, '10-155', 'VER');
-	
-	if ($prev_word1 == 'it')	 self::returnRule($target_index, '10-160', 'VER');
-  
-	if ($prev_word1 == 'with')    self::returnRule($target_index, '10-165', 'VER', - 3);
-	
-	if ($prev_word1 == 'every')    self::returnRule($target_index, '10-170', 'VER', - 3);
-	
-	if ($prev_word1 == 'each')    self::returnRule($target_index, '10-175', 'VER', - 3);
-	
-	if ($prev_word1 == 'in')    self::returnRule($target_index, '10-180', 'VER', - 3);
-
-	if ($prev_word1 == 'enough')    self::returnRule($target_index, '10-185', 'VER', - 3);
-	
-	if ($prev_word1 == 'who')    self::returnRule($target_index, '10-190', 'VER', self::$score_three_terms);
-	if ($prev_word1 == 'who')    self::returnRule($target_index, '10-191', 'PPAST', self::$score_three_terms);
-	
-	if ($prev_word1 == 'to')    self::returnRule($target_index, '10-195', 'VER',5);
-	
-//	if ($prev_word1 == 'be')    self::returnRule($target_index, '10-200', 'VER');
-
-	if ($prev_word1 == 'we')	 self::returnRule($target_index, '10-205', 'VER');
-	
-	if ($prev_word1 == 'us')	 self::returnRule($target_index, '10-210', 'VER');
-
-	if ($prev_word1 == 'they')	 self::returnRule($target_index, '10-215', 'VER');
-	
-	if ($prev_word1 == 'wanna')	 self::returnRule($target_index, '10-217', 'VER');
-
-
-	if ($prev_word1 == 'without')    self::returnRule($target_index, '10-220', 'VER', -10);
-	
-	if ($prev_word1 == 'without')    self::returnRule($target_index, '10-225', 'PPAST', -10);
-	
-	if(($this_tag == 'ADJ' || $this_tag == 'UNK'))
-	{
-	 if ($prev_word1 == 'all')	 self::returnRule($target_index, '10-230', 'ADJ');
-	
-	}
-	
-	if(($this_tag == 'NOUN' || $this_tag == 'UNK'))
-	{
-	 if ($prev_word1 == 'this')	 self::returnRule($target_index, '10-235', 'NOUN');
-
-	 if ($prev_word1 == 'that')	 self::returnRule($target_index, '10-240', 'NOUN');
-
-	 if ($prev_word1 == 'those')	 self::returnRule($target_index, '10-245', 'NOUN');
-
-	}
-	
-	if(($this_tag == 'VER' || $this_tag == 'UNK'))
-	{
-	 if ($prev_word1 == 'non')	 self::returnRule($target_index, '10-250', 'VER');
-	 
-	 if ($prev_word1 == 'already')	 self::returnRule($target_index, '10-255', 'VER');
-
-	 if ($prev_word1 == 'had')	 self::returnRule($target_index, '10-265', 'VER');
-
-	 if ($prev_word1 == 'if')	 self::returnRule($target_index, '10-270', 'VER');
-	 
-	 if ($prev_word1 == 'more')	 self::returnRule($target_index, '10-275', 'VER', - 2);
-	 
-	 if ($prev_word1 == 'less')	 self::returnRule($target_index, '10-280', 'VER', - 2);
-	
-	 if ($prev_word1 == 'is')	 self::returnRule($target_index, '10-281', 'ADJ', 3);
-	 
-	}
-	
-
-	}
-	
 	
 	if (instr($prev_pp_1['features'], 'impr+pres+2+p') > 0 && $this_tag == 'VER')	 self::returnRule($target_index, '10-290', 'VER');
 
 	// sicuri! dopo "mi, ti, ci, gliela glielo" etc. c'è sempre un verbo!!!!!
-	if(self::$language != 'en')
-	{
 	// sicuri! dopo "questa questa quegli" etc. un verbo non c'è mai!!!!!
 	if (instr($prev_pp_1['features'], 'PRO-DEMO') > 0)	 self::returnRule($target_index, '10-285', 'VER', - 30);
 	if (instr($prev_pp_1['features'], 'PRO-PERS') > 0)	 self::returnRule($target_index, '10-295', 'VER', 30);
-	}
 	
 	// added 16/06/2019 @todo metti i nuovi ADV:qty! penso la regola li riguardi tutti
 	if ($prev_word1 == 'qualche' && ($this_tag == 'VER' || $this_tag == 'PPAST'))	 self::returnRule($target_index, '10-300', 'VER', -50);
@@ -1428,22 +1188,17 @@ trait BrillsRulesTrait {
 	if ($prev_word1 == 'si')    self::returnRule($target_index, '10-400', 'VER');
 
 	if ($prev_word1 == 'io')    self::returnRule($target_index, '10-405', 'VER');
-	if ($prev_word1 == 'I')    self::returnRule($target_index, '10-406', 'VER');
 
 	if ($prev_word1 == 'tu')    self::returnRule($target_index, '10-410', 'VER');
-	if ($prev_word1 == 'you')    self::returnRule($target_index, '10-411', 'VER');
-
+	
 	if ($prev_word1 == 'lei')	 self::returnRule($target_index, '10-415', 'VER');
-	if ($prev_word1 == 'she')	 self::returnRule($target_index, '10-416', 'VER');
-
+	
 	if ($prev_word1 == 'noi')	 self::returnRule($target_index, '10-420', 'VER');
-	if ($prev_word1 == 'we')	 self::returnRule($target_index, '10-421', 'VER');
-
+	
 	if ($prev_word1 == 'voi')	 self::returnRule($target_index, '10-425', 'VER');
 
 	if ($prev_word1 == 'loro')	 self::returnRule($target_index, '10-430', 'VER');
-	if ($prev_word1 == 'they')	 self::returnRule($target_index, '10-431', 'VER');
-
+	
 	if ($prev_word1 == 'in')    self::returnRule($target_index, '10-435', 'NOUN');
 
 	if ($prev_word1 == 'senza')    self::returnRule($target_index, '10-440', 'VER', -10);
@@ -1458,7 +1213,6 @@ trait BrillsRulesTrait {
 	
 	if ($prev_word1 == 'quanta' && ($this_pp['features'] == 'NOUN-m:s' || $this_pp['features'] == 'NOUN-m:p'))	 self::returnRule($target_index, '10-465', 'VER');
 	
-	if ($prev_word1 == 'keep' && ($this_pp['features'] == 'VER:ger+pres'))	 self::returnRule($target_index, '10-466', 'VER');
 		 
 	// added 01/18, a me sembra che da qua non si scappi. $prev_pp_1 dovrebbero essere solo i VER
 	// @todo ma allora anche gli adj etc.?
@@ -1743,9 +1497,7 @@ trait BrillsRulesTrait {
 	 if ($this_word == 'se')	 self::returnRule($target_index, '10-1050', 'PRO');
 
 	 if ($this_word == 'loro')	 self::returnRule($target_index, '10-1055', 'PRO');
-	
-	 if(!preg_match('/(can|be)/ui', $prev_word1) && $prev_pp_1['features'] == 'VER:inf+pres' && $this_tag == 'NOUN')
-	    self::returnRule($target_index, '10-1056', 'NOUN', .4);
+
 	}
 	
 	
@@ -1795,8 +1547,6 @@ trait BrillsRulesTrait {
 
     if ($this_word == 'meno' && $nextword1 == 'di')	 self::returnRule($target_index, '01-65', 'PRO');
     
-    if ($this_word == 'may' && $nextword1 == 'be')	 self::returnRule($target_index, '01-66', 'VER');
-
     if ($this_word == 'visto' && $nextword1 == 'che') self::returnRule($target_index, '01-70', 'VER');
 
 
@@ -1861,10 +1611,6 @@ trait BrillsRulesTrait {
 
     if($next_tag1 == 'PRE')
     {
-	if(self::$language == 'en')
-	{
-	    if($this_pp['features'] == 'VER:ger+pres')	 self::returnRule($target_index, '01-163', 'VER');
-	}
     }
     
     if($next_tag1 == 'PRO')
@@ -1936,8 +1682,6 @@ trait BrillsRulesTrait {
 
 	if ($this_word == 'lungo')	 self::returnRule($target_index, '01-300', 'ADJ');
 
-	if ($this_word == 'can')	 self::returnRule($target_index, '01-305', 'VER',5);
-
     }
 
 
@@ -1969,7 +1713,6 @@ trait BrillsRulesTrait {
 
     if ($nextword1 == 'stato')	 self::returnRule($target_index, '01-375', 'ADJ');
         
-     if ($nextword1 == 'it')	 self::returnRule($target_index, '01-380', 'VER');
  }
 
  
