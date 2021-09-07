@@ -41,6 +41,9 @@ class PosApostropheAndS
 	// if the sentence does not contains " ' " return immediately
 	if(!NaiPosArr::searchInPosArr($pos_arr, "'"))
 	{
+	    if(self::$dbgme)
+		echox('- no more apostrophes found, return');
+	    
 	    return $pos_arr;
 	}
 
@@ -59,7 +62,7 @@ class PosApostropheAndS
 		{
 		    
 		    // check the next 3 parts
-		    if(isset($pos_arr[$index + 1]) && isset($pos_arr[$index + 2]))
+		    if(isset($pos_arr[$index + 1]) && isset($pos_arr[$index + 2]) && isset($pos_arr[$index + 3]))
 		    {
 			// part 2 must be ' and part 3 must be s
 			if($pos_arr[$index + 1][0]['form'] == "'" && $pos_arr[$index + 2][0]['form'] == "s")
@@ -73,6 +76,7 @@ class PosApostropheAndS
 				if($feature4['sh-feat'] == 'NOUN')
 				{
 				    $pos_arr = self::transformGenitive($pos_arr, $index);
+				    break;
 				}
 			    }
 			}
@@ -85,26 +89,27 @@ class PosApostropheAndS
 		{
 		    
 		    // check the next 3 parts
-		    if(isset($pos_arr[$index + 1]) && isset($pos_arr[$index + 2]))
+		    if(isset($pos_arr[$index + 1]) && isset($pos_arr[$index + 2]) && isset($pos_arr[$index + 3]))
 		    {
 			// part 2 must be ' and part 3 must be s
 			if($pos_arr[$index + 1][0]['form'] == "'" && $pos_arr[$index + 2][0]['form'] == "s")
 			{
 			    if(self::$dbgme)
-				echox('- found possible abbreviation');
+				echox('- found possible "is" abbreviation');
 			    
+			    // for abbreviations of verb "to be" check part 4
 			    foreach ($pos_arr[$index + 3] as $feature4)
 			    {
 				if(self::$dbgme)
 					echox('- look feature4 '.$feature4['sh-feat']);
 				
-				// for abbreviations of verb to be part 4 must be ADJ, ADV, NUM or PRE
 				if(preg_match('/(ADJ|ADV|NUM|PRE|VER|PPAST)/i', $feature4['sh-feat']))
 				{
 				    if(self::$dbgme)
 					echox('- is abbreviation');
 				    
 				    $pos_arr = self::transformBe($pos_arr, $index);
+				    break;
 				}
 			    }
 			}
@@ -149,11 +154,19 @@ class PosApostropheAndS
 	
 	// index 0 move to part 3 and safely tag as NOUN or NPR
 	$pos_arr[$fromindex + 3] = $tmp_part_1;
-	foreach ($pos_arr[$fromindex + 3] as $key => $subpart)
+	if(count($pos_arr[$fromindex + 3]) > 1)
 	{
-	    if($subpart['sh-feat'] != 'NOUN' && $subpart['sh-feat'] != 'NPR')
+	    foreach ($pos_arr[$fromindex + 3] as $key => $subpart)
 	    {
-		unset($pos_arr[$fromindex + 3][$key]);
+		if(count($pos_arr[$fromindex + 3]) == 1)
+		{
+		    break;
+		}
+		
+		if($subpart['sh-feat'] != 'NOUN' && $subpart['sh-feat'] != 'NPR')
+		{
+		    unset($pos_arr[$fromindex + 3][$key]);
+		}
 	    }
 	}
 	$pos_arr[$fromindex + 3] = array_values($pos_arr[$fromindex + 3]);
@@ -171,6 +184,9 @@ class PosApostropheAndS
 
     private static function transformBe($pos_arr, $fromindex)
     {
+	if(self::$dbgme)
+	    echox('- transformBe at index '.$fromindex);
+	
 	// index 2 ' became "is"
 	$pos_arr[$fromindex + 2][0]['form'] = 'is';
 	$pos_arr[$fromindex + 2][0]['lemma'] = 'be';
@@ -181,12 +197,34 @@ class PosApostropheAndS
 	$pos_arr[$fromindex + 2][0]['rule'] = '';
 	$pos_arr[$fromindex + 2][0]['pos_score'] = 0;
 	
+	// in index 3 permit only ADJ or gerunds
+	if(count($pos_arr[$fromindex + 3]) > 1)
+	{
+	    foreach ($pos_arr[$fromindex + 3] as $key => $subpart)
+	    {
+//		if(count($pos_arr[$fromindex + 3]) == 1)
+//		{
+//		    break;
+//		}
+
+		if($subpart['sh-feat'] != 'ADJ' && $subpart['sh-feat'] != 'ADV' && $subpart['features'] != 'VER:ger+pres')
+		{
+		    if(self::$dbgme)
+			echox('- transformBe remove index '.$pos_arr[$fromindex + 3][$key]['sh-feat']);
+		    
+		    unset($pos_arr[$fromindex + 3][$key]);
+		}
+
+	    }
+	    $pos_arr[$fromindex + 3] = array_values($pos_arr[$fromindex + 3]);
+	}
+	
 	// remove the 's' in index 1
 	unset($pos_arr[$fromindex + 1]);
 	
 	// and reindex the array
 	$pos_arr = array_values($pos_arr);
-	
+//	diex($pos_arr);
 	return self::detect($pos_arr);
     }
 }

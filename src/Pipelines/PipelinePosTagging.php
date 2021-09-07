@@ -41,6 +41,7 @@ use NaiPosTagger\Filters\NaiPunctuationFilter;
 use NaiPosTagger\Filters\NaiSentFilter;
 	
 // POST
+use NaiPosTagger\Models\NaiMyThoughts;
 use NaiPosTagger\Models\NaiPosArr;
 use NaiPosTagger\Filters\NaiCommonSimplifier;
 use NaiPosTagger\PosTagging\PosAuxVerbs;
@@ -304,7 +305,7 @@ class PipelinePosTagging
 	{
 	    $pos_arr = PosApostropheAndS::detect($pos_arr);
 	}
-	
+//	diex($pos_arr);
 	
         // SCORING: BY BRILL RULES
 	$PosBrillsClass = "\\NaiPosTagger\\PosTagging\\NaiBrillsRulesTrait";
@@ -360,6 +361,7 @@ class PipelinePosTagging
 	// $pos_sentence = NaiRomanNumbersFilter::convertRomanNumbers($pos_sentence);
 //	echox($pos_arr);
 
+//	echox(NaiMyThoughts::$thoughts);
 	
 	// LAST REORDER BY SCORE
 	$pos_arr = NaiPosArr::sortByScore($pos_arr);

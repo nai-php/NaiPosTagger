@@ -1072,7 +1072,7 @@ class EnJustShootMeTestSuccessful extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRE VER:inf+pres DET PRO-DEMO-M-P NOUN-m:p PRO-PERS-1-M-S AUX:inf+pres VER:part+past+m+s NOUN-m:s NOUN-m:s PRE NPR NOUN-m:s NOUN-m:s PON:sep CON ADV:tim PRO-PERS-3-M-S VER:ind+pres+3+s ADV PRO-PERS-3-F-S VER:ind+pres+3+s ADJ:pos+m+s ADJ:pos+m+s NOUN-m:s SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRE VER:inf+pres DET PRO-DEMO-M-P NOUN-m:p PRO-PERS-1-M-S AUX:inf+pres VER:part+past+m+s NOUN-m:s NOUN-m:s PRE NPR NOUN-m:s NOUN-m:s PON:sep CON ADV:tim PRO-PERS-3-M-S INT:other PRO-PERS-3-F-S VER:ind+pres+3+s ADJ:pos+m+s ADJ:pos+m+s NOUN-m:s SENT");
     }
 
     public function testPosTagging1628754941_6962() {
@@ -1215,7 +1215,7 @@ class EnJustShootMeTestSuccessful extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV ADJ:pos+m+s VER:inf+pres PRO-PERS-2-M-S VER:inf+pres PRO-PERS-3-M-S VER:inf+pres VER:inf+pres ADV PRO-PERS-1-M-S VER:inf+pres NOUN-m:p PRE ART-M:s NOUN-m:s SENT:qst");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV ADJ:pos+m+s VER:inf+pres PRO-PERS-2-M-S VER:inf+pres PRO-PERS-3-M-S AUX:inf+pres VER:inf+pres ADV PRO-PERS-1-M-S VER:inf+pres NOUN-m:p PRE ART-M:s NOUN-m:s SENT:qst");
     }
 
     public function testPosTagging1628754941_4497() {
@@ -4686,7 +4686,7 @@ public function testPosTagging1630226437_3989() {
 
 	$pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	$this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADJ:pos+m+s NOUN-m:s VER:ind+pres+3+s VER:ger+pres NOUN-m:p PRE ADJ NOUN-m:p SENT:exclam");
+	$this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADJ:pos+m+s NOUN-m:s VER:ind+pres+3+s VER:ger+pres NOUN-m:p PRE PPAST:part+past+m+s NOUN-m:p SENT:exclam");
 }
 
 public function testPosTagging1630226490_8606() {
