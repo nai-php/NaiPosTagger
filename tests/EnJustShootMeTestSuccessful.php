@@ -1683,7 +1683,7 @@ class EnJustShootMeTestSuccessful extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:other VER:inf+pres PRO-PERS-1-M-P SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:comp SENT");
     }
 
     public function testPosTagging1628754966_3504() {
@@ -4818,4 +4818,20 @@ public function testPosTagging1630228965_7356() {
 
 	$this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT CON ADJ:pos+m+s CON ADJ:pos+m+s PON:sep PPAST:part+past+m+s SENT");
 }
+
+public function testPosTagging1631177448_1049() {
+	$PipelinePosTagging = new PipelinePosTagging();
+	$PipelinePosTagging->language = "en";
+
+	$sentence = "When you can lift your gym bag with one arm.";
+	$pos_arr = $PipelinePosTagging->transform($sentence);
+	$PipelinePosTagging = null;
+
+	$pos_arr = NaiPOsArr::flatPosArr($pos_arr);
+
+	$this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV:when PRO-PERS-2-M-S AUX:inf+pres VER:inf+pres ADJ:pos+m+s NOUN-m:s NOUN-m:s PRE NUM NOUN-m:s SENT");
+}
+
+// next test **
+
 }

@@ -202,10 +202,10 @@ class PosApostropheAndS
 	{
 	    foreach ($pos_arr[$fromindex + 3] as $key => $subpart)
 	    {
-//		if(count($pos_arr[$fromindex + 3]) == 1)
-//		{
-//		    break;
-//		}
+		if(count($pos_arr[$fromindex + 3]) == 1)
+		{
+		    break;
+		}
 
 		if($subpart['sh-feat'] != 'ADJ' && $subpart['sh-feat'] != 'ADV' && $subpart['features'] != 'VER:ger+pres')
 		{

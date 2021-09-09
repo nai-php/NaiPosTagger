@@ -77,6 +77,11 @@ trait BrillsRulesTrait
 	if ($prev_word1 == 'by' && $prev_tag2 == 'ART' && $prev_tag3 == 'ADJ' && $this_tag == 'NOUN')
 	    self::returnRule($target_index, '1110-50', 'NOUN', 1);
 
+	if ($prev_tag1 == 'PRO' && $prev_tag2 == 'VER' && $prev_tag3 == 'PPAST' && $this_tag == 'PPAST')
+	    self::returnRule($target_index, '1110-55', 'PPAST');
+
+	if ($prev_tag1 == 'PRO' && $prev_tag2 == 'VER' && $prev_word3 == 'not' && $this_pp['features'] == 'VER:ger+pres')
+	    self::returnRule($target_index, '1110-60', 'VER');	
     }
 
 
@@ -218,6 +223,8 @@ trait BrillsRulesTrait
 	if ($prev_tag1 == 'VER' && $prev_tag2 == 'ADJ' && $this_tag == 'NOUN' && $next_tag1 == 'SENT')
 	    self::returnRule($target_index, '1101-95', 'NOUN');
 
+	if ($prev_tag1 == 'PRO' && $prev_tag2 == 'VER' && ($this_pp['features'] == 'VER:inf+pres' || $this_tag == 'UNK') && $next_tag1 == 'PRO')
+	    self::returnRule($target_index, '1101-95', 'VER');
     }
 
 
@@ -466,6 +473,9 @@ trait BrillsRulesTrait
 
 	    if ($this_pp['features'] == 'VER:ind+pres+3+s' && $next_tag1 == 'NUM')
 		self::returnRule($target_index, '101-556', 'VER');
+
+	    if ($this_word == 'will' && $nextword1 == 'be')
+		self::returnRule($target_index, '101-557', 'VER');	    
 	}
 
 	if ($prev_tag1 == 'NUM' || $prev_tag1 == 'DET' || $prev_tag1 == 'AMOUNT')
@@ -551,13 +561,12 @@ trait BrillsRulesTrait
 	    if ($this_word == 'till' && $next_tag1 == 'PRO')
 		self::returnRule($target_index, '101-696', 'ADV');
 
-	    // added 09/2019 for "carica questi dati"
 	    if ($this_tag == 'VER' && ($next_tag1 == 'ART' || $next_tag1 == 'PRO'))
 		self::returnRule($target_index, '101-700', 'VER');
 
 
-	    if (($this_tag == 'VER' || $this_tag == 'UNK') && $next_tag1 == 'PON')
-		self::returnRule($target_index, '101-701', 'VER');
+//	    if (($this_tag == 'VER' || $this_tag == 'UNK') && $next_tag1 == 'PON')
+//		self::returnRule($target_index, '101-701', 'VER');
 	}
 
 	if ($prev_tag1 == 'VER')
@@ -858,7 +867,8 @@ trait BrillsRulesTrait
 	    if ($prev_tag1 == 'DET' && ($this_tag == 'VER' || $this_tag == 'UNK'))
 		self::returnRule($target_index, '110-470', 'NOUN');
 
-	    if ($prev_tag1 == 'NOUN' && ($this_tag == 'VER' || $this_tag == 'UNK'))
+//	    if ($prev_tag1 == 'NOUN' && ($this_tag == 'VER' || $this_tag == 'UNK'))
+	    if ($prev_tag1 == 'NOUN' && ($this_pp['features'] == 'VER:ind+pres+3+s' || $this_tag == 'UNK'))
 		self::returnRule($target_index, '110-475', 'VER');
 
 	    if ($prev_tag1 == 'VER' && ($this_tag == 'ADJ' || $this_tag == 'UNK'))
@@ -866,6 +876,9 @@ trait BrillsRulesTrait
 
 	    if ($prev_tag1 == 'DET')
 		self::returnRule($target_index, '110-485', 'VER');
+
+	    if ($prev_tag1 == 'VER' && $this_pp['features'] == 'VER:ger+pres')
+		self::returnRule($target_index, '110-486', 'VER');	    
 	}
 
 	if ($prev_tag2 == 'NOUN')
@@ -901,11 +914,12 @@ trait BrillsRulesTrait
 		self::returnRule($target_index, '110-530', 'NOUN');
 
 	    if ($prev_pp_1['features'] != 'ADV:qty')
+	    {
 		if ($prev_tag1 == 'ADV' && ($this_tag == 'NOUN' || $this_tag == 'UNK'))
+		{
 		    self::returnRule($target_index, '110-540', 'VER');
-
-	    if ($prev_tag1 == 'ADV' && ($this_tag == 'VER' || $this_tag == 'UNK'))
-		self::returnRule($target_index, '110-545', 'ADJ');
+		}
+	    }
 
 	    if ($prev_tag1 == 'ADV' && $this_tag == 'NPR')
 		self::returnRule($target_index, '110-546', 'NPR', -1);
@@ -1129,6 +1143,8 @@ trait BrillsRulesTrait
 	if ($prev_word1 == 'into' && $this_tag == 'NOUN')
 	    self::returnRule($target_index, '10-86', 'NOUN', 1);
 
+	if ($prev_word1 == 'are' && $this_pp['features'] == 'VER:ger+pres')
+	    self::returnRule($target_index, '10-90', 'VER');
 
 	if (preg_match('/^(the|this|those|her)$/i', $prev_word1) && ($this_tag == 'VER' || $this_tag == 'PPAST'))
 	    self::returnRule($target_index, '10-95', 'VER', -2);
@@ -1444,28 +1460,34 @@ trait BrillsRulesTrait
 	NaiMyThoughts::collect(__CLASS__, __METHOD__, "with $this_word ($this_tag dubious), $nextword1 ($next_tag1)");
 
 	if ($this_word == 'may' && $nextword1 == 'be')
-	    self::returnRule($target_index, '01-66', 'VER');
+	    self::returnRule($target_index, '01-5', 'VER');
 
 	if ($next_tag1 == 'PRE')
 	{
 	    if ($this_pp['features'] == 'VER:ger+pres')
-		self::returnRule($target_index, '01-163', 'VER');
+		self::returnRule($target_index, '01-10', 'VER');
 	}
 
+//	if ($next_tag1 == 'PRO')
+//	{
+//	    if ($this_tag == 'VER')
+//		self::returnRule($target_index, '01-15', 'VER');
+//	}
+	
 	if ($next_tag1 == 'NOUN')
 	{
 	    if (isset($next_pp_1['metadata']['ref']) && in_array('occup', $next_pp_1['metadata']['ref']))
-		self::returnRule($target_index, '01-242', 'NPR');
+		self::returnRule($target_index, '01-20', 'NPR');
 	}
 
 	if ($next_tag1 == 'VER')
 	{
 	    if ($this_word == 'can')
-		self::returnRule($target_index, '01-305', 'VER', 5);
+		self::returnRule($target_index, '01-25', 'VER', 5);
 	}
 
 	if ($nextword1 == 'it')
-	    self::returnRule($target_index, '01-380', 'VER');
+	    self::returnRule($target_index, '01-30', 'VER', .1);
 
     }
 

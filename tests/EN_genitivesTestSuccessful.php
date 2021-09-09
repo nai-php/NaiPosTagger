@@ -211,6 +211,71 @@ public function testPosTagging1631002011_2724() {
 	$this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT VER:ger+pres NOUN-m:s PRE NOUN-m:s SENT:exclam NOUN-m:s SENT");
 }
 
+public function testPosTagging1631003038_4267() {
+	$PipelinePosTagging = new PipelinePosTagging();
+	$PipelinePosTagging->language = "en";
+
+	$sentence = "My skull's so full It's tearing me apart";
+	$pos_arr = $PipelinePosTagging->transform($sentence);
+	$PipelinePosTagging = null;
+
+	$pos_arr = NaiPOsArr::flatPosArr($pos_arr);
+
+	$this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADJ:pos+m+s NOUN-m:s VER:ind+pres+3+s ADV ADJ:pos+m+s PRO-PERS-3-M-S VER:ind+pres+3+s VER:ger+pres PRO-PERS-1-M-S ADV SENT");
+}
+
+public function testPosTagging1631003100_1629() {
+	$PipelinePosTagging = new PipelinePosTagging();
+	$PipelinePosTagging->language = "en";
+
+	$sentence = "Worm's wart. gasping";
+	$pos_arr = $PipelinePosTagging->transform($sentence);
+	$PipelinePosTagging = null;
+
+	$pos_arr = NaiPOsArr::flatPosArr($pos_arr);
+
+	$this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NOUN-m:s PRE NOUN-m:s SENT VER:ger+pres SENT");
+}
+
+public function testPosTagging1631003105_9734() {
+	$PipelinePosTagging = new PipelinePosTagging();
+	$PipelinePosTagging->language = "en";
+
+	$sentence = "Nothing's more suspicious than frog's breath.";
+	$pos_arr = $PipelinePosTagging->transform($sentence);
+	$PipelinePosTagging = null;
+
+	$pos_arr = NaiPOsArr::flatPosArr($pos_arr);
+
+	$this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV VER:ind+pres+3+s ADV ADJ:pos+m+s CON NOUN-m:s PRE NOUN-m:s SENT");
+}
+
+public function testPosTagging1631003162_8595() {
+	$PipelinePosTagging = new PipelinePosTagging();
+	$PipelinePosTagging->language = "en";
+
+	$sentence = "and I certainly did not know about your daughter's wedding.";
+	$pos_arr = $PipelinePosTagging->transform($sentence);
+	$PipelinePosTagging = null;
+
+	$pos_arr = NaiPOsArr::flatPosArr($pos_arr);
+
+	$this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT CON PRO-PERS-1-M-S ADV PPAST:part+past+m+s ADV:neg VER:inf+pres ADV ADJ:pos+m+s NOUN-m:s PRE NOUN-m:s SENT");
+}
+
+public function testPosTagging1631003357_9198() {
+	$PipelinePosTagging = new PipelinePosTagging();
+	$PipelinePosTagging->language = "en";
+
+	$sentence = "As often as I've read them Something's wrong";
+	$pos_arr = $PipelinePosTagging->transform($sentence);
+	$PipelinePosTagging = null;
+
+	$pos_arr = NaiPOsArr::flatPosArr($pos_arr);
+
+	$this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT ADV ADV ADV PRO-PERS-1-M-S AUX:inf+pres VER:inf+pres PRO-PERS-3-M-P NOUN-m:s VER:ind+pres+3+s ADJ:pos+m+s SENT");
+}
+
 // next test **
 
 }
