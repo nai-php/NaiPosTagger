@@ -25,6 +25,9 @@ class PosPersonAndSex
     /** Class debugger flag true false */
     public static $dbgme = false;
     
+    /** Default language */
+    public static $language = 'it';
+    
     /** Negative score to assign a improbable previous token */
     public static $score_prev = - .6;
     
@@ -242,12 +245,19 @@ class PosPersonAndSex
 
 		    if (instr($_next_feats, 'art') == 0 && instr($_next_feats, 'pro') == 0 && instr($_feat, 'num') == 0 && self::isSingular($_feat) && self::isPlural($_next_feats))
 		    {
-			if (self::$dbgme)
-			    echox('- NEXT step 3 penalyze "' . $_form . '" as ' . $_feat . ' against of successive term with 1 feat ' . right($_next_feats, 2));
+			// but english does not have plural adjectives...
+			if(self::$language == 'en' && $_feat == 'adj:pos+m+s')
+			{
+			    
+			} else
+			{
+			    if (self::$dbgme)
+				echox('- NEXT step 3 penalyze "' . $_form . '" as ' . $_feat . ' against of successive term with 1 feat ' . right($_next_feats, 2));
 
-			// assign a negative score
-			$pos_arr[$n] = PosTools::setSubScorePos('times-exclusion-next-3', $pos_arr[$n], $feats['features'], self::$score_next);
-			$pos_arr = self::exclude($pos_arr);
+			    // assign a negative score
+			    $pos_arr[$n] = PosTools::setSubScorePos('times-exclusion-next-3', $pos_arr[$n], $feats['features'], self::$score_next);
+			    $pos_arr = self::exclude($pos_arr);
+			}
 		    }
 
 

@@ -281,6 +281,7 @@ class PipelinePosTagging
 	
 	// SCORING: BY COMBINATIONS OF DIFFERENT TIME, PERSON AND SEX
 //	PosPersonAndSex::$dbgme = true;
+	PosPersonAndSex::$language = $this->language;
 	PosPersonAndSex::resetDoneIndex();
 	$pos_arr = PosPersonAndSex::exclude($pos_arr);
 //	diex($pos_arr);
@@ -359,7 +360,7 @@ class PipelinePosTagging
 
 	// @todo ROMAN NUMBERS 
 	// $pos_sentence = NaiRomanNumbersFilter::convertRomanNumbers($pos_sentence);
-//	echox($pos_arr);
+//	diex($pos_arr);
 
 //	echox(NaiMyThoughts::$thoughts);
 	
