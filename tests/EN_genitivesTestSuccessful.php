@@ -39,7 +39,7 @@ public function testPosTagging1631001904_647() {
 
 	$pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	$this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NPR VER:ind+pres+3+s ADV ADV PRE ART-M:s PPAST:part+past+m+s SENT");
+	$this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT NPR VER:ind+pres+3+s ADV ADV PRE ART-M:s NOUN-m:s SENT");
 }
 
 public function testPosTagging1631001909_4154() {
@@ -104,7 +104,7 @@ public function testPosTagging1631001946_7017() {
 
 	$pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	$this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-DEMO-M-S ADJ:pos+m+s ADJ:pos+m+s NOUN-m:s AUX:ind+pres+3+s AUX:ger+pres VER:inf+pres ADJ:pos+m+s ADJ:pos+m+s SENT");
+	$this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT PRO-DEMO-M-S ADJ:pos+m+s ADJ:pos+m+s NOUN-m:s AUX:ind+pres+3+s AUX:ger+pres VER:inf+pres VER:part+past+m+s ADJ:pos+m+s SENT");
 }
 
 public function testPosTagging1631001951_7041() {

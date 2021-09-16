@@ -28,6 +28,9 @@ class PosBrillsRules
     /** Flag to turn on save for statistics in db brill_rules */
     public static $update_brill_hits = true;
     
+    /** Flag to turn on statistics of rules applied */
+    public static $report_rules_applied = true;
+    
     // se applied rule con 2 caratteri, l'affidabilità è leggermente minore dei 3
     public static $score_two_terms =  .7;
     
@@ -105,9 +108,9 @@ class PosBrillsRules
 
 
 		if (self::$dbgme)
-		    echox("<br>-- 1110 found pattern " . $match[0] . " to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> placed after sicuri <b>".$prev_word1['form']."</b> and <b>".$prev_word2['form']."</b> and <b>".$prev_word3['form']."</b>");
+		    echox("<br>- 1110 pattern found to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> placed after sicuri <b>".$prev_word1['form']."</b> and <b>".$prev_word2['form']."</b> and <b>".$prev_word3['form']."</b>");
 		
-		NaiMyThoughts::collect(__CLASS__, __METHOD__, "pattern 1110 found to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> placed after sicuri <b>".$prev_word1['form']."</b> and <b>".$prev_word2['form']."</b> and <b>".$prev_word3['form']."</b>");
+		NaiMyThoughts::collect(__CLASS__, __METHOD__, "1110 pattern found to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> placed after sicuri <b>".$prev_word1['form']."</b> and <b>".$prev_word2['form']."</b> and <b>".$prev_word3['form']."</b>");
 
 		// e loop tra tutte le feats della pos_part combinata con i vicini
 		for ($n2 = 0; $n2 < count($pos_arr[$target_index]); $n2++)
@@ -138,9 +141,9 @@ class PosBrillsRules
 
 
 		if (self::$dbgme)
-		    echox("<br>-- 1011 found pattern " . $match[0] . " to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> between <b>".$prev_word1['form']."</b> and <b>".$nextword1['form']."</b>  e <b>".$nextword2['form']."</b>");
+		    echox("<br>- 1011 pattern found to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> between <b>".$prev_word1['form']."</b> and <b>".$nextword1['form']."</b>  e <b>".$nextword2['form']."</b>");
 		
-		NaiMyThoughts::collect(__CLASS__, __METHOD__, "pattern 1011 found to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> between <b>".$prev_word1['form']."</b> and <b>".$nextword1['form']."</b>  e <b>".$nextword2['form']."</b>");
+		NaiMyThoughts::collect(__CLASS__, __METHOD__, "1011 pattern found to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> between <b>".$prev_word1['form']."</b> and <b>".$nextword1['form']."</b>  e <b>".$nextword2['form']."</b>");
 
 		// e loop tra tutte le feats della pos_part combinata con i vicini
 		for ($n2 = 0; $n2 < count($pos_arr[$target_index]); $n2++)
@@ -171,9 +174,9 @@ class PosBrillsRules
 
 
 		if (self::$dbgme)
-		    echox("<br>-- 1101 found pattern " . $match[0] . " to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> between <b>".$prev_word1['form']."</b> and <b>".$prev_word2['form']."</b>  e <b>".$nextword1['form']."</b>");
+		    echox("<br>- 1101 pattern found to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> between <b>".$prev_word1['form']."</b> and <b>".$prev_word2['form']."</b>  e <b>".$nextword1['form']."</b>");
 		
-		NaiMyThoughts::collect(__CLASS__, __METHOD__, "pattern 1101 found to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> between <b>".$prev_word1['form']."</b> and <b>".$prev_word2['form']."</b>  e <b>".$nextword1['form']."</b>");
+		NaiMyThoughts::collect(__CLASS__, __METHOD__, "1101 pattern found to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> between <b>".$prev_word1['form']."</b> and <b>".$prev_word2['form']."</b>  e <b>".$nextword1['form']."</b>");
 
 		// e loop tra tutte le feats della pos_part combinata con i vicini
 		for ($n2 = 0; $n2 < count($pos_arr[$target_index]); $n2++)
@@ -205,9 +208,9 @@ class PosBrillsRules
 
 
 		if (self::$dbgme)
-		    echox("<br>-- 1001 found pattern " . $match[0] . " to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> between <b>".$prev_word1['form']."</b> and <b>".$nextword1['form']."</b>  e <b>".$nextword2['form']."</b>");
+		    echox("<br>- 1001 pattern found to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> between <b>".$prev_word1['form']."</b> and <b>".$nextword1['form']."</b>  e <b>".$nextword2['form']."</b>");
 		
-		NaiMyThoughts::collect(__CLASS__, __METHOD__, "pattern 1001 found to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> between <b>".$prev_word1['form']."</b> and <b>".$nextword1['form']."</b>  e <b>".$nextword2['form']."</b>");
+		NaiMyThoughts::collect(__CLASS__, __METHOD__, "1001 pattern found to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> between <b>".$prev_word1['form']."</b> and <b>".$nextword1['form']."</b>  e <b>".$nextword2['form']."</b>");
 
 		// e loop tra tutte le feats della pos_part combinata con i vicini
 		for ($n2 = 0; $n2 < count($pos_arr[$target_index]); $n2++)
@@ -252,9 +255,9 @@ class PosBrillsRules
 
 
 		if (self::$dbgme)
-		    echox("<br>-- 101 found pattern " . $match[0] . " to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> between <b>".$prev_word1['form']."</b> and <b>".$nextword1['form']."</b>");
+		    echox("<br>- 101 pattern found to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> between <b>".$prev_word1['form']."</b> and <b>".$nextword1['form']."</b>");
 		
-		NaiMyThoughts::collect(__CLASS__, __METHOD__, "pattern 101 found to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> between <b>".$prev_word1['form']."</b> and <b>".$nextword1['form']."</b>");
+		NaiMyThoughts::collect(__CLASS__, __METHOD__, "101 pattern found to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> between <b>".$prev_word1['form']."</b> and <b>".$nextword1['form']."</b>");
 
 		// e loop tra tutte le feats della pos_part combinata con i vicini
 		for ($n2 = 0; $n2 < count($pos_arr[$target_index]); $n2++)
@@ -282,9 +285,9 @@ class PosBrillsRules
 		$prev_word1 = $pos_arr[$sure_key + 1][0]; // unica 2
 
 		if (self::$dbgme)
-		    echox("<br>- 110 found pattern " . $match[0] . " to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> preceduto da due sicuri ".$prev_word2['form']." e ".$prev_word1['form']);
+		    echox("<br>- 110 pattern found to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> preceduto da due sicuri ".$prev_word2['form']." e ".$prev_word1['form']);
 		
-		NaiMyThoughts::collect(__CLASS__, __METHOD__, "pattern 110 found to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> preceduto da due sicuri ".$prev_word2['form']." e ".$prev_word1['form']);
+		NaiMyThoughts::collect(__CLASS__, __METHOD__, "110 pattern found to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> preceduto da due sicuri ".$prev_word2['form']." e ".$prev_word1['form']);
 
 		// e loop tra tutte le feats della pos_part combinata con i vicini
 		for ($n2 = 0; $n2 < count($pos_arr[$target_index]); $n2++)
@@ -310,9 +313,9 @@ class PosBrillsRules
 		$nextword2 = $pos_arr[$sure_key + 2][0];
 
 		if (self::$dbgme)
-		    echox("<br>-- 011 found pattern " . $match[0] . " at index " . $match[1] . " to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> seguito da due sicuri ".$nextword1['form']." e ".$nextword2['form']);
+		    echox("<br>- 011 pattern found to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> seguito da due sicuri ".$nextword1['form']." e ".$nextword2['form']);
 		
-		NaiMyThoughts::collect(__CLASS__, __METHOD__, "pattern 011 found at index " . $match[1] . " to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> seguito da due sicuri ".$nextword1['form']." e ".$nextword2['form']);
+		NaiMyThoughts::collect(__CLASS__, __METHOD__, "011 pattern found to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> seguito da due sicuri ".$nextword1['form']." e ".$nextword2['form']);
 
 		// e loop tra tutte le feats della pos_part combinata con i vicini
 		for ($n2 = 0; $n2 < count($pos_arr[$target_index]); $n2++)
@@ -340,13 +343,16 @@ class PosBrillsRules
 		$prev_word1 = $pos_arr[$sure_key][0]; // unica 1
 
 		if (self::$dbgme)
-		    echox("<br>-- 10 found pattern " . $match[0] . " to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> preceduto da sicuro <b>".$prev_word1['form']."</b>");
+		    echox("<br>- 10 pattern found to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> preceduto da sicuro <b>".$prev_word1['form']."</b>");
 		
-		NaiMyThoughts::collect(__CLASS__, __METHOD__, "pattern 10 found to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> preceduto da sicuro <b>".$prev_word1['form']."</b>");
+		NaiMyThoughts::collect(__CLASS__, __METHOD__, "10 pattern found to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> preceduto da sicuro <b>".$prev_word1['form']."</b>");
 
 		// e loop tra tutte le feats della pos_part combinata con i vicini
 		for ($n2 = 0; $n2 < count($pos_arr[$target_index]); $n2++)
+		{
+//		    echox($pos_arr[$target_index][$n2]);
 		    $PosBrillsClass::rulesPattern10($target_index, $prev_word1, $pos_arr[$target_index][$n2], self::$dbgme);
+		}
 
 	    } //end loop match
 
@@ -367,9 +373,9 @@ class PosBrillsRules
 		$nextword1 = $pos_arr[$sure_key][0]; // unica 1
 
 		if (self::$dbgme)
-		    echox("<br>-- 01 found pattern " . $match[0] . " to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> seguito da sicuro <b>".$nextword1['form']."</b>");
+		    echox("<br>- 01 pattern found to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> seguito da sicuro <b>".$nextword1['form']."</b>");
 		
-		NaiMyThoughts::collect(__CLASS__, __METHOD__, "pattern 01 found to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> seguito da sicuro <b>".$nextword1['form']."</b>");
+		NaiMyThoughts::collect(__CLASS__, __METHOD__, "01 pattern found to try solving <b>" . $pos_arr[$target_index][0]['form'] . "</b> seguito da sicuro <b>".$nextword1['form']."</b>");
 
 		// e loop tra tutte le feats della pos_part combinata con i vicini
 		for ($n2 = 0; $n2 < count($pos_arr[$target_index]); $n2++)
@@ -395,14 +401,14 @@ class PosBrillsRules
     public static function returnRule($index, $rule_id, $feature, $score = null)
     {
 	if (self::$dbgme)
-	    echox("<span style=\"color:red\">------ applied rule ID $rule_id for feature $feature </span>");
+	    echox("--- <span style=\"color:red\">found</span> matching rule $rule_id for feature $feature");
 	
-	NaiMyThoughts::collect(__CLASS__, __METHOD__, "<span style=\"color:red\">------ applied rule ID $rule_id for feature $feature </span>");
+	NaiMyThoughts::collect(__CLASS__, __METHOD__, "<span style=\"color:red\">--- found matching rule $rule_id for feature $feature </span>");
 	
         if(is_null($score))
             $score = self::$score_three_terms;
         
-	self::setSubScore($index, $feature, $score);
+	self::setSubScore($index, $feature, $score, $rule_id);
 
 	if(self::$update_brill_hits)
 	    self::updateBrillsStats($rule_id);
@@ -470,12 +476,12 @@ class PosBrillsRules
      * @param float $points
      * @modify self::$subscores
      */
-    private static function setSubScore($index, $feature, $points)
+    private static function setSubScore($index, $feature, $points, $rule_id)
     {
 	if (self::$dbgme)
-	    echox('- at index '.$index.' feature <b>'.$feature.'</b> $points '.$points);
+	    echox('---- at index '.$index.' add '.$points.' points to feature '.$feature);
 	
-	NaiMyThoughts::collect(__CLASS__, __METHOD__, '- at index '.$index.' feature <b>'.$feature.'</b> $points '.$points);
+	NaiMyThoughts::collect(__CLASS__, __METHOD__, '---- at index '.$index.' add '.$points.' points to feature <b>'.$feature.'</b>');
 	
 	if(isset(self::$subscores[$index][$feature]))
 	{
@@ -486,6 +492,8 @@ class PosBrillsRules
 	    self::$subscores[$index][$feature]['tag'] = $feature;
 	    self::$subscores[$index][$feature]['score'] = $points;
 	}
+	
+	self::$subscores[$index][$feature]['rule_id'] = $rule_id;
 
     }
 
@@ -532,6 +540,12 @@ class PosBrillsRules
 			$pos_arr[$index][$n2]['sh-feat'] = NaiPosArr::featToShortFeat($subscore['tag']);
 			$pos_arr[$index][$n2]['pos_score'] += $subscore['score'];
 		    }
+		  
+		    if(self::$report_rules_applied)
+		    {
+			$pos_arr[$index][$n2]['brills'][] = [$subscore['rule_id'], $subscore['score'], $subscore['tag']];
+		    }
+		    
 		}
 	    }
 	}

@@ -611,8 +611,24 @@ class NaiPosArr
 	    $token .= '<span class="tag-content">' . $pos_part[0][$what] . '</span> ';
 //	    $token .= $pos_part[0][$what];
 
+	    // and how many features have this token if it is dubious
 	    if ($n_feats > 1)
+	    {
+		// if more than one, show the number
 		$token .= '<sup><small>(' . $n_feats . ')</small></sup>';
+		
+		// if are present more info about brill rules applied
+		if(isset($pos_part[0]['brills']))
+		{
+		    $token .= '<sup><small>(' . count($pos_part[0]['brills']) . ')</small></sup>';
+		}
+		
+		// if it don't have rules show an alert
+		if(! isset($pos_part[0]['brills']) || count($pos_part[0]['brills']) == 0)
+		{
+		    $token .= '<span class="badge badge-info right">!</span>';
+		}
+	    }
 
 	    $token .= '</span>';
 

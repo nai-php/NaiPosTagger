@@ -383,7 +383,7 @@ class EnJustShootMeTestSuccessful extends TestCase
 
 	    $pos_arr = NaiPOsArr::flatPosArr($pos_arr);
 
-	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:conf PON:sep PRO-PERS-1-M-S VER:inf+pres CON:cond NOUN-m:s PRE NPR NOUN-m:p NOUN-m:s SENT");
+	    $this->assertEquals(implode(" ", array_column($pos_arr, 'features')), "SENT INT:conf PON:sep PRO-PERS-1-M-S VER:inf+pres CON:cond NOUN-m:s PRE NPR VER:ind+pres+3+s NOUN-m:s SENT");
     }
 
     public function testPosTagging1628754941_5968() {
